@@ -17,6 +17,7 @@ using namespace std;
 
 
 #define PI 3.1415926535897932384626
+#define MOD_SUPER_16QAM 9
 #define MOD_QUAD_4PAM	8
 #define MOD_INP_4PAM	7
 #define MOD_IQ			6
@@ -34,7 +35,7 @@ void 	mapping_IQqam(Complex<double> *signal, double a_s, int M, double shift);
 void 	mapping_psk(Complex<double> *signal, double a_s, int M, int d);
 void 	mapping_InPhase_pam(Complex<double> *signal, double a_s, int M, int d);
 void 	mapping_Quad_pam(Complex<double> *signal, double a_s, int M, int d);
-
+void	mapping_SUPER_16QAM(Complex<double>* signal, double a_s, int M, double shift);
 
 class Mapper
 {

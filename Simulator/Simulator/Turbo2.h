@@ -76,6 +76,7 @@ public:
 	
 	vector<bool> turbo_decoding(double** LLR1, double**LLR2, int turbo_iter_num);
 	vector<vector<double>>  ExportLLR_turbo_decoding(double** LLR1, double**LLR2, int turbo_iter_num);
+    vector<vector<double>>  ExportLLR_turbo_decoding_excluding(double** LLR1, double**LLR2, int turbo_iter_num);
     void Decision(vector<vector<double>> LLR, vector<bool> &result);
 	void decoding(double	**PC_I, double	**PU_I, double	**PU_O);
 	vector<bool> Attach(vector<bool>, vector<bool>);

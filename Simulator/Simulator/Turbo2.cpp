@@ -973,6 +973,73 @@ vector<vector<double>>  Turb::ExportLLR_turbo_decoding(double** LLR1, double **L
 	return result;
 }
 
+vector<vector<double>>  Turb::ExportLLR_turbo_decoding_excluding(double** LLR1, double **LLR2, int iter_num) {
+	int i, j, k;
+	vector<vector<double>> result(m_Bsize);
+
+	//First staged decoding apriori initialization
+	for (i = 0; i < Bsize; i++)
+		for (j = 0; j < m_Ninfo; j++)PU_I1[i][j] = -log(2);
+
+
+	for (k = 0; k < iter_num; k++) {
+
+		// First Stage Decoding	
+		decoding(LLR1, PU_I1, PU_O1);
+
+		//--------------------- Extrinsic Information Extraction ---------------------------
+		for (i = 0; i < m_Bsize; i++)for (j = 0; j < m_Ninfo; j++)
+		{
+			PU_O1[i][j] = PU_O1[i][j] - PU_I1[i][j];
+		}
+		//======================================================
+		//			Interleaving
+		//======================================================
+		for (i = 0; i < Bsize; i++)
+			for (j = 0; j < m_Ninfo; j++)
+			{
+				if (i < m_Bsize) PU_I2[i][j] = PU_O1[inter_pattern[i]][j];
+				else PU_I2[i][j] = -log(2);
+			}
+		//======================================================
+		//			Second Stage Decoding............
+		//======================================================
+
+
+		decoding(LLR2, PU_I2, PU_O2);
+		//--------------------- Extrinsic Information Extraction ---------------------------
+		for (i = 0; i < m_Bsize; i++)for (j = 0; j < m_Ninfo; j++)
+		{
+			L2[i][j] = PU_O2[i][j];
+			PU_O2[i][j] = PU_O2[i][j] - PU_I2[i][j];
+		}
+
+		//======================================================
+		//			DeInterleaving
+		//======================================================
+		for (i = 0; i < Bsize; i++)
+			for (j = 0; j < m_Ninfo; j++)
+			{
+				if (i < m_Bsize)
+				{
+					PU_I1[i][j] = PU_O2[deinter_pattern[i]][j];
+					L1[i][j] = L2[deinter_pattern[i]][j];
+				}
+				else PU_I1[i][j] = -log(2);
+			}
+
+	}
+
+
+	for (int a = 1; a < m_Bsize * 2; a+=2){
+    	result[a].resize(2);
+    	result[a][0] = L1[a][0];
+        result[a][1] = L1[a][1];
+   }
+
+	return result;
+}
+
 void Turb::decoding(double **PC_I, double	**PU_I, double	**PU_O) {
 
 

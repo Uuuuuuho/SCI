@@ -10,7 +10,7 @@
 #include <math.h>
 
 
-typedef enum mod { BPSK = 1, QPSK = 2, PSK8 = 3, QAM16 = 4, QAM64 = 5, IQQAM = 6, INP_4PAM = 7, QUAD_4PAM = 8 } MOD;
+typedef enum mod { BPSK = 1, QPSK = 2, PSK8 = 3, QAM16 = 4, QAM64 = 5, IQQAM = 6, INP_4PAM = 7, QUAD_4PAM = 8, MOD_SUPER_16QAM = 9 } MOD;
 typedef enum fading { No, Rayl, Rayl_Quasi, STBC, STBC_Quasi, QOSTBC, CIOD, CIOD_Quasi, JTC } FADING;
 
 using namespace std;

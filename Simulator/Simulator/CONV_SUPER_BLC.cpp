@@ -1,5 +1,5 @@
 #include "Simulator.h"
-#if NOW == CONV_SUPER_BLC
+#if NOW == CONV_LOG_COMB
 #include <iostream>
 #include <fstream>	
 #include <vector>

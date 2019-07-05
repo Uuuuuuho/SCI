@@ -12,7 +12,7 @@ Mod 		QPSK
 SNRinit		0
 Increment	5
 SNRMAX		20
-Title		PHASE-OVERLAP-SOURCE-RELAY
+Title		SUPER-16QAM-RELAY
 Frame		1000
 Size		8
 ITR			8

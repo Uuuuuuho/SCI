@@ -58,6 +58,7 @@
     <ClCompile Include="QPSK2QAM.cpp" />
     <ClCompile Include="Rayleigh.cpp" />
     <ClCompile Include="SIC.cpp" />
+    <ClCompile Include="SUPER_16QAM.cpp" />
     <ClCompile Include="Super_CoMP.cpp" />
     <ClCompile Include="Turbo2.cpp" />
   </ItemGroup>
@@ -112,7 +113,9 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
-  <PropertyGroup />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>.</OutDir>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
