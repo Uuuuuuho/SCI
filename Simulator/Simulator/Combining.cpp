@@ -390,3 +390,21 @@ double Comb::Rate(double SNR, double RD_Gain, vector<double> h_sd, vector<double
 	return result;
 }
 
+void Comb::Picking_EVEN(vector < vector < double >> &LLR_SECOND, vector < vector < double >> &LLR_THIRD){
+    int size_col = LLR_SECOND.size(), size_row = LLR_SECOND[0].size();
+    LLR_THIRD.resize(size_col/2);
+	int i = 0;
+    for(; i < size_col/2; i++){
+        LLR_THIRD[i].resize(size_row);
+    }
+
+    for(i = 0; i < size_col/4; i ++){
+        LLR_THIRD[i][0] = LLR_SECOND[4 * i][0];
+        LLR_THIRD[i][1] = LLR_SECOND[4 * i][1];
+        LLR_THIRD[i + 1][0] = LLR_SECOND[4 * i + 1][0];
+        LLR_THIRD[i + 1][1] = LLR_SECOND[4 * i + 1][1];
+    }
+}
+
+
+
