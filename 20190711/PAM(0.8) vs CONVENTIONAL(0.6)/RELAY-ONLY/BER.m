@@ -37,7 +37,7 @@ for k = 1:numfiles
 end
 
 
-title('RD 0dB Gain');
+title('Comparison s+R & S+r SR 10dB Gain');
 xlabel('Eb/No, dB');
 ylabel('Bit Error Rate');
 

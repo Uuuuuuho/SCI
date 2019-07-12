@@ -20,7 +20,7 @@ ITR_RELAY	8
 Channel_coding	TURBO
 Fading		Rayleigh_Quasi
 Code_rate       	3
-P_alpha		0.6
+P_alpha		0.8
 SR_Gain		0
 RD_Gain		0
 
