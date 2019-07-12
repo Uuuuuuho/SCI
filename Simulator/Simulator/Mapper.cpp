@@ -1112,6 +1112,38 @@ void Mapper::QAM_Mapping(vector<bool> a, vector<Complex<double>>& result)
 	free(QAMLUT);
 }
 
+void Mapper::SUPER_QAM_Mapping(vector<bool> a, double alpha, double beta, vector<Complex<double>>& result)
+{
+	int mod = a.size() % 4;
+
+	while (mod != 0) {
+		a.push_back(0);
+		mod--;
+	}
+
+	int m2 = a.size() / 4;
+	result.resize(m2);
+    
+	QAMLUT = (int **)malloc(2 * sizeof(int *));
+	for (int l = 0; l < 2; l++)
+		QAMLUT[l] = (int *)malloc(2 * sizeof(int));
+
+    SUPER_QAM_LUT.resize(2);
+    for (int l = 0; l < 2; l++)
+		SUPER_QAM_LUT[l].resize(2);
+    
+	QAMLUT[0][0] = 3; //{ {3,1},{-3,-1} };
+	QAMLUT[0][1] = 1;
+	QAMLUT[1][0] = -3;
+	QAMLUT[1][1] = -1;
+	for (int i = 0; i < m2; i++) {
+		result[i].re = QAMLUT[a[4 * i]][a[4 * i + 2]];
+		result[i].im = QAMLUT[a[4 * i + 1]][a[4 * i + 3]];
+	}
+	free(QAMLUT);
+}
+
+
 void Mapper::IQ_Mapping(vector<bool> inPhase, double p_alpha, vector<bool> Quad, double p_beta, vector<Complex<double>>& result)
 {
 	int mod = inPhase.size() % 4, mod2 = Quad.size() % 4;

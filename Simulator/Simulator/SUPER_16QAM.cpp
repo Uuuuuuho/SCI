@@ -586,9 +586,6 @@ void Sim() {
 				LC = -1.0 / (2 * AWGN3.sigma2);
 				turbo2.turbo_llr_generation(Fad_Mod, RD_RX, LLR_RD, SUPER_llr0, SUPER_llr1, &SOURCE_Map, RD_RX.size(), LC);
                 
-                for (int i = 0; i < (Size * 2 + turb.m_Nmemory); i++) {
-        			SUPER_LLR1[i] = (double *)malloc(SP_NCODE * sizeof(double));
-        		}
                 
 				turbo2.turbo_bit2sym(SUPER_llr0, SUPER_llr1, SUPER_LLR1, SUPER_LLR2, SP_NCODEBITperSYM2, NCODEBIT, SP_NCODE);
 //				decoded_source = turb2.turbo_decoding(LLR1, LLR2, ITR);

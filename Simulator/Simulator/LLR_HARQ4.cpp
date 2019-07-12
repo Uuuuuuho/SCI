@@ -560,6 +560,7 @@ void Sim() {
 #if (OUTPUT == SOURCE_ONLY) || (OUTPUT == SOURCE_RELAY_BOTH)
 
 				//source re-decoding
+
 				RELAY_Map.PSK8_Demapping(encoded_relay, RD_RX);
 				LC = -1.0 / (2 * AWGN3.sigma2);
 				turb.turbo_llr_generation(Fad_Mod, RD_RX, LLR_RD, llr0, llr1, &SOURCE_Map, RD_RX.size(), LC);
@@ -567,8 +568,9 @@ void Sim() {
 				LLR_SECOND = turb.ExportLLR_turbo_decoding(LLR1, LLR2, ITR);
 
 				//¿©±â¼­ combining
-				Comb.LLR_COMB(Fad_Mod, SNR, llr_wgt_sd, LLR_FIRST, SNR, LLR_RD, LLR_SECOND);
-                turb.Decision(LLR_SECOND, decoded_source);
+//				Comb.LLR_COMB(Fad_Mod, SNR, llr_wgt_sd, LLR_FIRST, SNR, LLR_RD, LLR_SECOND);
+//                turb.Decision(LLR_SECOND, decoded_source);
+                turb.Decision(LLR_FIRST, decoded_source);
 #endif
 
 			}

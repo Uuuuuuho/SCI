@@ -23,7 +23,7 @@
 #define PHASE_EXTENSION 21    //Phase Extension
 #define SUPER_16QAM 22
 
-#define NOW SUPER_16QAM
+#define NOW LLR_HARQ4
 
 #define SOURCE_ONLY 1
 #define RELAY_ONLY 2
