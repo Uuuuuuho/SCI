@@ -414,11 +414,9 @@ void Comb::Picking_FIRSTPAIR(vector < vector < double >> &LLR_SECOND, vector < v
         LLR_THIRD[i].resize(size_row);
     }
 
-    for(i = 0; i < size_col/4; i ++){
-        LLR_THIRD[i][0] = LLR_SECOND[4 * i][0];
-        LLR_THIRD[i][1] = LLR_SECOND[4 * i][1];
-        LLR_THIRD[i + 1][0] = LLR_SECOND[4 * i + 1][0];
-        LLR_THIRD[i + 1][1] = LLR_SECOND[4 * i + 1][1];
+    for(i = 0; i < size_col/2; i ++){
+        LLR_THIRD[i][0] = LLR_SECOND[i][0];
+        LLR_THIRD[i][1] = LLR_SECOND[i][1];
     }
 }
 
@@ -426,16 +424,14 @@ void Comb::Picking_FIRSTPAIR(vector < vector < double >> &LLR_SECOND, vector < v
 void Comb::Picking_SECONDPAIR(vector < vector < double >> &LLR_SECOND, vector < vector < double >> &LLR_THIRD){
     int size_col = LLR_SECOND.size(), size_row = LLR_SECOND[0].size();
     LLR_THIRD.resize(size_col/2);
-	int i = 0;
+	int i = 0, j = 0;
     for(; i < size_col/2; i++){
         LLR_THIRD[i].resize(size_row);
     }
 
-    for(i = 0; i < size_col/4; i ++){
-        LLR_THIRD[i][0] = LLR_SECOND[4 * i + 2][0];
-        LLR_THIRD[i][1] = LLR_SECOND[4 * i + 2][1];
-        LLR_THIRD[i + 1][0] = LLR_SECOND[4 * i + 3][0];
-        LLR_THIRD[i + 1][1] = LLR_SECOND[4 * i + 3][1];
+    for(i = 0, j = size_col/2; i < size_col/2; i++, j++){
+        LLR_THIRD[i][0] = LLR_SECOND[j][0];
+        LLR_THIRD[i][1] = LLR_SECOND[j][1];
     }
 }
 

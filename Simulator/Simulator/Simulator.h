@@ -21,7 +21,7 @@
 #define INCRE_ITER_SUPER_BLC 19
 #define LLR_HARQ4 20        //Phase Overlap
 #define PHASE_EXTENSION 21    //Phase Extension
-#define SUPER_16QAM 22
+#define SUPER_16QAM 22      //new decoding scheme
 
 #define NOW SUPER_16QAM
 
@@ -29,7 +29,7 @@
 #define RELAY_ONLY 2
 #define SOURCE_RELAY_BOTH 3
 
-#define OUTPUT SOURCE_ONLY
+#define OUTPUT RELAY_ONLY
 
 //Combining
 #define EGComb 1

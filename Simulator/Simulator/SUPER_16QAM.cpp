@@ -232,8 +232,8 @@ void Sim() {
 	SOURCE_Map.init(MOD_SUPER_16QAM);
 	SOURCE_Map.map_tab_gen(P_beta);
 
-//	RELAY_Map.init(Mod_int);
-//	RELAY_Map.map_tab_gen(P_alpha);
+	RELAY_Map.init(Mod_int);
+	RELAY_Map.map_tab_gen(P_alpha);
 	//==========================Simulation Parameter======================================================================
 
 
@@ -419,8 +419,8 @@ void Sim() {
 
 //                encoded_relay.insert(encoded_relay.end(), encoded_source.begin(), encoded_source.end());    //vector append
                 //test
-				tmp_code.insert(tmp_code.end(), code_source.begin(), code_source.end());    //vector append
 				tmp_code.insert(tmp_code.end(), code_relay.begin(), code_relay.end());    //vector append
+				tmp_code.insert(tmp_code.end(), code_source.begin(), code_source.end());    //vector append
 
 //				tmp_int.insert(tmp_int.end(), source_int.begin(), source_int.end());    //vector append
 //				tmp_int.insert(tmp_int.end(), relay_int.begin(), relay_int.end());    //vector append
@@ -452,7 +452,6 @@ void Sim() {
 				Map.QPSK_Mapping(encoded_source, tx_source);
                 SOURCE_Map.SUPER_QAM_Mapping(encoded_relay,P_alpha, P_beta, RD_TX);
                 //for test
-                RD_RX = RD_TX;
 //				SOURCE_Map.QPSK_Mapping(encoded_source, SOURCE_TX, P_beta);
 //				RELAY_Map.QPSK_Mapping(encoded_relay, RD_TX, P_alpha);	//Relay의 codeword를 small energy modulation해서 더하자.
 //				tmp_RD_TX = RD_TX;													//we need to add RD_TX & tx_source here!
@@ -485,7 +484,7 @@ void Sim() {
 				Ray.slow_Rayleigh_Fading(tx_source, RayFading, rx_source, llr_wgt_sd);
 				//Ray.slow_Rayleigh_Fading(tx_source, RE_RayFading, RE_RX, LLR_RE);//why do we need this?
 				//Ray.slow_Rayleigh_Fading(tx_source, SR_RayFading, SR_RX, LLR_SR);
-//				Ray.slow_Rayleigh_Fading(RD_TX, RD_RayFading, RD_RX, LLR_RD);
+				Ray.slow_Rayleigh_Fading(RD_TX, RD_RayFading, RD_RX, LLR_RD);
 				break;
 			}
 			default: {
@@ -515,8 +514,8 @@ void Sim() {
 				Ray.Quasi_Coherent(RayFading, rx_source, llr_wgt_sd);
 				//Ray.Quasi_Coherent(RE_RayFading, RE_RX, LLR_RE);
 				//Ray.Quasi_Coherent(SR_RayFading, SR_RX, LLR_SR);
-//				Ray.Quasi_Coherent(RD_RayFading, RD_RX, LLR_RD);
-				break;
+				Ray.Quasi_Coherent(RD_RayFading, RD_RX, LLR_RD);
+    			break;
 			}
 			default: {
 				break;
@@ -540,7 +539,10 @@ void Sim() {
 				turb.turbo_bit2sym(llr0, llr1, LLR1, LLR2, SP_NCODEBITperSYM, NCODEBIT, SP_NCODE);
 				//LLR_FIRST에 iteration이 끝난 정보를 저장함
 				LLR_FIRST = turb.ExportLLR_turbo_decoding(LLR1, LLR2, ITR);
+
+
 				decoded_source = turb.turbo_decoding(LLR1, LLR2, ITR);
+                
 				break;
 
 			case UNCODED:
@@ -575,33 +577,56 @@ void Sim() {
         			SUPER_LLR1[i] = (double *)malloc(SP_NCODE * sizeof(double));
         			SUPER_LLR2[i] = (double *)malloc(SP_NCODE * sizeof(double));
         		}
+
+
                 
 				LC = -1.0 / (2 * AWGN3.sigma2);
-				turbo2.turbo_llr_generation(Fad_Mod, RD_RX, LLR_RD, SUPER_llr0, SUPER_llr1, &SOURCE_Map, RD_RX.size(), LC);
+				turbo2.turbo_llr_generation(Fad_Mod, RD_RX, LLR_RD, SUPER_llr0, SUPER_llr1, &RELAY_Map, RD_RX.size(), LC);
 				turbo2.turbo_bit2sym(SUPER_llr0, SUPER_llr1, SUPER_LLR1, SUPER_LLR2, SP_NCODEBITperSYM2, NCODEBIT, SP_NCODE);
 				LLR_SECOND = turbo2.ExportLLR_turbo_decoding(SUPER_LLR1, SUPER_LLR2, ITR);
 
                 //relay decoding
 #if (OUTPUT == RELAY_ONLY) || (OUTPUT == SOURCE_RELAY_BOTH)
                 Comb.Picking_FIRSTPAIR(LLR_SECOND, LLR_THIRD);
-
-				turb.Decision(LLR_THIRD, decoded_relay);                
+/*
+                cout << "LLR_THIRD" << endl;
+                for(int i = 0; i < LLR_THIRD.size(); i++){
+                    cout << LLR_THIRD[i][0] << endl;
+                }
+*/
+				turb.Decision(LLR_THIRD, decoded_relay);  
+                
+                
 				Detect.Detection(code_relay, decoded_relay, err, Size);
 				count++;
 #endif
 
+#if (OUTPUT == SOURCE_ONLY) || (OUTPUT == SOURCE_RELAY_BOTH)
+
+                LC = -1.0 / (2 * AWGN3.sigma2);
+				turbo2.turbo_llr_generation(Fad_Mod, RD_RX, LLR_RD, SUPER_llr0, SUPER_llr1, &SOURCE_Map, RD_RX.size(), LC);
+				turbo2.turbo_bit2sym(SUPER_llr0, SUPER_llr1, SUPER_LLR1, SUPER_LLR2, SP_NCODEBITperSYM2, NCODEBIT, SP_NCODE);
+				LLR_SECOND = turbo2.ExportLLR_turbo_decoding(SUPER_LLR1, SUPER_LLR2, ITR);
+
+
                 Comb.Picking_SECONDPAIR(LLR_SECOND, LLR_THIRD);
 
                 //test
+                /*
+                cout << "LLR_FIRST" << endl;
                 for(int i = 0; i < LLR_FIRST.size(); i++){
-                    
+                    cout << LLR_FIRST[i][0] << endl;
                 }
+                cout << "LLR_SECOND" << endl;
+                for(int i = 0; i < LLR_SECOND.size(); i++){
+                    cout << LLR_SECOND[i][0] << endl;
+                }
+                */
                 
 				//여기서 combining
 				Comb.LLR_COMB(Fad_Mod, SNR, llr_wgt_sd, LLR_FIRST, SNR, LLR_RD, LLR_THIRD);
                 
-#if (OUTPUT == SOURCE_ONLY) || (OUTPUT == SOURCE_RELAY_BOTH)
-				turb.Decision(LLR_SECOND, decoded_source);
+				turb.Decision(LLR_THIRD, decoded_source);
 #endif
                 delete(SUPER_llr0), delete(SUPER_llr1), delete(SUPER_LLR1), delete(SUPER_LLR2);
 
