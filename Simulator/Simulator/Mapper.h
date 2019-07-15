@@ -68,7 +68,7 @@ public:
 	void PAM_InPhase_Mapping(vector<bool>, vector<Complex<double>>&, double val);
 	void PAM_Quad_Mapping(vector<bool>, vector<Complex<double>>&, double val);
 	void QAM_Mapping(vector<bool>, vector<Complex<double>>&);
-    void SUPER_QAM_Mapping(vector<bool>, vector<Complex<double>>&);
+    void SUPER_QAM_Mapping(vector<bool>, double, double, vector<Complex<double>>&);
 	void QAM64_Mapping(vector<bool>, vector<Complex<double>>&);
 	void BPSK_Demapping(vector<Complex<double>>, int, vector<bool>&);
 	void QPSK_Demapping(vector<Complex<double>>, int, vector<bool>&);

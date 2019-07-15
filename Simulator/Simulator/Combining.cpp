@@ -312,11 +312,11 @@ void Comb::LLR_COMB(FADING FAD_MOD, double SNR_SD, vector<double> &h_sd, vector<
 
 	rate1.resize(1), rate2.resize(1);
 
-	rate1[0] = (h_sd[0] * tmp1) / (h_sd[0] * tmp1 + h_rd[0] * tmp2);
-	rate2[0] = (h_rd[0] * tmp2) / (h_sd[0] * tmp1 + h_rd[0] * tmp2);
+//	rate1[0] = (h_sd[0] * tmp1) / (h_sd[0] * tmp1 + h_rd[0] * tmp2);
+//	rate2[0] = (h_rd[0] * tmp2) / (h_sd[0] * tmp1 + h_rd[0] * tmp2);
 
-	//rate1[0] = 0.5;
-	//rate2[0] = 0.5;
+	rate1[0] = 0.5;
+	rate2[0] = 0.5;
 
 	for (int i = 0; i < size; i++) {//과정을 단순화 해볼까?
 		tmpSum0 = (LLR_FIRST[i][0] + LLR_SECOND[i][0]), tmpSum1 = (LLR_FIRST[i][1] + LLR_SECOND[i][1]);
@@ -406,5 +406,37 @@ void Comb::Picking_EVEN(vector < vector < double >> &LLR_SECOND, vector < vector
     }
 }
 
+void Comb::Picking_FIRSTPAIR(vector < vector < double >> &LLR_SECOND, vector < vector < double >> &LLR_THIRD){
+    int size_col = LLR_SECOND.size(), size_row = LLR_SECOND[0].size();
+    LLR_THIRD.resize(size_col/2);
+	int i = 0;
+    for(; i < size_col/2; i++){
+        LLR_THIRD[i].resize(size_row);
+    }
+
+    for(i = 0; i < size_col/4; i ++){
+        LLR_THIRD[i][0] = LLR_SECOND[4 * i][0];
+        LLR_THIRD[i][1] = LLR_SECOND[4 * i][1];
+        LLR_THIRD[i + 1][0] = LLR_SECOND[4 * i + 1][0];
+        LLR_THIRD[i + 1][1] = LLR_SECOND[4 * i + 1][1];
+    }
+}
+
+
+void Comb::Picking_SECONDPAIR(vector < vector < double >> &LLR_SECOND, vector < vector < double >> &LLR_THIRD){
+    int size_col = LLR_SECOND.size(), size_row = LLR_SECOND[0].size();
+    LLR_THIRD.resize(size_col/2);
+	int i = 0;
+    for(; i < size_col/2; i++){
+        LLR_THIRD[i].resize(size_row);
+    }
+
+    for(i = 0; i < size_col/4; i ++){
+        LLR_THIRD[i][0] = LLR_SECOND[4 * i + 2][0];
+        LLR_THIRD[i][1] = LLR_SECOND[4 * i + 2][1];
+        LLR_THIRD[i + 1][0] = LLR_SECOND[4 * i + 3][0];
+        LLR_THIRD[i + 1][1] = LLR_SECOND[4 * i + 3][1];
+    }
+}
 
 

@@ -35,6 +35,8 @@ public:
 	double Rate(double SNR, double RD_Gain, vector<double> h_sd, vector<double> h_rd, double LC_SD, double LC_RD, double &rate1, double &rate2);
 
     void Picking_EVEN(vector<vector<double>> &LLR_SECOND, vector<vector<double>> &LLR_THIRD);
+    void Picking_FIRSTPAIR(vector<vector<double>> &LLR_SECOND, vector<vector<double>> &LLR_THIRD);
+    void Picking_SECONDPAIR(vector<vector<double>> &LLR_SECOND, vector<vector<double>> &LLR_THIRD);
 };
 
 #endif

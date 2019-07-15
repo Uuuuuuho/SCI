@@ -23,13 +23,13 @@
 #define PHASE_EXTENSION 21    //Phase Extension
 #define SUPER_16QAM 22
 
-#define NOW LLR_HARQ4
+#define NOW SUPER_16QAM
 
 #define SOURCE_ONLY 1
 #define RELAY_ONLY 2
 #define SOURCE_RELAY_BOTH 3
 
-#define OUTPUT SOURCE_RELAY_BOTH
+#define OUTPUT SOURCE_ONLY
 
 //Combining
 #define EGComb 1
