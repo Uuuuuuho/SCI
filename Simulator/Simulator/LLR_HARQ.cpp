@@ -539,7 +539,7 @@ void Sim() {
 																					//Decoding @ Relay
 
 				LC = -1.0 / (2 * AWGN3.sigma2);
-				turb.turbo_llr_generation(Fad_Mod, RD_RX, LLR_RE, llr0, llr1, &RELAY_Map, RD_RX.size(), LC);
+				turb.turbo_llr_generation(Fad_Mod, RD_RX, LLR_RD, llr0, llr1, &RELAY_Map, RD_RX.size(), LC);
 				turb.turbo_bit2sym(llr0, llr1, LLR1, LLR2, SP_NCODEBITperSYM, NCODEBIT, SP_NCODE);
 				decoded_relay = turb.turbo_decoding(LLR1, LLR2, ITR);
                 

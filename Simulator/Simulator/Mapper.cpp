@@ -70,6 +70,16 @@ void Mapper::init(int mod_type)
 		m_2d_map_tab = new Complex<double>[m_N_2d_const];
 		m_rot_map_tab = new Complex<double>[m_N_2d_const];
 		break;        
+	case	MOD_SUPER_16QAM2:
+		m_dim = 2;
+		m_N_1d_const = 4;
+		m_N_2d_const = 16;
+		m_Ninfo = 16;
+		m_Ninfobit = 4;
+		m_2d_map_tab = new Complex<double>[m_N_2d_const];
+		m_rot_map_tab = new Complex<double>[m_N_2d_const];
+		break;        
+
 	case	MOD_IQ:
 		m_dim = 2;
 		m_N_1d_const = 4;
@@ -123,6 +133,8 @@ void		Mapper::map_tab_gen(double target_sig_energy)
 	case MOD_QPSK:		mapping_psk(m_2d_map_tab, target_sig_energy, 4, m_dim); break;
 	case MOD_BPSK:		mapping_psk(m_2d_map_tab, target_sig_energy, 2, m_dim); break;
     case MOD_SUPER_16QAM: mapping_SUPER_16QAM(m_2d_map_tab, target_sig_energy, m_N_2d_const, 0.0); break;   //consider target signal energy as beta
+    case MOD_SUPER_16QAM2: mapping_SUPER_16QAM2(m_2d_map_tab, target_sig_energy, m_N_2d_const, 0.0); break;   //consider target signal energy as beta
+
 	default: printf("modulation type %d is not¤Ñ supported yet\n", m_mod_type); exit(1);
 	}
 	//m_avg_sig_energy = 0.0;	// initialze total signal energy
@@ -136,6 +148,63 @@ void		Mapper::map_tab_gen(double target_sig_energy)
 
 }
 #endif
+
+void mapping_SUPER_16QAM2(Complex<double> *signal, double a_s, int M, double shift){
+	int i;
+    double alpha = 1 - a_s, beta = a_s;
+    
+	if (M == 16)
+	{
+
+		i = 0;
+		signal[i].re = alpha;     signal[i].im = alpha;
+		i = 1;
+		signal[i].re = alpha;     signal[i].im = alpha;
+		i = 5;
+		signal[i].re = alpha;      signal[i].im = - alpha;
+		i = 4;
+		signal[i].re = alpha;      signal[i].im = - alpha;
+
+		i = 2;
+		signal[i].re = alpha;     signal[i].im = alpha;
+		i = 3;
+		signal[i].re = alpha;     signal[i].im = alpha;
+		i = 7;
+		signal[i].re = alpha;      signal[i].im = - alpha;
+		i = 6;
+		signal[i].re = alpha;      signal[i].im = - alpha;
+
+		i = 10;
+		signal[i].re = - alpha;     signal[i].im = alpha;
+		i = 11;
+		signal[i].re = - alpha;     signal[i].im = alpha;
+		i = 15;
+		signal[i].re = - alpha;      signal[i].im = - alpha;
+		i = 14;
+		signal[i].re = - alpha;      signal[i].im = - alpha;
+
+		i = 8;
+		signal[i].re = - alpha;     signal[i].im = alpha;
+		i = 9;
+		signal[i].re = - alpha;     signal[i].im = alpha;
+		i = 13;
+		signal[i].re = - alpha;      signal[i].im = - alpha;
+		i = 12;
+		signal[i].re = - alpha;      signal[i].im = - alpha;
+	}
+
+	else
+	{
+		printf("constration number %d is not supported yet\n", M); exit(1);
+	}
+
+	for (i = 0; i<M; i++)
+	{
+		signal[i].re += shift;
+		signal[i].im += shift;
+	}
+
+}
 
 void mapping_SUPER_16QAM(Complex<double> *signal, double a_s, int M, double shift){
 	int i;

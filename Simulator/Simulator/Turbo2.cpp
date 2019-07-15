@@ -622,7 +622,7 @@ void	Turb::turbo_llr_generation(FADING FAD_MOD, vector<Complex<double>> rx_buf, 
 			bit_flag = 0x01 << (M_MAP->m_Ninfobit - 1);
 			// bit plane 별로  LOG map LLR값을 찾는다.
 			for (kk = 0; kk < M_MAP->m_Ninfobit; kk++, bit_flag >>= 1) {
-				max1 = max0 = (-100000.0);
+				max1 = max0 = (-1000000000000000000.0);
 				for (j = 0; j < M_MAP->m_N_2d_const; j++) {
 					if ((j&bit_flag) == bit_flag) {
 						if ((t_LLR[j] > max1) && (max_flag1 == 0)) {

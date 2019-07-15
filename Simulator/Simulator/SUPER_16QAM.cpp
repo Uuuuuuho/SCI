@@ -232,8 +232,8 @@ void Sim() {
 	SOURCE_Map.init(MOD_SUPER_16QAM);
 	SOURCE_Map.map_tab_gen(P_beta);
 
-	RELAY_Map.init(Mod_int);
-	RELAY_Map.map_tab_gen(P_alpha);
+	RELAY_Map.init(MOD_SUPER_16QAM2);
+	RELAY_Map.map_tab_gen(P_beta);
 	//==========================Simulation Parameter======================================================================
 
 
@@ -451,6 +451,7 @@ void Sim() {
 				RELAY_Eb = RELAY_Eb * 1.0;								//energy of relay transmission
 				Map.QPSK_Mapping(encoded_source, tx_source);
                 SOURCE_Map.SUPER_QAM_Mapping(encoded_relay,P_alpha, P_beta, RD_TX);
+                
                 //for test
 //				SOURCE_Map.QPSK_Mapping(encoded_source, SOURCE_TX, P_beta);
 //				RELAY_Map.QPSK_Mapping(encoded_relay, RD_TX, P_alpha);	//Relay의 codeword를 small energy modulation해서 더하자.
@@ -579,24 +580,39 @@ void Sim() {
         		}
 
 
-                
-				LC = -1.0 / (2 * AWGN3.sigma2);
+				//LC = -1.0 / (2 * Awgn.sigma2);
+				//turbo2.turbo_llr_generation(Fad_Mod, RD_RX, LLR_RD, llr0, llr1, &RELAY_Map, RD_RX.size(), LC);
+				//turbo2.turbo_bit2sym(llr0, llr1, LLR1, LLR2, SP_NCODEBITperSYM, NCODEBIT, SP_NCODE);
+				//LLR_SECOND = turbo2.ExportLLR_turbo_decoding(LLR1, LLR2, ITR);
+				
+				//cout << "LLR_FIRST" << endl;
+				//for (int i = 0; i < LLR_FIRST.size(); i++) {
+				//	cout << LLR_FIRST[i][0] << endl;
+				//}
+				//cout << "LLR_SECOND" << endl;
+				//for (int i = 0; i < LLR_SECOND.size(); i++) {
+				//	cout << LLR_SECOND[i][0] << endl;
+				//}
+
+
+                LC = -1.0 / (2 * AWGN3.sigma2);
 				turbo2.turbo_llr_generation(Fad_Mod, RD_RX, LLR_RD, SUPER_llr0, SUPER_llr1, &RELAY_Map, RD_RX.size(), LC);
 				turbo2.turbo_bit2sym(SUPER_llr0, SUPER_llr1, SUPER_LLR1, SUPER_LLR2, SP_NCODEBITperSYM2, NCODEBIT, SP_NCODE);
 				LLR_SECOND = turbo2.ExportLLR_turbo_decoding(SUPER_LLR1, SUPER_LLR2, ITR);
 
+
                 //relay decoding
 #if (OUTPUT == RELAY_ONLY) || (OUTPUT == SOURCE_RELAY_BOTH)
-                Comb.Picking_FIRSTPAIR(LLR_SECOND, LLR_THIRD);
+
+               Comb.Picking_FIRSTPAIR(LLR_SECOND, LLR_THIRD);
 /*
                 cout << "LLR_THIRD" << endl;
                 for(int i = 0; i < LLR_THIRD.size(); i++){
                     cout << LLR_THIRD[i][0] << endl;
                 }
 */
-				turb.Decision(LLR_THIRD, decoded_relay);  
-                
-                
+//				turb.Decision(LLR_THIRD, decoded_relay);  
+                turb.Decision(LLR_THIRD, decoded_relay);  
 				Detect.Detection(code_relay, decoded_relay, err, Size);
 				count++;
 #endif

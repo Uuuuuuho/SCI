@@ -16,7 +16,7 @@ Title		PHASE-OVERLAP-SOURCE-RELAY
 Frame		1000
 Size		8
 ITR			8
-ITR_RELAY	8
+ITR_RELAY	7
 Channel_coding	TURBO
 Fading		Rayleigh_Quasi
 Code_rate       	3

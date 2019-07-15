@@ -29,7 +29,7 @@
 #define RELAY_ONLY 2
 #define SOURCE_RELAY_BOTH 3
 
-#define OUTPUT RELAY_ONLY
+#define OUTPUT SOURCE_ONLY
 
 //Combining
 #define EGComb 1
