@@ -1,3 +1,4 @@
+#include "Simulator.h"
 #if NOW == SUPER_16QAM2 //Conventional Superposition
 #include <iostream>
 #include <fstream>	
@@ -217,7 +218,7 @@ void Sim() {
 
 	//=============================Class Instances==========================================================================
 	Generation Gen;
-	Mapper Map, SOURCE_Map, RELAY_Map;
+	Mapper Map, SOURCE_Map, RELAY_Map, SMALL_Map;
 	Rayleigh Ray;
 	AWGN Awgn, AWGN2, AWGN3;
 	Detector Detect;
@@ -230,13 +231,16 @@ void Sim() {
 
 	SOURCE_Map.init(MOD_SUPER_16QAM);
 	SOURCE_Map.map_tab_gen(P_beta);
+	
+	SMALL_Map.init(Mod_int);
+	SMALL_Map.map_tab_gen(P_beta);
 
 	RELAY_Map.init(Mod_int);
 	RELAY_Map.map_tab_gen(P_alpha);
 
-//	RELAY_Map.init(MOD_SUPER_16QAM2);
-//	RELAY_Map.map_tab_gen(P_beta);
-	//==========================Simulation Parameter======================================================================
+		//RELAY_Map.init(MOD_SUPER_16QAM2);
+		//RELAY_Map.map_tab_gen(P_beta);
+		//==========================Simulation Parameter======================================================================
 
 
 	int Size = (1 << m);
@@ -251,12 +255,12 @@ void Sim() {
 	//======================Trellis diagram===============================================================================================
 
 	int Convsize;
-	double* llr0, *llr1, *SUPER_llr0, *SUPER_llr1;
+	double* llr0, *llr1, *SUPER_llr0, *SUPER_llr1, *source_llr0, *source_llr1, *relay_llr0, *relay_llr1;
 	double** ConvLLR, **LLR1, **LLR2, **SUPER_LLR1, **SUPER_LLR2;
 
 	int g[2] = { 0x0D,0x0B };//trellis polynomial for convolutional
 	llr0 = NULL, llr1 = NULL, ConvLLR = NULL, LLR1 = NULL, LLR2 = NULL, SUPER_llr0 = NULL, SUPER_llr1 = NULL,
-		SUPER_LLR1 = NULL, SUPER_LLR2 = NULL;
+		SUPER_LLR1 = NULL, SUPER_LLR2 = NULL, source_llr0 = NULL, source_llr1 = NULL, relay_llr0 = NULL, relay_llr1 = NULL;
 
 	switch (Ch) {
 	case CONV:
@@ -284,6 +288,11 @@ void Sim() {
 
 		llr0 = (double*)malloc(sizeof(double) * SP_NCODEBITperSYM);
 		llr1 = (double*)malloc(sizeof(double) * SP_NCODEBITperSYM);
+
+		source_llr0 = (double*)malloc(sizeof(double) * SP_NCODEBITperSYM);
+		source_llr1 = (double*)malloc(sizeof(double) * SP_NCODEBITperSYM);
+		relay_llr0 = (double*)malloc(sizeof(double) * SP_NCODEBITperSYM);
+		relay_llr1 = (double*)malloc(sizeof(double) * SP_NCODEBITperSYM);
 
 		LLR1 = (double**)malloc(sizeof(double) * (Size + turb.m_Nmemory));
 		LLR2 = (double**)malloc(sizeof(double) * (Size + turb.m_Nmemory));
@@ -411,18 +420,13 @@ void Sim() {
 
 			case TURBO:
 				Eb = 1.0 * rate;
-				RELAY_Eb = 1.0 * rate;
+				RELAY_Eb = 1.0*rate;
 
 				source_int = turb.interleaver(code_source);
 				relay_int = turb.interleaver(code_relay);
 
 				encoded_source = turb.encode(code_source, source_int);
 				encoded_relay = turb.encode(code_relay, relay_int);
-
-				//for test
-				turbo2.interleaver(code_source);
-				turbo2.encode(code_source, source_int);
-
 
 				break;
 
@@ -446,16 +450,9 @@ void Sim() {
 				Map.QPSK_Mapping(encoded_source, tx_source);
 				SOURCE_Map.QPSK_Mapping(encoded_source, SOURCE_TX, P_beta);
 				RELAY_Map.QPSK_Mapping(encoded_relay, RD_TX, P_alpha);	//Relay의 codeword를 small energy modulation해서 더하자.
-				tmp_RD_TX = RD_TX;													//we need to add RD_TX & tx_source here!
 				RELAY_Map.Super(SOURCE_TX, RD_TX);
 
-				//for test
-//				SOURCE_Map.QPSK_Mapping(encoded_source, SOURCE_TX, P_beta);
-//				RELAY_Map.QPSK_Mapping(encoded_relay, RD_TX, P_alpha);	//Relay의 codeword를 small energy modulation해서 더하자.
-//				tmp_RD_TX = RD_TX;													//we need to add RD_TX & tx_source here!
-//				RELAY_Map.Super(SOURCE_TX, RD_TX);
-
-//				Constellation(RD_TX);
+				//				Constellation(RD_TX);
 				break;
 			}
 			case(QAM16): {
@@ -565,44 +562,53 @@ void Sim() {
 
 			if (Detect.Packet(code_source, decoded_source, SP_NINFOBITperSYM)) {    //CRC fail @ the gateway
 																					//Decoding @ Relay
-							//dynamic allocation makes noise at the moment.. let's have a look at these later
-				SUPER_llr0 = (double*)malloc(sizeof(double)*SP_NCODEBITperSYM2);
-				SUPER_llr1 = (double*)malloc(sizeof(double)*SP_NCODEBITperSYM2);
 
-				SUPER_LLR1 = (double **)malloc(sizeof(double) * (Size * 2 + turb.m_Nmemory));
-				SUPER_LLR2 = (double **)malloc(sizeof(double) * (Size * 2 + turb.m_Nmemory));
-				for (int i = 0; i < (Size * 2 + turb.m_Nmemory); i++) {
-					SUPER_LLR1[i] = (double *)malloc(SP_NCODE * sizeof(double));
-					SUPER_LLR2[i] = (double *)malloc(SP_NCODE * sizeof(double));
-				}
-
-				LC = -1.0 / (2 * AWGN3.sigma2);
-				turb.turbo_llr_generation(Fad_Mod, RD_RX, LLR_RD, llr0, llr1, &RELAY_Map, RD_RX.size(), LC);
-				turb.turbo_bit2sym(llr0, llr1, LLR1, LLR2, SP_NCODEBITperSYM, NCODEBIT, SP_NCODE);
-				decoded_relay = turb.turbo_decoding(LLR1, LLR2, ITR);
-
+				//LC = -1.0 / (2 * AWGN3.sigma2);
+				//turb.turbo_llr_generation(Fad_Mod, RD_RX, LLR_RD, llr0, llr1, &RELAY_Map, RD_RX.size(), LC);
+				//turb.turbo_bit2sym(llr0, llr1, LLR1, LLR2, SP_NCODEBITperSYM, NCODEBIT, SP_NCODE);
+				//decoded_relay = turb.turbo_decoding(LLR1, LLR2, ITR);
+				
+				
 #if (OUTPUT == RELAY_ONLY) || (OUTPUT == SOURCE_RELAY_BOTH)
 				//relay decoding
 				Detect.Detection(code_relay, decoded_relay, err, Size);
 				count++;
 #endif
 
+#if (OUTPUT == SOURCE_ONLY) || (OUTPUT == SOURCE_RELAY_BOTH)
+				//if (!Detect.Packet(code_relay, decoded_relay, SP_NINFOBITperSYM)) {
+				//	RELAY_Map.Super_Sub(tmp_RD_TX, RD_RX);
+
+				//	LC = -1.0 / (2 * AWGN3.sigma2);
+				//	turb.turbo_llr_generation(Fad_Mod, RD_RX, LLR_RE, llr0, llr1, &SMALL_Map, RD_RX.size(), LC);
+				//	turb.turbo_bit2sym(llr0, llr1, LLR1, LLR2, SP_NCODEBITperSYM, NCODEBIT, SP_NCODE);
+				//	LLR_SECOND = turb.ExportLLR_turbo_decoding(LLR1, LLR2, ITR);
+
+				//}
+
+				//else {	//relay decoding failed
+				//	///////////////////////////////new scheme
+				//	LC = -1.0 / (2 * AWGN3.sigma2);
+				//	turb.turbo_llr_generation(Fad_Mod, RD_RX, LLR_RD, llr0, llr1, &SOURCE_Map, RD_RX.size(), LC);
+				//	turb.llr_segment(llr0, llr1, source_llr0, source_llr1, relay_llr0, relay_llr1, SP_NCODEBITperSYM);
+				//	turb.turbo_bit2sym(source_llr0, source_llr1, LLR1, LLR2, SP_NCODEBITperSYM, NCODEBIT, SP_NCODE);
+				//	LLR_SECOND = turb.ExportLLR_turbo_decoding(LLR1, LLR2, ITR);
+
+				//}
+				////여기서 combining
+				//Comb.LLR_COMB(Fad_Mod, SNR, llr_wgt_sd, LLR_FIRST, SNR, LLR_RD, LLR_SECOND);
+				//turb.Decision(LLR_SECOND, decoded_source);
+
 				LC = -1.0 / (2 * AWGN3.sigma2);
-				turbo2.turbo_llr_generation(Fad_Mod, RD_RX, LLR_RD, SUPER_llr0, SUPER_llr1, &SOURCE_Map, RD_RX.size(), LC);
-				turbo2.turbo_bit2sym(SUPER_llr0, SUPER_llr1, SUPER_LLR1, SUPER_LLR2, SP_NCODEBITperSYM2, NCODEBIT, SP_NCODE);
-				LLR_SECOND = turbo2.ExportLLR_turbo_decoding(SUPER_LLR1, SUPER_LLR2, ITR);
-				Comb.Picking_SECONDPAIR(LLR_SECOND, LLR_THIRD);
+				turb.turbo_llr_generation(Fad_Mod, RD_RX, LLR_RD, llr0, llr1, &SOURCE_Map, RD_RX.size(), LC);
+				turb.llr_segment(llr0, llr1, source_llr0, source_llr1, relay_llr0, relay_llr1, SP_NCODEBITperSYM);
+				turb.turbo_bit2sym(source_llr0, source_llr1, LLR1, LLR2, SP_NCODEBITperSYM, NCODEBIT, SP_NCODE);
+				
+				decoded_source = turb.turbo_decoding(LLR1, LLR2, ITR);
+				//turb.Decision(LLR_SECOND, decoded_source);
 
-				//여기서 combining
-				Comb.LLR_COMB(Fad_Mod, SNR, llr_wgt_sd, LLR_FIRST, SNR, LLR_RD, LLR_THIRD);
-
-				turb.Decision(LLR_THIRD, decoded_source);
-				delete(SUPER_llr0), delete(SUPER_llr1), delete(SUPER_LLR1), delete(SUPER_LLR2);
-
+#endif
 			}
-
-			
-
 
 			switch (Ch) {
 			case CONV:

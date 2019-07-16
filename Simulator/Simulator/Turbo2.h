@@ -73,6 +73,7 @@ public:
 	double	log_sum_exp(double *din, int num);
 	double	log_sum_exp(double din1, double din2);
 
+    void llr_segment(double *llr0, double *llr1, double *source_llr0, double *source_llr1, double *relay_llr0, double *relay_llr1, int size);
 	
 	vector<bool> turbo_decoding(double** LLR1, double**LLR2, int turbo_iter_num);
 	vector<vector<double>>  ExportLLR_turbo_decoding(double** LLR1, double**LLR2, int turbo_iter_num);
