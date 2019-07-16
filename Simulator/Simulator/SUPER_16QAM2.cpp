@@ -412,23 +412,25 @@ void Sim() {
 				RELAY_Eb = 1.0 * rate;
 
 				source_int = turb.interleaver(code_source);
-				//				relay_int = turb.interleaver(code_relay);
+				relay_int = turb.interleaver(code_relay);
 
 				encoded_source = turb.encode(code_source, source_int);
-				//				encoded_relay = turb.encode(code_relay, relay_int);
+				encoded_relay = turb.encode(code_relay, relay_int);
 
-				//                encoded_relay.insert(encoded_relay.end(), encoded_source.begin(), encoded_source.end());    //vector append
+                encoded_relay = Comb.Comnining_PAIRS(encoded_source, encoded_relay);
+
+//                encoded_relay.insert(encoded_relay.end(), encoded_source.begin(), encoded_source.end());    //vector append
 								//test
-				tmp_code.insert(tmp_code.end(), code_relay.begin(), code_relay.end());    //vector append
-				tmp_code.insert(tmp_code.end(), code_source.begin(), code_source.end());    //vector append
+//				tmp_code.insert(tmp_code.end(), code_relay.begin(), code_relay.end());    //vector append
+//				tmp_code.insert(tmp_code.end(), code_source.begin(), code_source.end());    //vector append
 
 //				tmp_int.insert(tmp_int.end(), source_int.begin(), source_int.end());    //vector append
 //				tmp_int.insert(tmp_int.end(), relay_int.begin(), relay_int.end());    //vector append
 
-				tmp_int = turbo2.interleaver(tmp_code);
-				encoded_relay = turbo2.encode(tmp_code, tmp_int);
+//				tmp_int = turbo2.interleaver(tmp_code);
+//				encoded_relay = turbo2.encode(tmp_code, tmp_int);
 
-				vector<bool>(0).swap(tmp_code), vector<bool>(0).swap(tmp_int);
+//				vector<bool>(0).swap(tmp_code), vector<bool>(0).swap(tmp_int);
 
 				break;
 
@@ -580,48 +582,18 @@ void Sim() {
 				}
 
 
-				//LC = -1.0 / (2 * Awgn.sigma2);
-				//turbo2.turbo_llr_generation(Fad_Mod, RD_RX, LLR_RD, llr0, llr1, &RELAY_Map, RD_RX.size(), LC);
-				//turbo2.turbo_bit2sym(llr0, llr1, LLR1, LLR2, SP_NCODEBITperSYM, NCODEBIT, SP_NCODE);
-				//LLR_SECOND = turbo2.ExportLLR_turbo_decoding(LLR1, LLR2, ITR);
-
-				//cout << "LLR_FIRST" << endl;
-				//for (int i = 0; i < LLR_FIRST.size(); i++) {
-				//	cout << LLR_FIRST[i][0] << endl;
-				//}
-				//cout << "LLR_SECOND" << endl;
-				//for (int i = 0; i < LLR_SECOND.size(); i++) {
-				//	cout << LLR_SECOND[i][0] << endl;
-				//}
-
-
 				LC = -1.0 / (2 * AWGN3.sigma2);
-				turbo2.turbo_llr_generation(Fad_Mod, RD_RX, LLR_RD, SUPER_llr0, SUPER_llr1, &RELAY_Map, RD_RX.size(), LC);
-				turbo2.turbo_bit2sym(SUPER_llr0, SUPER_llr1, SUPER_LLR1, SUPER_LLR2, SP_NCODEBITperSYM2, NCODEBIT, SP_NCODE);
-				LLR_SECOND = turbo2.ExportLLR_turbo_decoding(SUPER_LLR1, SUPER_LLR2, ITR);
-
+				turb.turbo_llr_generation(Fad_Mod, RD_RX, LLR_RD, SUPER_llr0, SUPER_llr1, &SOURCE_Map, RD_RX.size(), LC);
+				turb.turbo_bit2sym(SUPER_llr0, SUPER_llr1, SUPER_LLR1, SUPER_LLR2, SP_NCODEBITperSYM2, NCODEBIT, SP_NCODE);
+				LLR_SECOND = turb.ExportLLR_turbo_decoding(SUPER_LLR1, SUPER_LLR2, ITR);
 
 				//relay decoding
 #if (OUTPUT == RELAY_ONLY) || (OUTPUT == SOURCE_RELAY_BOTH)
 
-				Comb.Picking_FIRSTPAIR(LLR_SECOND, LLR_THIRD);
+				//Comb.Picking_FIRSTPAIR(LLR_SECOND, LLR_THIRD);
 
-				LC = -1.0 / (2 * AWGN3.sigma2);
-				turbo2.turbo_llr_generation(Fad_Mod, RD_RX, LLR_RD, SUPER_llr0, SUPER_llr1, &SOURCE_Map, RD_RX.size(), LC);
-				turbo2.turbo_bit2sym(SUPER_llr0, SUPER_llr1, SUPER_LLR1, SUPER_LLR2, SP_NCODEBITperSYM2, NCODEBIT, SP_NCODE);
-				LLR_SECOND = turbo2.ExportLLR_turbo_decoding(SUPER_LLR1, SUPER_LLR2, ITR);
-
-				Comb.Picking_FIRSTPAIR(LLR_SECOND, LLR_FOURTH);
-				Comb.LLR_COMB(Fad_Mod, SNR, llr_wgt_sd, LLR_THIRD, SNR, LLR_RD, LLR_FOURTH);
-
-				/*
-								cout << "LLR_THIRD" << endl;
-								for(int i = 0; i < LLR_THIRD.size(); i++){
-									cout << LLR_THIRD[i][0] << endl;
-								}
-				*/
-				//turb.Decision(LLR_THIRD, decoded_relay);  
-				turb.Decision(LLR_FOURTH, decoded_relay);
+				turb.Decision(LLR_SECOND, decoded_relay);  
+//				turb.Decision(LLR_FOURTH, decoded_relay);
 				Detect.Detection(code_relay, decoded_relay, err, Size);
 				count++;
 #endif

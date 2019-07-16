@@ -330,7 +330,7 @@ void Sim() {
 	//==============================Buffer===============================================================================
 	vector<vector<bool>> source, relay_source;				// Block Buffer
 	vector<bool> source_int, relay_int, code_source, code_relay, encoded_source, demapped_source, decoded_source,
-		encoded_relay, decoded_relay, tmp_code, tmp_int, tmp4size;						//Packet buffer
+		encoded_relay, decoded_relay, tmp_code, tmp_int, tmp_code2, tmp_int2,tmp4size;						//Packet buffer
 	vector<Complex<double>> tx_source, rx_source, RE_RX, SR_RX, RD_TX, RD_RX, SOURCE_TX, tmp_RD_TX,
 		RE_RayFading, RayFading, SR_RayFading, RD_RayFading;
 	vector<double> LLR_SR, llr_wgt_sd, LLR_RD, LLR_RE;		//channel gain
@@ -412,10 +412,10 @@ void Sim() {
 				RELAY_Eb = 1.0*rate;
 
 				source_int = turb.interleaver(code_source);
-//				relay_int = turb.interleaver(code_relay);
+				relay_int = turb.interleaver(code_relay);
 
 				encoded_source = turb.encode(code_source, source_int);
-//				encoded_relay = turb.encode(code_relay, relay_int);
+				encoded_relay = turb.encode(code_relay, relay_int);
 
 //                encoded_relay.insert(encoded_relay.end(), encoded_source.begin(), encoded_source.end());    //vector append
                 //test
