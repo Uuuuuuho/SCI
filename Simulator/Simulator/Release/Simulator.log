@@ -1,40 +1,8 @@
 ﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(397,5): warning MSB8004: Output 디렉터리가 슬래시로 끝나지 않습니다. Output 디렉터리의 적절한 평가를 허용하는 데 필요하므로 이 빌드 인스턴스에서 슬래시를 추가합니다.
-  Analog_HARQ.cpp
-  CDRT_UL.cpp
-  CDRT_UL_8PSK.cpp
-  CONV_SUPER_BLC.cpp
-  CoMP.cpp
-  INCRE_ITER_SUPER.cpp
-  LLR_HARQ.cpp
-  LLR_HARQ2.cpp
-  LLR_HARQ3.cpp
-  LLR_HARQ4.cpp
-  Larger_Relay_Analog_Comb.cpp
-  Larger_Relay_LLR_Comb.cpp
-  Larger_Relay_SIC.cpp
-  PAM_SUPER_BLC.cpp
-  PhaseExtension.cpp
-  QPSK2QAM.cpp
-  SIC.cpp
-  SUPER_16QAM.cpp
-C:\Users\user\Documents\GitHub\SCI\Simulator\Simulator\Mapper.h(19): warning C4005: 'PI': 매크로 재정의
-  C:\Users\user\Documents\GitHub\SCI\Simulator\Simulator\Complex_new.h(13): note: 'PI'의 이전 정의를 참조하십시오.
-C:\Users\user\Documents\GitHub\SCI\Simulator\Simulator\SUPER_16QAM.cpp(242): warning C4244: '초기화 중': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\user\Documents\GitHub\SCI\Simulator\Simulator\SUPER_16QAM.cpp(247): warning C4244: '초기화 중': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\user\Documents\GitHub\SCI\Simulator\Simulator\SUPER_16QAM.cpp(323): warning C4244: '인수': 'double'에서 'const unsigned int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\user\Documents\GitHub\SCI\Simulator\Simulator\SUPER_16QAM.cpp(324): warning C4244: '인수': 'double'에서 'const unsigned int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\user\Documents\GitHub\SCI\Simulator\Simulator\SUPER_16QAM.cpp(376): warning C4244: '=': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\user\Documents\GitHub\SCI\Simulator\Simulator\SUPER_16QAM.cpp(387): warning C4244: '=': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\user\Documents\GitHub\SCI\Simulator\Simulator\SUPER_16QAM.cpp(319): warning C4101: 'SNR_RD' :참조되지 않은 지역 변수입니다.
-C:\Users\user\Documents\GitHub\SCI\Simulator\Simulator\SUPER_16QAM.cpp(319): warning C4101: 'SNR_SR' :참조되지 않은 지역 변수입니다.
-  Super_CoMP.cpp
-  analog_comb.cpp
-  컴파일하고 있습니다...
-  log_comb.cpp
-  log_comb2.cpp
+  SUPER_16QAM2.cpp
   코드를 생성하고 있습니다.
-  1 of 1320 functions (<0.1%) were compiled, the rest were copied from previous compilation.
+  0 of 1320 functions ( 0.0%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    10 functions had inline decision re-evaluated but remain unchanged
+    0 functions had inline decision re-evaluated but remain unchanged
   코드를 생성했습니다.
   Simulator.vcxproj -> C:\Users\user\Documents\GitHub\SCI\Simulator\Simulator\.\Simulator.exe

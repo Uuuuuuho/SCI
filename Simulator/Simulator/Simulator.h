@@ -22,14 +22,15 @@
 #define LLR_HARQ4 20        //Phase Overlap
 #define PHASE_EXTENSION 21    //Phase Extension
 #define SUPER_16QAM 22      //new decoding scheme
+#define SUPER_16QAM2 23      //new decoding scheme
 
-#define NOW SUPER_16QAM
+#define NOW SUPER_16QAM2
 
 #define SOURCE_ONLY 1
 #define RELAY_ONLY 2
 #define SOURCE_RELAY_BOTH 3
 
-#define OUTPUT SOURCE_ONLY
+#define OUTPUT RELAY_ONLY
 
 //Combining
 #define EGComb 1
