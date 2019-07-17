@@ -37,6 +37,7 @@ public:
     void Picking_EVEN(vector<vector<double>> &LLR_SECOND, vector<vector<double>> &LLR_THIRD);
     void Picking_FIRSTPAIR(vector<vector<double>> &LLR_SECOND, vector<vector<double>> &LLR_THIRD);
     void Picking_SECONDPAIR(vector<vector<double>> &LLR_SECOND, vector<vector<double>> &LLR_THIRD);
+    vector<bool> Comnining_PAIRS(vector<bool> encoded_source, vector<bool> encoded_relay);
 };
 
 #endif

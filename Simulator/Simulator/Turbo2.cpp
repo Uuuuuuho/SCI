@@ -652,6 +652,20 @@ void	Turb::turbo_llr_generation(FADING FAD_MOD, vector<Complex<double>> rx_buf, 
 	}
 }
 
+void Turb::llr_segment(double *llr0, double *llr1, double *source_llr0, double *source_llr1,  double *relay_llr0, double *relay_llr1, int size){
+    for(int i = 0; i < size/2; i++){
+        relay_llr0[2 * i] = llr0[4 * i];
+        relay_llr1[2 * i] = llr1[4 * i];
+        relay_llr0[2 * i + 1] = llr0[4 * i + 1];
+        relay_llr1[2 * i + 1] = llr1[4 * i + 1];
+
+        source_llr0[2 * i] = llr0[4 * i + 2];
+        source_llr1[2 * i] = llr1[4 * i + 2];
+        source_llr0[2 * i + 1] = llr0[4 * i + 3];
+        source_llr1[2 * i + 1] = llr1[4 * i + 3];
+    }
+}
+
 void Turb::turbo_llr_generation_InPhase(FADING FAD_MOD, vector<Complex<double>> rx_buf, vector<double> llr_wgt_buf, double* rx_llr0, double* rx_llr1, Mapper* M_MAP, int SP_NDCARperSYM, double LC)
 {
 	int	i, j, k;//l;

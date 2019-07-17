@@ -435,4 +435,16 @@ void Comb::Picking_SECONDPAIR(vector < vector < double >> &LLR_SECOND, vector < 
     }
 }
 
+vector<bool> Comb::Comnining_PAIRS(vector < bool > encoded_source, vector < bool > encoded_relay){
+    int size = encoded_source.size();
+    vector<bool> result(size * 2);
+
+    for(int i = 0; i < size/2; i++){
+        result[4 * i] = encoded_relay[2 * i];
+        result[4 * i + 1] = encoded_relay[2 * i + 1];
+        result[4 * i + 2] = encoded_source[2 * i];
+        result[4 * i + 3] = encoded_source[2 * i + 1];        
+    }
+	return result;
+}
 
