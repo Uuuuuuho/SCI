@@ -20,7 +20,10 @@ void Detector::Detection(vector<bool> code, vector<bool> decoded, int &err, int 
 {
 
 	for (unsigned int i = 0; i < size; i++) {
-		code[i] != decoded[i] ? err++ : err;
+		if (code[i] != decoded[i]) {
+			err++;
+			//cout << i << endl;
+		}
 	}
 }
 void Detector::Half_Detection(vector<bool> code, vector<bool> decoded, int & err, int size)

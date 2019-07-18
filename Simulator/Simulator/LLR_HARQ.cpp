@@ -427,6 +427,9 @@ void Sim() {
 				Map.QPSK_Mapping(encoded_source, tx_source);
 				SOURCE_Map.QPSK_Mapping(encoded_source, SOURCE_TX, P_beta);
 				RELAY_Map.QPSK_Mapping(encoded_relay, RD_TX, P_alpha);	//Relay의 codeword를 small energy modulation해서 더하자.
+
+				tmp_RD_TX = RD_TX;
+
 				RELAY_Map.Super(SOURCE_TX, RD_TX);
 
 //				Constellation(RD_TX);

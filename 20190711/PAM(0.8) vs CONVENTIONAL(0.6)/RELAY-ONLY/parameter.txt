@@ -22,7 +22,7 @@ Fading		Rayleigh_Quasi
 Code_rate       	3
 P_alpha		0.8
 SR_Gain		0
-RD_Gain		100
+RD_Gain		0
 
 SB1_Gain	0
 SB2_Gain	-6

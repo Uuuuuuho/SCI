@@ -6,6 +6,7 @@
 
 #include "complex_new.h"
 #include <vector>
+#include <iostream>
 using namespace std;
 
 class Detector

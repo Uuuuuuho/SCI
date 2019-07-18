@@ -106,6 +106,14 @@ void Turb::turbo_trellis_gen(int *g, int Bsize, int Nmemory, int Ncodebit, int N
 	parity2_0 = (double*)malloc(sizeof(double)*(2 * (alloc + m_Nmemory)));
 	parity2_1 = (double*)malloc(sizeof(double)*(2 * (alloc + m_Nmemory)));
 
+	info0_v.resize(alloc);
+	info1_v.resize(alloc);
+	info0_int_v.resize(alloc);
+	info1_int_v.resize(alloc);
+	parity1_0_v.resize(2 * (alloc + m_Nmemory));
+	parity1_1_v.resize(2 * (alloc + m_Nmemory));
+	parity2_0_v.resize(2 * (alloc + m_Nmemory));
+	parity2_1_v.resize(2 * (alloc + m_Nmemory));
 
 
 	// setting up the encoding table
@@ -652,19 +660,89 @@ void	Turb::turbo_llr_generation(FADING FAD_MOD, vector<Complex<double>> rx_buf, 
 	}
 }
 
+void	Turb::turbo_llr_generation(FADING FAD_MOD, vector<Complex<double>> rx_buf, vector<double> llr_wgt_buf, vector<double> &rx_llr0, vector<double> &rx_llr1, Mapper *M_MAP, int SP_NDCARperSYM, double LC)
+{
+	int	i, j, k;//l;
+	int 	bit_flag, kk;// ll;
+	double	max1, max0;//, bp_LLR[8][2];
+	bool max_flag0 = 0, max_flag1 = 0;
+	double	t_LLR[64];
+
+	switch (FAD_MOD) {
+	case Rayl:
+
+		break;
+
+	case Rayl_Quasi:
+		// 각 2 bit symbol에 대한 LLR값을 구한다.
+		for (i = 0, k = 0; i < SP_NDCARperSYM; i++) {
+			// soft metric calculation for 16 QAM points....
+			for (j = 0; j < M_MAP->m_N_2d_const; j++) {
+				t_LLR[j] = masq((M_MAP->m_2d_map_tab[j] - rx_buf[i]).re, (M_MAP->m_2d_map_tab[j] - rx_buf[i]).im) *LC;
+			}
+			// log map 방법으로 bit plane별로의 LLR값을 구한다.
+			bit_flag = 0x01 << (M_MAP->m_Ninfobit - 1);
+			// bit plane 별로  LOG map LLR값을 찾는다.
+			for (kk = 0; kk < M_MAP->m_Ninfobit; kk++, bit_flag >>= 1) {
+				max1 = max0 = (-1000000000000000000.0);
+				for (j = 0; j < M_MAP->m_N_2d_const; j++) {
+					if ((j&bit_flag) == bit_flag) {
+						if ((t_LLR[j] > max1) && (max_flag1 == 0)) {
+							max1 = t_LLR[j];
+							max_flag1 = 1;
+						}
+						else max1 = log_sum_exp(max1, t_LLR[j]);
+
+
+					}
+					else {
+						if ((t_LLR[j] > max0) && (max_flag0 == 0)) {
+							max0 = t_LLR[j];
+							max_flag0 = 1;
+						}
+						else max0 = log_sum_exp(max0, t_LLR[j]);
+
+
+					}
+				}
+				rx_llr0[k] = max0;
+				rx_llr1[k] = max1;
+				k++;
+			}
+		}
+		break;
+	}
+}
+
+
 void Turb::llr_segment(double *llr0, double *llr1, double *source_llr0, double *source_llr1,  double *relay_llr0, double *relay_llr1, int size){
     for(int i = 0; i < size/2; i++){
         relay_llr0[2 * i] = llr0[4 * i];
-        relay_llr1[2 * i] = llr1[4 * i];
         relay_llr0[2 * i + 1] = llr0[4 * i + 1];
-        relay_llr1[2 * i + 1] = llr1[4 * i + 1];
-
         source_llr0[2 * i] = llr0[4 * i + 2];
-        source_llr1[2 * i] = llr1[4 * i + 2];
         source_llr0[2 * i + 1] = llr0[4 * i + 3];
+
+        relay_llr1[2 * i] = llr1[4 * i];        
+        relay_llr1[2 * i + 1] = llr1[4 * i + 1];
+        source_llr1[2 * i] = llr1[4 * i + 2];
         source_llr1[2 * i + 1] = llr1[4 * i + 3];
     }
 }
+
+void Turb::llr_segment(vector<double> llr0, vector<double> llr1, vector<double> &source_llr0, vector<double> &source_llr1, vector<double> &relay_llr0, vector<double> &relay_llr1, int size) {
+	for (int i = 0; i < size / 2; i++) {
+		relay_llr0[2 * i] = llr0[4 * i];
+		relay_llr0[2 * i + 1] = llr0[4 * i + 1];
+		source_llr0[2 * i] = llr0[4 * i + 2];
+		source_llr0[2 * i + 1] = llr0[4 * i + 3];
+
+		relay_llr1[2 * i] = llr1[4 * i];
+		relay_llr1[2 * i + 1] = llr1[4 * i + 1];
+		source_llr1[2 * i] = llr1[4 * i + 2];
+		source_llr1[2 * i + 1] = llr1[4 * i + 3];
+	}
+}
+
 
 void Turb::turbo_llr_generation_InPhase(FADING FAD_MOD, vector<Complex<double>> rx_buf, vector<double> llr_wgt_buf, double* rx_llr0, double* rx_llr1, Mapper* M_MAP, int SP_NDCARperSYM, double LC)
 {
@@ -987,6 +1065,73 @@ vector<vector<double>>  Turb::ExportLLR_turbo_decoding(double** LLR1, double **L
 	return result;
 }
 
+vector<vector<double>>  Turb::ExportLLR_turbo_decoding(vector<vector<double>> LLR1, vector<vector<double>> LLR2, int iter_num) {
+	int i, j, k;
+	vector<vector<double>> result(m_Bsize);
+
+	//First staged decoding apriori initialization
+	for (i = 0; i < Bsize; i++)
+		for (j = 0; j < m_Ninfo; j++)PU_I1[i][j] = -log(2);
+
+
+	for (k = 0; k < iter_num; k++) {
+
+		// First Stage Decoding	
+		decoding(LLR1, PU_I1, PU_O1);
+
+		//--------------------- Extrinsic Information Extraction ---------------------------
+		for (i = 0; i < m_Bsize; i++)for (j = 0; j < m_Ninfo; j++)
+		{
+			PU_O1[i][j] = PU_O1[i][j] - PU_I1[i][j];
+		}
+		//======================================================
+		//			Interleaving
+		//======================================================
+		for (i = 0; i < Bsize; i++)
+			for (j = 0; j < m_Ninfo; j++)
+			{
+				if (i < m_Bsize) PU_I2[i][j] = PU_O1[inter_pattern[i]][j];
+				else PU_I2[i][j] = -log(2);
+			}
+		//======================================================
+		//			Second Stage Decoding............
+		//======================================================
+
+
+		decoding(LLR2, PU_I2, PU_O2);
+		//--------------------- Extrinsic Information Extraction ---------------------------
+		for (i = 0; i < m_Bsize; i++)for (j = 0; j < m_Ninfo; j++)
+		{
+			L2[i][j] = PU_O2[i][j];
+			PU_O2[i][j] = PU_O2[i][j] - PU_I2[i][j];
+		}
+
+		//======================================================
+		//			DeInterleaving
+		//======================================================
+		for (i = 0; i < Bsize; i++)
+			for (j = 0; j < m_Ninfo; j++)
+			{
+				if (i < m_Bsize)
+				{
+					PU_I1[i][j] = PU_O2[deinter_pattern[i]][j];
+					L1[i][j] = L2[deinter_pattern[i]][j];
+				}
+				else PU_I1[i][j] = -log(2);
+			}
+
+	}
+
+
+	for (int a = 0; a < m_Bsize; ++a){
+		result[a].resize(2);
+		result[a][0] = L1[a][0];
+        result[a][1] = L1[a][1];
+       }
+
+	return result;
+}
+
 vector<vector<double>>  Turb::ExportLLR_turbo_decoding_excluding(double** LLR1, double **LLR2, int iter_num) {
 	int i, j, k;
 	vector<vector<double>> result(m_Bsize);
@@ -1055,6 +1200,88 @@ vector<vector<double>>  Turb::ExportLLR_turbo_decoding_excluding(double** LLR1, 
 }
 
 void Turb::decoding(double **PC_I, double	**PU_I, double	**PU_O) {
+
+
+	int		i, j, k;
+	//=====================================================
+	//				Initialization of feedforward/back recursion
+	//=====================================================
+
+	log_alpa[0][0] = log_beta[Bsize][0] = 0;
+	for (i = 1; i < m_Nstate; i++)	log_alpa[0][i] = mInfty;
+	for (i = 1; i < m_Nstate; i++)	log_beta[Bsize][i] = mInfty;
+
+	//----------------   Iteration to update Alpha  ----------------------------
+
+	for (i = 0; i < Bsize; i++) {
+		for (j = 0; j < m_Nstate; j++) {
+			for (k = 0; k < m_Ninfo; k++) {
+				tmp1[k] = PU_I[i][BTrellis[j][k].info_bit]
+					+ PC_I[i][BTrellis[j][k].code_bit]
+					+ log_alpa[i][BTrellis[j][k].prev_state];
+				//tmp1[k] =0;
+			}
+			tmp2[j] = log_sum_exp(tmp1, m_Ninfo);
+		}
+		tot_log_a[i] = log_sum_exp(tmp2, m_Nstate);
+		//============================================================
+		// normalization to make log_alpha[s]=0
+		//============================================================
+		for (j = 0; j < m_Nstate; j++)
+			log_alpa[i + 1][j] = tmp2[j] - tot_log_a[i];
+	}
+	/*
+	for ( i = 0 ; i < m_Bsize ; i++ ) {
+	printf("%d : ",EXT_TB->m_state1_seq[i]);
+	for ( j = 0 ; j < m_Nstate ; j++ )	{
+	printf("%lf ", log_alpa[i][j] );
+	}
+	printf("\n");
+	getchar();
+	}
+	*/
+	//----------------   Iteration to update Beta  ----------------------------
+
+	for (i = Bsize - 1; i >= 0; i--) {
+		for (j = 0; j < m_Nstate; j++) {
+			for (k = 0; k < m_Ninfo; k++) {
+				tmp1[k] = PU_I[i][FTrellis[j][k].info_bit]
+					+ PC_I[i][FTrellis[j][k].code_bit]
+					+ log_beta[i + 1][FTrellis[j][k].next_state];
+				//tmp1[k]=0;
+			}
+			tmp2[j] = log_sum_exp(tmp1, m_Ninfo);
+		}
+		for (j = 0; j < m_Nstate; j++)
+			log_beta[i][j] = tmp2[j] - tot_log_a[i];
+	}
+
+
+	//----------------   APP Calculation ---------------------------------------
+	for (i = 0; i < Bsize; i++) {
+		for (j = 0; j < m_Nstate; j++) tmp5[j] = 0;
+		for (j = 0; j < m_Nstate; j++)
+			for (k = 0; k < m_Ninfo; k++) {
+				tmp3[FTrellis[j][k].info_bit][(tmp5[FTrellis[j][k].info_bit]++)]
+					= PU_I[i][FTrellis[j][k].info_bit]
+					+ PC_I[i][FTrellis[j][k].code_bit]
+					//+ log_alpa[i][m_FTrellis.B[j][k].code_bit]
+					+ log_alpa[i][j]
+					+ log_beta[i + 1][FTrellis[j][k].next_state];
+			}
+		// if Max-Log-MAP is used, maximum of the above value is the LLR.....
+		// Actually, all the logmap maxlogmap blablabla is determined how to calculate the log-sum-exponential values...
+		for (j = 0; j < m_Ninfo; j++) {
+			tmp4[j] = log_sum_exp(tmp3[j], m_Nstate);
+		}
+		double 	tot_app;
+		tot_app = log_sum_exp(tmp4, m_Ninfo);
+		for (j = 0; j < m_Ninfo; j++)
+			PU_O[i][j] = tmp4[j] - tot_app;
+	}
+}
+
+void Turb::decoding(vector<vector<double>>& PC_I, double	**PU_I, double	**PU_O) {
 
 
 	int		i, j, k;
@@ -1249,3 +1476,107 @@ void Turb::turbo_bit2sym(double* rx_llr0_buf, double *rx_llr1_buf, double **LLR1
 	}
 
 }
+
+
+void Turb::turbo_bit2sym(vector<double> rx_llr0_buf, vector<double> rx_llr1_buf, vector<vector<double>>& LLR1, vector<vector<double>>& LLR2, int SP_NCODEBITperSYM, int SP_NCODEBIT, int SP_NCODE) {
+	//series to parallel
+	int	i, j, k, l, h;
+	double	t;
+
+	for (i = 0, j = 0, k = 1; i < SP_NCODEBITperSYM - (4 * m_Nmemory); i++)
+	{
+		if (i % 3 == 0)
+		{
+			info0_v[i / 3] = rx_llr0_buf[i];
+			info1_v[i / 3] = rx_llr1_buf[i];
+			parity1_0_v[i - j] = rx_llr0_buf[i];
+			parity1_1_v[i - j] = rx_llr0_buf[i];
+
+		}
+		if (i % 3 == 1)
+		{
+			parity1_0_v[i - j] = rx_llr0_buf[i];
+			parity1_1_v[i - j] = rx_llr1_buf[i];
+		}
+		if (i % 3 == 2)
+		{
+			parity2_0_v[i / 3 + k] = rx_llr0_buf[i];
+			parity2_1_v[i / 3 + k] = rx_llr1_buf[i];
+			j++;
+			k++;
+		}
+	}
+
+	//interleaving
+	for (j = 0; j < m_Bsize; ++j)
+	{
+		info0_int_v[j] = info0_v[inter_pattern[j]];
+		info1_int_v[j] = info1_v[inter_pattern[j]];
+	}
+
+	for (i = 0; i < 2 * m_Bsize; i += 2)
+	{
+		parity2_0_v[i] = info0_int_v[i / 2];
+		parity2_1_v[i] = info1_int_v[i / 2];
+
+	}
+
+	//tail bit paralell to series
+	for (i = (SP_NCODEBITperSYM - (4 * m_Nmemory)), j = 0, h = (2 * m_Bsize), k = (2 * m_Bsize); i < SP_NCODEBITperSYM; i += 2, j++)
+	{//tail1 in tail1 out
+		if (j % 2 == 0) {
+			parity1_0_v[h] = rx_llr0_buf[i];
+			parity1_1_v[h] = rx_llr1_buf[i];
+			parity1_0_v[h + 1] = rx_llr0_buf[i + 1];
+			parity1_1_v[h + 1] = rx_llr1_buf[i + 1];
+			h += 2;
+		}
+
+		//tail2 in tail2 out
+		else
+		{
+			parity2_0_v[k] = rx_llr0_buf[i];
+			parity2_1_v[k] = rx_llr1_buf[i];
+			parity2_0_v[k + 1] = rx_llr0_buf[i + 1];
+			parity2_1_v[k + 1] = rx_llr1_buf[i + 1];
+			k += 2;
+		}
+
+	}
+
+
+	//=========================================================
+	//              Bit LLR to Symbol LLR #1
+	//=========================================================
+	for (i = 0, l = 0; i < 2 * (m_Bsize + m_Nmemory); i += SP_NCODEBIT, l++) {
+		for (j = 0; j < SP_NCODE; j++) {	// 2bit.
+											// LSB first, MSB last.......
+			for (k = 0, t = 0; k < SP_NCODEBIT; k++) {	// 0,1,2,3..., depuncuring is not considered here... but could be included....
+														// MSB first .....1, 0
+														//t += ( ( (j&(0x01<<(SP_NCODEBIT-1-k)))==0 )? rx_llr_deint0_buf[i+k]: rx_llr_deint1_buf[i+k]);
+				if ((j&(0x01 << (SP_NCODEBIT - 1 - k))) == 0)	t += parity1_0_v[i + k];
+				else	t += parity1_1_v[i + k];
+			}
+			LLR1[l][j] = t;
+		}
+	}
+
+	//=========================================================
+	//              Bit LLR to Symbol LLR #2
+	//=========================================================
+
+	for (i = 0, l = 0; i < 2 * (m_Bsize + m_Nmemory); i += SP_NCODEBIT, l++) {
+		for (j = 0; j < SP_NCODE; j++) {	// 2bit.
+											// LSB first, MSB last.......
+			for (k = 0, t = 0; k < SP_NCODEBIT; k++) {	// 0,1,2,3..., depuncuring is not considered here... but could be included....
+														// MSB first .....1, 0
+														//t += ( ( (j&(0x01<<(SP_NCODEBIT-1-k)))==0 )? rx_llr_deint0_buf[i+k]: rx_llr_deint1_buf[i+k]);
+				if ((j&(0x01 << (SP_NCODEBIT - 1 - k))) == 0)	t += parity2_0_v[i + k];
+				else	t += parity2_1_v[i + k];
+			}
+			LLR2[l][j] = t;
+		}
+	}
+
+}
+
