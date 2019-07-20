@@ -344,7 +344,7 @@ void Sim() {
 
 	//=============================initiallization=============================================================================
 	double Eb = 0, RELAY_Eb = 0, BER, PER, SNR_SR, SNR_RD, LC;
-	int err, perr, count;
+	int err, perr, count, CONV_cnt, NEW_cnt;
 	bool DEC_flag = false;
 	SNR = SNRinit;
 	BER_Record.resize((SNRMAX - SNR + Increment) / (Increment), 0);
@@ -402,7 +402,8 @@ void Sim() {
 	do {
 
 
-
+		CONV_cnt = 0;
+		NEW_cnt = 0;
 		count = 0;
 		BER = 0;
 		err = 0;
@@ -618,6 +619,8 @@ void Sim() {
 
 #if (OUTPUT == SOURCE_ONLY) || (OUTPUT == SOURCE_RELAY_BOTH)
 				if (!Detect.Packet(code_relay, decoded_relay, SP_NINFOBITperSYM)) {
+					//for checking
+					CONV_cnt++;
 
 					RELAY_Map.Super_Sub(tmp_RD_TX, RD_RX);
 
@@ -631,11 +634,25 @@ void Sim() {
 
 				}
 				else {
+					//for checking
+					NEW_cnt++;
+
 					turb.turbo_bit2sym(SOURCE_llr0, SOURCE_llr1, LOGLR1, LOGLR2, SP_NCODEBITperSYM, NCODEBIT, SP_NCODE);
 					LLR_THIRD = turb.ExportLLR_turbo_decoding(LOGLR1, LOGLR2, ITR);
 
 					Comb.LLR_COMB(Fad_Mod, SNR, llr_wgt_sd, LLR_FIRST, SNR, LLR_RD, LLR_THIRD);
 					turb.Decision(LLR_THIRD, decoded_source);
+
+					//target performance test
+					//SIC를 못하지만 SIC를 했다고 가정할 경우. 이 case가 성공하면, 이 정도의 퍼포먼스가 나오도록 수정해야함.
+					//RELAY_Map.Super_Sub(tmp_RD_TX, RD_RX);	
+					//LC = -1.0 / (2 * AWGN3.sigma2);
+					//turb.turbo_llr_generation(Fad_Mod, RD_RX, LLR_RD, llr0, llr1, &SMALL_Map, RD_RX.size(), LC);
+					//turb.turbo_bit2sym(llr0, llr1, LLR1, LLR2, SP_NCODEBITperSYM, NCODEBIT, SP_NCODE);
+					//LLR_THIRD = turb.ExportLLR_turbo_decoding(LLR1, LLR2, ITR);
+
+					//Comb.LLR_COMB(Fad_Mod, SNR, llr_wgt_sd, LLR_FIRST, SNR, LLR_RD, LLR_THIRD);
+					//turb.Decision(LLR_THIRD, decoded_source);
 
 				}
 
@@ -669,9 +686,6 @@ void Sim() {
 				Detect.Detection(code_source, decoded_source, err, Size);
 #endif
 
-
-
-
 			break;
 			case UNCODED:
 				Detect.Detection(code_source, decoded_source, err, SP_NINFOBITperSYM);
@@ -698,7 +712,7 @@ void Sim() {
 		PER = (double)perr / Frame;
 		BER_Record[BER_Record_idx] = BER;
 		PER_Record[BER_Record_idx++] = PER;
-		std::cout << SNR << "\t" << BER << "\t" << PER << endl;
+		std::cout << SNR << "\t" << BER << "\t" << PER << "\t" << CONV_cnt << "\t" << NEW_cnt << endl;
 
 		//memory management
 		for (int mm = 0; mm < Frame; mm++)

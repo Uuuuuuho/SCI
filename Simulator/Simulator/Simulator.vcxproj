@@ -50,6 +50,7 @@
     <ClCompile Include="LLR_HARQ2.cpp" />
     <ClCompile Include="LLR_HARQ3.cpp" />
     <ClCompile Include="LLR_HARQ4.cpp" />
+    <ClCompile Include="LLR_HARQ_SMALL_ALPHA.cpp" />
     <ClCompile Include="log_comb.cpp" />
     <ClCompile Include="log_comb2.cpp" />
     <ClCompile Include="Mapper.cpp" />

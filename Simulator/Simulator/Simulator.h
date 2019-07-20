@@ -23,6 +23,7 @@
 #define PHASE_EXTENSION 21    //Phase Extension
 #define SUPER_16QAM 22      //new decoding scheme
 #define SUPER_16QAM2 23      //new decoding scheme
+#define LLR_HARQ_SMALL_ALPHA 24      //new decoding scheme
 
 #define NOW SUPER_16QAM2
 

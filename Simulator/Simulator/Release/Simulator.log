@@ -9,6 +9,7 @@
   LLR_HARQ2.cpp
   LLR_HARQ3.cpp
   LLR_HARQ4.cpp
+  LLR_HARQ_SMALL_ALPHA.cpp
   Larger_Relay_Analog_Comb.cpp
   Larger_Relay_LLR_Comb.cpp
   Larger_Relay_SIC.cpp
@@ -24,12 +25,12 @@ C:\Users\user\Documents\GitHub\SCI\Simulator\Simulator\SUPER_16QAM2.cpp(249): wa
 C:\Users\user\Documents\GitHub\SCI\Simulator\Simulator\SUPER_16QAM2.cpp(254): warning C4244: '초기화 중': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
 C:\Users\user\Documents\GitHub\SCI\Simulator\Simulator\SUPER_16QAM2.cpp(350): warning C4244: '인수': 'double'에서 'const unsigned int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
 C:\Users\user\Documents\GitHub\SCI\Simulator\Simulator\SUPER_16QAM2.cpp(351): warning C4244: '인수': 'double'에서 'const unsigned int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\user\Documents\GitHub\SCI\Simulator\Simulator\SUPER_16QAM2.cpp(415): warning C4244: '=': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\user\Documents\GitHub\SCI\Simulator\Simulator\SUPER_16QAM2.cpp(426): warning C4244: '=': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\user\Documents\GitHub\SCI\Simulator\Simulator\SUPER_16QAM2.cpp(416): warning C4244: '=': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\user\Documents\GitHub\SCI\Simulator\Simulator\SUPER_16QAM2.cpp(427): warning C4244: '=': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
 C:\Users\user\Documents\GitHub\SCI\Simulator\Simulator\SUPER_16QAM2.cpp(346): warning C4101: 'SNR_RD' :참조되지 않은 지역 변수입니다.
 C:\Users\user\Documents\GitHub\SCI\Simulator\Simulator\SUPER_16QAM2.cpp(346): warning C4101: 'SNR_SR' :참조되지 않은 지역 변수입니다.
-  Super_CoMP.cpp
   컴파일하고 있습니다...
+  Super_CoMP.cpp
   analog_comb.cpp
   log_comb.cpp
   log_comb2.cpp
