@@ -1,0 +1,36 @@
+*******************Paremeter*******************************************************************************
+Mod_:BPSK,QPSK,16QAM,64QAM
+SNRinit_:SNR 초기값 , SNRMAX_:마지막값,Increment_:증가값 
+Frame_:Frame 개수(block의 개수), Size_:Frame의크기를 결정하기 위한 파라미터(block의 크기) SIZE%rate==0이면 frame size는 size*mod/rate이며 아닐시 frame size는 size*rate*mode/rate임 
+Channel_coding_:Convolutional,Turbo 이외에는 uncoded로 설정됨
+Fading_=Rayleigh,Slow_Rayleigh,JTC(Velocity_ needed)
+Code_rate_=ex)2 when 0.5 , 3 when 0.33333-->현재 여러가지 상황에 맞게끔 코드를 짜느라 SIZE와 CODERATE가 안맞을수도 있으니 사용시 주의
+P_alpha는 superposition에서 relay 정보의 power ratio를 의미함.
+*************************************************************************************************************  
+SofS
+Mod 		QPSK
+SNRinit		0
+Increment	5
+SNRMAX		30
+Title		NEW-DECODING-TOGETHER(ALPHA0.3)
+Frame		50000
+Size		8
+ITR			8
+ITR_RELAY	7
+Channel_coding	TURBO
+Fading		Rayleigh_Quasi
+Code_rate       	3
+P_alpha		0.3
+SR_Gain		0
+RD_Gain		15
+
+SB1_Gain	0
+SB2_Gain	-6
+RB1_Gain	0
+RB2_Gain	6
+
+ER_Gain		0
+CR_Gain		8.5
+RB_Gain		0
+CB_Gain		0
+EofS
