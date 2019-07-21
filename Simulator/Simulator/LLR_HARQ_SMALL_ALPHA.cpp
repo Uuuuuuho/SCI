@@ -546,19 +546,20 @@ void Sim() {
 				LLR_SECOND = turb.ExportLLR_turbo_decoding(LLR1, LLR2, ITR);
 
 				//¿©±â¼­ combining
-				//Comb.LLR_COMB(Fad_Mod, SNR, llr_wgt_sd, LLR_FIRST, SNR, LLR_RD, LLR_SECOND);
+				Comb.LLR_COMB(Fad_Mod, SNR, llr_wgt_sd, LLR_FIRST, SNR, LLR_RD, LLR_SECOND);
 #if (OUTPUT == SOURCE_ONLY) || (OUTPUT == SOURCE_RELAY_BOTH)
-				turb.Decision(LLR_SECOND, decoded_source);
 #endif
+				turb.Decision(LLR_SECOND, decoded_source);
+
 				count++;
 
 
 				if (!Detect.Packet(code_source, decoded_source, SP_NINFOBITperSYM)) {
-					//RELAY_Map.Super(SOURCE_TX, RD_TX);
-					RELAY_Map.Super_Sub(tmp_RD_TX, RD_RX);
+					RELAY_Map.Super(SOURCE_TX, RD_TX);
+					//RELAY_Map.Super_Sub(tmp_RD_TX, RD_RX);
 
 					LC = -1.0 / (2 * AWGN3.sigma2);
-					turb.turbo_llr_generation(Fad_Mod, RD_RX, LLR_RD, llr0, llr1, &SOURCE_Map, RD_RX.size(), LC);
+					turb.turbo_llr_generation(Fad_Mod, RD_RX, LLR_RD, llr0, llr1, &RELAY_Map, RD_RX.size(), LC);
 					turb.turbo_bit2sym(llr0, llr1, LLR1, LLR2, SP_NCODEBITperSYM, NCODEBIT, SP_NCODE);
 					decoded_relay = turb.turbo_decoding(LLR1, LLR2, ITR);
 

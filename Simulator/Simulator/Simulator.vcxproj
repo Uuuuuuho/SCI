@@ -61,6 +61,7 @@
     <ClCompile Include="SIC.cpp" />
     <ClCompile Include="SUPER_16QAM.cpp" />
     <ClCompile Include="SUPER_16QAM2.cpp" />
+    <ClCompile Include="SUPER_16QAM3.cpp" />
     <ClCompile Include="Super_CoMP.cpp" />
     <ClCompile Include="Turbo2.cpp" />
   </ItemGroup>
