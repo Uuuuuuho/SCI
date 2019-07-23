@@ -37,7 +37,7 @@ for k = 1:numfiles
 end
 
 
-title('RD Gain 0dB BOTH');
+title('RD Gain 0-5dB BOTH');
 xlabel('Eb/No, dB');
 ylabel('Bit Error Rate');
 

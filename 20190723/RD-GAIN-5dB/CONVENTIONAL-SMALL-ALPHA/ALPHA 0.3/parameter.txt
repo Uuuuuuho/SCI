@@ -12,7 +12,7 @@ Mod 		QPSK
 SNRinit		0
 Increment	2
 SNRMAX		30
-Title		CONVENTIONAL-DECODING-BOTH(ALPHA0.3)
+Title		CONVENTIONAL-DECODING-SOURCEONLY(ALPHA0.3)
 Frame		50000
 Size		8
 ITR			8
@@ -22,7 +22,7 @@ Fading		Rayleigh_Quasi
 Code_rate       	3
 P_alpha		0.3
 SR_Gain		0
-RD_Gain		0
+RD_Gain		5
 
 SB1_Gain	0
 SB2_Gain	-6
