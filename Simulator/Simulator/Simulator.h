@@ -22,7 +22,7 @@
 #define LLR_HARQ4 20        //Phase Overlap
 #define PHASE_EXTENSION 21    //Phase Extension
 #define SUPER_16QAM 22      //new decoding scheme
-#define SUPER_16QAM2 23      //new decoding scheme
+#define SUPER_16QAM2 23      //new decoding scheme complete
 #define LLR_HARQ_SMALL_ALPHA 24      //conventional decoding scheme
 #define SUPER_16QAM3 25      //new decoding scheme for small alpha
 
@@ -32,7 +32,7 @@
 #define RELAY_ONLY 2
 #define SOURCE_RELAY_BOTH 3
 
-#define OUTPUT SOURCE_RELAY_BOTH 
+#define OUTPUT RELAY_ONLY 
 
 //Combining
 #define EGComb 1

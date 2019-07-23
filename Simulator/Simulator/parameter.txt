@@ -9,10 +9,10 @@ P_alpha는 superposition에서 relay 정보의 power ratio를 의미함.
 *************************************************************************************************************  
 SofS
 Mod 		QPSK
-SNRinit		10
+SNRinit		0
 Increment	5
 SNRMAX		30
-Title		CONVENTIONAL-DECODING-TOGETHER(ALPHA0.3)
+Title		NEW-DECODING-TOGETHER(ALPHA0.3)
 Frame		1000
 Size		8
 ITR			8
