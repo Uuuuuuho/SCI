@@ -40,6 +40,8 @@
     <ClCompile Include="Combining.cpp" />
     <ClCompile Include="CoMP.cpp" />
     <ClCompile Include="Conv.cpp" />
+    <ClCompile Include="CONV_LARGE_ALPHA.cpp" />
+    <ClCompile Include="CONV_SMALL_ALPHA.cpp" />
     <ClCompile Include="CONV_SUPER_BLC.cpp" />
     <ClCompile Include="Detector.cpp" />
     <ClCompile Include="INCRE_ITER_SUPER.cpp" />
@@ -54,6 +56,8 @@
     <ClCompile Include="log_comb.cpp" />
     <ClCompile Include="log_comb2.cpp" />
     <ClCompile Include="Mapper.cpp" />
+    <ClCompile Include="NEW_LARGE_ALPHA.cpp" />
+    <ClCompile Include="NEW_SMALL_ALPHA.cpp" />
     <ClCompile Include="PAM_SUPER_BLC.cpp" />
     <ClCompile Include="PhaseExtension.cpp" />
     <ClCompile Include="QPSK2QAM.cpp" />

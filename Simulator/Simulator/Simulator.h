@@ -26,13 +26,18 @@
 #define LLR_HARQ_SMALL_ALPHA 24      //conventional decoding scheme
 #define SUPER_16QAM3 25      //new decoding scheme for small alpha
 
-#define NOW SUPER_16QAM3
+#define CONV_LARGE_ALPHA 26
+#define CONV_SMALL_ALPHA 27
+#define NEW_LARGE_ALPHA 28
+#define NEW_SMALL_ALPHA 29
+
+#define NOW NEW_SMALL_ALPHA
 
 #define SOURCE_ONLY 1
 #define RELAY_ONLY 2
 #define SOURCE_RELAY_BOTH 3
 
-#define OUTPUT RELAY_ONLY 
+#define OUTPUT SOURCE_RELAY_BOTH 
 
 //Combining
 #define EGComb 1
