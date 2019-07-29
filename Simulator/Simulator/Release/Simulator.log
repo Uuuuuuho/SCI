@@ -17,16 +17,6 @@
   Larger_Relay_SIC.cpp
   NEW_LARGE_ALPHA.cpp
   NEW_SMALL_ALPHA.cpp
-C:\Users\user\Documents\GitHub\SCI\Simulator\Simulator\Mapper.h(19): warning C4005: 'PI': 매크로 재정의
-  C:\Users\user\Documents\GitHub\SCI\Simulator\Simulator\Complex_new.h(13): note: 'PI'의 이전 정의를 참조하십시오.
-C:\Users\user\Documents\GitHub\SCI\Simulator\Simulator\NEW_SMALL_ALPHA.cpp(249): warning C4244: '초기화 중': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\user\Documents\GitHub\SCI\Simulator\Simulator\NEW_SMALL_ALPHA.cpp(254): warning C4244: '초기화 중': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\user\Documents\GitHub\SCI\Simulator\Simulator\NEW_SMALL_ALPHA.cpp(350): warning C4244: '인수': 'double'에서 'const unsigned int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\user\Documents\GitHub\SCI\Simulator\Simulator\NEW_SMALL_ALPHA.cpp(351): warning C4244: '인수': 'double'에서 'const unsigned int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\user\Documents\GitHub\SCI\Simulator\Simulator\NEW_SMALL_ALPHA.cpp(416): warning C4244: '=': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\user\Documents\GitHub\SCI\Simulator\Simulator\NEW_SMALL_ALPHA.cpp(427): warning C4244: '=': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\user\Documents\GitHub\SCI\Simulator\Simulator\NEW_SMALL_ALPHA.cpp(346): warning C4101: 'SNR_RD' :참조되지 않은 지역 변수입니다.
-C:\Users\user\Documents\GitHub\SCI\Simulator\Simulator\NEW_SMALL_ALPHA.cpp(346): warning C4101: 'SNR_SR' :참조되지 않은 지역 변수입니다.
   PAM_SUPER_BLC.cpp
   PhaseExtension.cpp
   컴파일하고 있습니다...
@@ -34,14 +24,23 @@ C:\Users\user\Documents\GitHub\SCI\Simulator\Simulator\NEW_SMALL_ALPHA.cpp(346):
   SIC.cpp
   SUPER_16QAM.cpp
   SUPER_16QAM2.cpp
+C:\Users\user\Documents\GitHub\SCI\Simulator\Simulator\Mapper.h(19): warning C4005: 'PI': 매크로 재정의
+  C:\Users\user\Documents\GitHub\SCI\Simulator\Simulator\Complex_new.h(13): note: 'PI'의 이전 정의를 참조하십시오.
+C:\Users\user\Documents\GitHub\SCI\Simulator\Simulator\SUPER_16QAM2.cpp(249): warning C4244: '초기화 중': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\user\Documents\GitHub\SCI\Simulator\Simulator\SUPER_16QAM2.cpp(254): warning C4244: '초기화 중': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\user\Documents\GitHub\SCI\Simulator\Simulator\SUPER_16QAM2.cpp(350): warning C4244: '인수': 'double'에서 'const unsigned int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\user\Documents\GitHub\SCI\Simulator\Simulator\SUPER_16QAM2.cpp(351): warning C4244: '인수': 'double'에서 'const unsigned int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\user\Documents\GitHub\SCI\Simulator\Simulator\SUPER_16QAM2.cpp(416): warning C4244: '=': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\user\Documents\GitHub\SCI\Simulator\Simulator\SUPER_16QAM2.cpp(427): warning C4244: '=': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\user\Documents\GitHub\SCI\Simulator\Simulator\SUPER_16QAM2.cpp(346): warning C4101: 'SNR_RD' :참조되지 않은 지역 변수입니다.
+C:\Users\user\Documents\GitHub\SCI\Simulator\Simulator\SUPER_16QAM2.cpp(346): warning C4101: 'SNR_SR' :참조되지 않은 지역 변수입니다.
   SUPER_16QAM3.cpp
   Super_CoMP.cpp
   analog_comb.cpp
   log_comb.cpp
   log_comb2.cpp
   코드를 생성하고 있습니다.
-  428 of 1325 functions (32.3%) were compiled, the rest were copied from previous compilation.
-    16 functions were new in current compilation
-    57 functions had inline decision re-evaluated but remain unchanged
+  Previous IPDB was built with incompatible compiler, fall back to full compilation.
+  All 1325 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
   코드를 생성했습니다.
   Simulator.vcxproj -> C:\Users\user\Documents\GitHub\SCI\Simulator\Simulator\.\Simulator.exe

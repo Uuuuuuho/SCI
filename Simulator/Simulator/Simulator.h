@@ -31,7 +31,7 @@
 #define NEW_LARGE_ALPHA 28
 #define NEW_SMALL_ALPHA 29
 
-#define NOW LLR_HARQ
+#define NOW SUPER_16QAM2
 
 #define SOURCE_ONLY 1
 #define RELAY_ONLY 2
