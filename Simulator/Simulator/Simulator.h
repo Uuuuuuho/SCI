@@ -31,13 +31,15 @@
 #define NEW_LARGE_ALPHA 28
 #define NEW_SMALL_ALPHA 29
 
-#define NOW NEW_SMALL_ALPHA
+#define NOW LLR_HARQ
 
 #define SOURCE_ONLY 1
 #define RELAY_ONLY 2
 #define SOURCE_RELAY_BOTH 3
 
 #define OUTPUT SOURCE_RELAY_BOTH 
+
+#define EARLYSTOPRATE 0.0001
 
 //Combining
 #define EGComb 1

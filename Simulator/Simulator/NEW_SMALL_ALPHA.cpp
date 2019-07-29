@@ -707,7 +707,7 @@ void Sim() {
 				vector<Complex<double>>(0).swap(SR_RX), vector<double>(0).swap(LLR_SR),
 				vector<Complex<double>>(0).swap(RD_RX), vector<double>(0).swap(LLR_RD),
 				vector<vector<double>>(0).swap(LLR_FIRST), vector<vector<double>>(0).swap(LLR_SECOND);
-			if (err > (Frame * Size * 0.1)) {
+			if (err > (Frame * Size * EARLYSTOPRATE)) {
 #if (OUTPUT == SOURCE_ONLY) || (OUTPUT == SOURCE_RELAY_BOTH)
 				soFar = h + count;
 #elif (OUTPUT == RELAY_ONLY)

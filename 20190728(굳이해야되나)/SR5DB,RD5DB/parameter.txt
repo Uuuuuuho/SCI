@@ -12,7 +12,7 @@ Mod 		QPSK
 SNRinit		0
 Increment	1
 SNRMAX		30
-Title		NEW-DECODING-TOGETHER(ALPHA0.3,SR0dB,RD0dB)
+Title		CONV-DECODING-TOGETHER(ALPHA0.3,SR0dB,RD0dB)
 Frame		100000
 Size		8
 ITR			8
@@ -21,8 +21,8 @@ Channel_coding	TURBO
 Fading		Rayleigh_Quasi
 Code_rate       	3
 P_alpha		0.3
-SR_Gain		0
-RD_Gain		0
+SR_Gain		5
+RD_Gain		5
 
 SB1_Gain	0
 SB2_Gain	-6
