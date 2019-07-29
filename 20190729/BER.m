@@ -11,14 +11,14 @@ figure
 for k = 1:numfiles 
   switch(k)
       case 1
-        semilogy(mydata{1}(:,1), mydata{1}(:,2),'m-*')
+        semilogy(mydata{1}(:,1), mydata{1}(:,2),'m+')
         hold on
       case 2
-        semilogy(mydata{2}(:,1), mydata{2}(:,2),'r-o')
+        semilogy(mydata{2}(:,1), mydata{2}(:,2),'m>')
       case 3
-        semilogy(mydata{3}(:,1), mydata{3}(:,2),'g+')
+        semilogy(mydata{3}(:,1), mydata{3}(:,2),'r+')
       case 4
-        semilogy(mydata{4}(:,1), mydata{4}(:,2),'k>')
+        semilogy(mydata{4}(:,1), mydata{4}(:,2),'r>')
   end
 end
 
@@ -32,12 +32,15 @@ for k = 1:numfiles
       case 3
         legend(Files(1).name, Files(2).name, Files(3).name)
       case 4
-        legend(Files(1).name, Files(2).name, Files(3).name, Files(4).name)
+        legend('Conventional SM \alpha 0.7, \gamma_R_D 0dB',...
+            'Conventional SM \alpha 0.7, \gamma_R_D 5dB',...
+            'Proposed SM decoding \alpha 0.7, \gamma_R_D 0dB',...
+            'Proposed SM decoding \alpha 0.7, \gamma_R_D 5dB')
   end
 end
 
 
-title('RD Gain 0dB, alpha 0.7');
+%title('RD Gain 0dB, alpha 0.7');
 xlabel('Eb/No, dB');
 ylabel('Bit Error Rate');
 
