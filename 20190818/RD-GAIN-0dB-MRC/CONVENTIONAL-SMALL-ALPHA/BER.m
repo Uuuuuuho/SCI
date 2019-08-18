@@ -30,15 +30,15 @@ for k = 1:numfiles
       case 2
         legend(Files(1).name, Files(2).name)
       case 3
-        legend('Conventional \beta 0.9',...
-            'New \beta 0.4', 'New \beta 0.9')
+        legend(Files(1).name, Files(2).name, Files(3).name)
       case 4
-        legend(Files(1).name, Files(2).name, Files(3).name, Files(4).name)
+        legend('Conventional \beta 0.1, MRC', 'Conventional \beta 0.2, MRC',...
+            'Conventional \beta 0.3, MRC', 'Conventional \beta 0.4, MRC')
   end
 end
 
 
-title('BER Performance Comparison');
+title('Conventional SM Performance');
 xlabel('Eb/No, dB');
 ylabel('Bit Error Rate');
 
