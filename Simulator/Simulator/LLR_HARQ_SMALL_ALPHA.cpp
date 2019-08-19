@@ -546,7 +546,11 @@ void Sim() {
 				LLR_SECOND = turb.ExportLLR_turbo_decoding(LLR1, LLR2, ITR);
 
 				//¿©±â¼­ combining
-				Comb.LLR_COMB(Fad_Mod, SNR, llr_wgt_sd, LLR_FIRST, SNR, LLR_RD, LLR_SECOND);
+#if COMB == EGComb
+					Comb.LLR_COMB(Fad_Mod, SNR, llr_wgt_sd, LLR_FIRST, SNR, LLR_RD, LLR_SECOND);
+#elif COMB == MRComb
+					Comb.LLR_MRC_COMB(Fad_Mod, SNR, llr_wgt_sd, LLR_FIRST, SNR + RD_Gain, LLR_RD, LLR_SECOND);
+#endif
 				turb.Decision(LLR_SECOND, decoded_source);
 				count++;
 

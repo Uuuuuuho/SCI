@@ -31,13 +31,13 @@
 #define NEW_LARGE_ALPHA 28
 #define NEW_SMALL_ALPHA 29
 
-#define NOW LLR_HARQ_SMALL_ALPHA
+#define NOW SUPER_16QAM2
 
 #define SOURCE_ONLY 1
 #define RELAY_ONLY 2
 #define SOURCE_RELAY_BOTH 3
 
-#define OUTPUT RELAY_ONLY 
+#define OUTPUT SOURCE_RELAY_BOTH 
 
 #define EARLYSTOPRATE 0.001
 
@@ -46,7 +46,7 @@
 #define MRComb 2
 #define NONE 3
 
-#define COMB NONE
+#define COMB MRComb
 
 //BER or PER
 #define BERFILE 1

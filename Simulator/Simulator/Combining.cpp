@@ -304,8 +304,8 @@ void Comb::LLR_MRC(FADING FAD_MOD, double SNR_SD, double * llr0, double * llr1, 
 	}
 }
 
-void Comb::LLR_COMB(FADING FAD_MOD, double SNR_SD, vector<double> &h_sd, vector<vector<double>> LLR_FIRST,
-	double SNR_RD, vector<double> h_rd, vector<vector<double>> &LLR_SECOND){	//only consider case of Quasi static rayleigh fading channel
+void Comb::LLR_COMB(FADING FAD_MOD, double SNR_SD, vector<double> &h_sd, vector<vector<double>> &LLR_FIRST,
+	double SNR_RD, vector<double> h_rd, vector<vector<double>> LLR_SECOND){	//only consider case of Quasi static rayleigh fading channel
     int size = LLR_FIRST.size();
 	vector<double> rate1, rate2;
 	double tmp1 = pow(10, (SNR_SD / 10)), tmp2 = pow(10, (SNR_RD / 10)),  tmpSum0 = 0, tmpSum1 = 0, tmpSecond0 = 0, tmpFirst0 = 0;
@@ -388,6 +388,44 @@ double Comb::Rate(double SNR, double RD_Gain, vector<double> h_sd, vector<double
 	rate2 = (h_rd[0] * tmp2) / (h_sd[0] * tmp1 + h_rd[0] * tmp2) / LC_RD;
 
 	return result;
+}
+
+void Comb::LLR_MRC_COMB(FADING FAD_MOD, double SNR_SD, vector<double> h_sd, std::vector<vector<double>> LLR_FIRST,
+	double SNR_RD, vector<double> h_rd, std::vector<vector<double>> &LLR_SECOND)
+{
+	int size = LLR_FIRST.size();
+	vector<double> rate1, rate2;
+	double tmp1 = pow(10, (SNR_SD / 10)), tmp2 = pow(10, (SNR_RD / 10));
+
+	rate1.resize(1), rate2.resize(1);
+
+	rate1[0] = (h_sd[0] * tmp1) / (h_sd[0] * tmp1 + h_rd[0] * tmp2);
+	rate2[0] = (h_rd[0] * tmp2) / (h_sd[0] * tmp1 + h_rd[0] * tmp2);
+
+
+	for (int i = 0; i < size; i++) {
+		LLR_SECOND[i][0] = LLR_FIRST[i][0] * rate1[0] + LLR_SECOND[i][0] * rate2[0];
+		LLR_SECOND[i][1] = LLR_FIRST[i][1] * rate1[0] + LLR_SECOND[i][1] * rate2[0];
+	}
+}
+
+void Comb::LLR_EGC_COMB(FADING FAD_MOD, double SNR_SD, vector<double> h_sd, std::vector<vector<double>> LLR_FIRST, 
+	double SNR_RD, vector<double> h_rd, std::vector<vector<double>> &LLR_SECOND)
+{
+	int size = LLR_FIRST.size();
+	vector<double> rate1, rate2;
+	double tmp1 = pow(10, (SNR_SD / 10)), tmp2 = pow(10, (SNR_RD / 10));
+
+	rate1.resize(1), rate2.resize(1);
+
+	rate1[0] = (h_sd[0] * tmp1) / (h_sd[0] * tmp1 + h_rd[0] * tmp2);
+	rate2[0] = (h_rd[0] * tmp2) / (h_sd[0] * tmp1 + h_rd[0] * tmp2);
+
+
+	for (int i = 0; i < size; i++) {
+		LLR_SECOND[i][0] = LLR_FIRST[i][0] * rate1[0] + LLR_SECOND[i][0] * rate2[0];
+		LLR_SECOND[i][1] = LLR_FIRST[i][1] * rate1[0] + LLR_SECOND[i][1] * rate2[0];
+	}
 }
 
 void Comb::Picking_EVEN(vector < vector < double >> &LLR_SECOND, vector < vector < double >> &LLR_THIRD){

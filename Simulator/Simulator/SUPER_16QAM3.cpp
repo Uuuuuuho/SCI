@@ -615,7 +615,11 @@ void Sim() {
 				turb.turbo_bit2sym(SOURCE_llr0, SOURCE_llr1, LOGLR1, LOGLR2, SP_NCODEBITperSYM, NCODEBIT, SP_NCODE);
 				LLR_THIRD = turb.ExportLLR_turbo_decoding(LOGLR1, LOGLR2, ITR);
 
-				Comb.LLR_COMB(Fad_Mod, SNR, llr_wgt_sd, LLR_FIRST, SNR, LLR_RD, LLR_THIRD);
+#if COMB == EGComb
+				Comb.LLR_EGC_COMB(Fad_Mod, SNR, llr_wgt_sd, LLR_FIRST, SNR, LLR_RD, LLR_THIRD);
+#elif COMB == MRComb
+				Comb.LLR_MRC_COMB(Fad_Mod, SNR, llr_wgt_sd, LLR_FIRST, SNR + RD_Gain, LLR_RD, LLR_THIRD);
+#endif
 				turb.Decision(LLR_THIRD, decoded_source);
 
 				if (!Detect.Packet(code_source, decoded_source, SP_NINFOBITperSYM)) {
@@ -653,7 +657,11 @@ void Sim() {
 					turb.turbo_bit2sym(llr0, llr1, LLR1, LLR2, SP_NCODEBITperSYM, NCODEBIT, SP_NCODE);
 					LLR_THIRD = turb.ExportLLR_turbo_decoding(LLR1, LLR2, ITR);
 
-					Comb.LLR_COMB(Fad_Mod, SNR, llr_wgt_sd, LLR_FIRST, SNR, LLR_RD, LLR_THIRD);
+#if COMB == EGComb
+					Comb.LLR_EGC_COMB(Fad_Mod, SNR, llr_wgt_sd, LLR_FIRST, SNR, LLR_RD, LLR_THIRD);
+#elif COMB == MRComb
+					Comb.LLR_MRC_COMB(Fad_Mod, SNR, llr_wgt_sd, LLR_FIRST, SNR + RD_Gain, LLR_RD, LLR_THIRD);
+#endif
 					turb.Decision(LLR_THIRD, decoded_source);
 
 				}
