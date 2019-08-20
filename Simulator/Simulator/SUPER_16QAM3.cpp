@@ -646,25 +646,25 @@ void Sim() {
 				}
 
 
-				if (!Detect.Packet(code_relay, decoded_relay, SP_NINFOBITperSYM)) {
-					//for checking
-					CONV_cnt++;
-
-					RELAY_Map.Super_Sub(tmp_RD_TX, RD_RX);
-
-					LC = -1.0 / (2 * AWGN3.sigma2);
-					turb.turbo_llr_generation(Fad_Mod, RD_RX, LLR_RD, llr0, llr1, &SMALL_Map, RD_RX.size(), LC);
-					turb.turbo_bit2sym(llr0, llr1, LLR1, LLR2, SP_NCODEBITperSYM, NCODEBIT, SP_NCODE);
-					LLR_THIRD = turb.ExportLLR_turbo_decoding(LLR1, LLR2, ITR);
-
-#if COMB == EGComb
-					Comb.LLR_EGC_COMB(Fad_Mod, SNR, llr_wgt_sd, LLR_FIRST, SNR, LLR_RD, LLR_THIRD);
-#elif COMB == MRComb
-					Comb.LLR_MRC_COMB(Fad_Mod, SNR, llr_wgt_sd, LLR_FIRST, SNR + RD_Gain, LLR_RD, LLR_THIRD);
-#endif
-					turb.Decision(LLR_THIRD, decoded_source);
-
-				}
+//				if (!Detect.Packet(code_relay, decoded_relay, SP_NINFOBITperSYM)) {
+//					//for checking
+//					CONV_cnt++;
+//
+//					RELAY_Map.Super_Sub(tmp_RD_TX, RD_RX);
+//
+//					LC = -1.0 / (2 * AWGN3.sigma2);
+//					turb.turbo_llr_generation(Fad_Mod, RD_RX, LLR_RD, llr0, llr1, &SMALL_Map, RD_RX.size(), LC);
+//					turb.turbo_bit2sym(llr0, llr1, LLR1, LLR2, SP_NCODEBITperSYM, NCODEBIT, SP_NCODE);
+//					LLR_THIRD = turb.ExportLLR_turbo_decoding(LLR1, LLR2, ITR);
+//
+//#if COMB == EGComb
+//					Comb.LLR_EGC_COMB(Fad_Mod, SNR, llr_wgt_sd, LLR_FIRST, SNR, LLR_RD, LLR_THIRD);
+//#elif COMB == MRComb
+//					Comb.LLR_MRC_COMB(Fad_Mod, SNR, llr_wgt_sd, LLR_FIRST, SNR + RD_Gain, LLR_RD, LLR_THIRD);
+//#endif
+//					turb.Decision(LLR_THIRD, decoded_source);
+//
+//				}
 
 #if (OUTPUT == RELAY_ONLY) || (OUTPUT == SOURCE_RELAY_BOTH)
 

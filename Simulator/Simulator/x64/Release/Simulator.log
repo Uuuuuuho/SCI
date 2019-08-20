@@ -2,8 +2,6 @@
   Analog_HARQ.cpp
   CDRT_UL.cpp
   CDRT_UL_8PSK.cpp
-  CONV_LARGE_ALPHA.cpp
-  CONV_SMALL_ALPHA.cpp
   CONV_SUPER_BLC.cpp
   CoMP.cpp
   INCRE_ITER_SUPER.cpp
@@ -15,43 +13,44 @@
   Larger_Relay_Analog_Comb.cpp
   Larger_Relay_LLR_Comb.cpp
   Larger_Relay_SIC.cpp
-  NEW_LARGE_ALPHA.cpp
-  NEW_SMALL_ALPHA.cpp
-  PAM_SUPER_BLC.cpp
-  PhaseExtension.cpp
-  컴파일하고 있습니다...
-  QPSK2QAM.cpp
-  SIC.cpp
-  SUPER_16QAM.cpp
-  SUPER_16QAM2.cpp
+  NEW_ITER.cpp
 c:\users\jb\documents\sci\simulator\simulator\mapper.h(19): warning C4005: 'PI': 매크로 재정의
   c:\users\jb\documents\sci\simulator\simulator\complex_new.h(13): note: 'PI'의 이전 정의를 참조하십시오.
-c:\users\jb\documents\sci\simulator\simulator\super_16qam2.cpp(84): warning C4267: '초기화 중': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\jb\documents\sci\simulator\simulator\super_16qam2.cpp(202): warning C4267: '초기화 중': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\jb\documents\sci\simulator\simulator\super_16qam2.cpp(249): warning C4244: '초기화 중': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\jb\documents\sci\simulator\simulator\super_16qam2.cpp(254): warning C4244: '초기화 중': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\jb\documents\sci\simulator\simulator\super_16qam2.cpp(350): warning C4244: '인수': 'double'에서 'const unsigned __int64'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\jb\documents\sci\simulator\simulator\super_16qam2.cpp(351): warning C4244: '인수': 'double'에서 'const unsigned __int64'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\jb\documents\sci\simulator\simulator\super_16qam2.cpp(416): warning C4244: '=': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\jb\documents\sci\simulator\simulator\super_16qam2.cpp(427): warning C4244: '=': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\jb\documents\sci\simulator\simulator\super_16qam2.cpp(578): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\jb\documents\sci\simulator\simulator\super_16qam2.cpp(588): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\jb\documents\sci\simulator\simulator\super_16qam2.cpp(591): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\jb\documents\sci\simulator\simulator\super_16qam2.cpp(594): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\jb\documents\sci\simulator\simulator\super_16qam2.cpp(597): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\jb\documents\sci\simulator\simulator\super_16qam2.cpp(610): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\jb\documents\sci\simulator\simulator\super_16qam2.cpp(627): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\jb\documents\sci\simulator\simulator\super_16qam2.cpp(672): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\jb\documents\sci\simulator\simulator\super_16qam2.cpp(346): warning C4101: 'SNR_RD' :참조되지 않은 지역 변수입니다.
-c:\users\jb\documents\sci\simulator\simulator\super_16qam2.cpp(346): warning C4101: 'SNR_SR' :참조되지 않은 지역 변수입니다.
+c:\users\jb\documents\sci\simulator\simulator\new_iter.cpp(84): warning C4267: '초기화 중': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\jb\documents\sci\simulator\simulator\new_iter.cpp(202): warning C4267: '초기화 중': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\jb\documents\sci\simulator\simulator\new_iter.cpp(249): warning C4244: '초기화 중': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\jb\documents\sci\simulator\simulator\new_iter.cpp(254): warning C4244: '초기화 중': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\jb\documents\sci\simulator\simulator\new_iter.cpp(350): warning C4244: '인수': 'double'에서 'const unsigned __int64'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\jb\documents\sci\simulator\simulator\new_iter.cpp(351): warning C4244: '인수': 'double'에서 'const unsigned __int64'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\jb\documents\sci\simulator\simulator\new_iter.cpp(416): warning C4244: '=': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\jb\documents\sci\simulator\simulator\new_iter.cpp(427): warning C4244: '=': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\jb\documents\sci\simulator\simulator\new_iter.cpp(578): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\jb\documents\sci\simulator\simulator\new_iter.cpp(588): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\jb\documents\sci\simulator\simulator\new_iter.cpp(591): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\jb\documents\sci\simulator\simulator\new_iter.cpp(594): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\jb\documents\sci\simulator\simulator\new_iter.cpp(597): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\jb\documents\sci\simulator\simulator\new_iter.cpp(610): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\jb\documents\sci\simulator\simulator\new_iter.cpp(619): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\jb\documents\sci\simulator\simulator\new_iter.cpp(632): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\jb\documents\sci\simulator\simulator\new_iter.cpp(677): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\jb\documents\sci\simulator\simulator\new_iter.cpp(346): warning C4101: 'SNR_RD' :참조되지 않은 지역 변수입니다.
+c:\users\jb\documents\sci\simulator\simulator\new_iter.cpp(346): warning C4101: 'SNR_SR' :참조되지 않은 지역 변수입니다.
+  NEW_ITER_SMALL.cpp
+  PAM_SUPER_BLC.cpp
+  PhaseExtension.cpp
+  QPSK2QAM.cpp
+  SIC.cpp
+  컴파일하고 있습니다...
+  SUPER_16QAM.cpp
+  SUPER_16QAM2.cpp
   SUPER_16QAM3.cpp
   Super_CoMP.cpp
   analog_comb.cpp
   log_comb.cpp
   log_comb2.cpp
   코드를 생성하고 있습니다.
-  502 of 1436 functions (35.0%) were compiled, the rest were copied from previous compilation.
+  477 of 1437 functions (33.2%) were compiled, the rest were copied from previous compilation.
     16 functions were new in current compilation
-    72 functions had inline decision re-evaluated but remain unchanged
+    40 functions had inline decision re-evaluated but remain unchanged
   코드를 생성했습니다.
   Simulator.vcxproj -> C:\Users\JB\Documents\SCI\Simulator\Simulator\.\Simulator.exe

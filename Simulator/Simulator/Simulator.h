@@ -19,19 +19,17 @@
 #define CONV_SUPER_BLC 17
 #define PAM_SUPER_BLC 18
 #define INCRE_ITER_SUPER_BLC 19
-#define LLR_HARQ4 20        //Phase Overlap
-#define PHASE_EXTENSION 21    //Phase Extension
-#define SUPER_16QAM 22      //new decoding scheme
-#define SUPER_16QAM2 23      //new decoding scheme complete
-#define LLR_HARQ_SMALL_ALPHA 24      //conventional decoding scheme
-#define SUPER_16QAM3 25      //new decoding scheme for small alpha
+#define LLR_HARQ4 20				//Phase Overlap
+#define PHASE_EXTENSION 21			//Phase Extension
+#define SUPER_16QAM 22				//new decoding scheme
+#define SUPER_16QAM2 23				//new decoding scheme complete
+#define LLR_HARQ_SMALL_ALPHA 24     //conventional decoding scheme
+#define SUPER_16QAM3 25				//new decoding scheme for small alpha
 
-#define CONV_LARGE_ALPHA 26
-#define CONV_SMALL_ALPHA 27
-#define NEW_LARGE_ALPHA 28
-#define NEW_SMALL_ALPHA 29
+#define NEW_ITER 26
+#define NEW_ITER_SMALL 27
 
-#define NOW SUPER_16QAM2
+#define NOW NEW_ITER
 
 #define SOURCE_ONLY 1
 #define RELAY_ONLY 2
@@ -46,7 +44,7 @@
 #define MRComb 2
 #define NONE 3
 
-#define COMB MRComb
+#define COMB EGComb
 
 //BER or PER
 #define BERFILE 1

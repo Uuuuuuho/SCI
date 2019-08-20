@@ -152,16 +152,10 @@
     <ClCompile Include="SUPER_16QAM3.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="CONV_SMALL_ALPHA.cpp">
+    <ClCompile Include="NEW_ITER.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="CONV_LARGE_ALPHA.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="NEW_SMALL_ALPHA.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="NEW_LARGE_ALPHA.cpp">
+    <ClCompile Include="NEW_ITER_SMALL.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
