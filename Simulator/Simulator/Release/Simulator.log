@@ -1,46 +1,82 @@
 ﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(397,5): warning MSB8004: Output 디렉터리가 슬래시로 끝나지 않습니다. Output 디렉터리의 적절한 평가를 허용하는 데 필요하므로 이 빌드 인스턴스에서 슬래시를 추가합니다.
+  analog_comb.cpp
   Analog_HARQ.cpp
+  AWGN.cpp
   CDRT_UL.cpp
   CDRT_UL_8PSK.cpp
-  CONV_LARGE_ALPHA.cpp
-  CONV_SMALL_ALPHA.cpp
-  CONV_SUPER_BLC.cpp
+  Combining.cpp
   CoMP.cpp
+  Conv.cpp
+C:\Users\user\Documents\GitHub\SCI\Simulator\Simulator\Conv.cpp(24): warning C4244: '=': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\user\Documents\GitHub\SCI\Simulator\Simulator\Conv.cpp(109): warning C4244: '인수': 'double'에서 'unsigned int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\user\Documents\GitHub\SCI\Simulator\Simulator\Conv.cpp(203): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+C:\Users\user\Documents\GitHub\SCI\Simulator\Simulator\Conv.cpp(208): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+  CONV_SUPER_BLC.cpp
+  Detector.cpp
+C:\Users\user\Documents\GitHub\SCI\Simulator\Simulator\Detector.cpp(22): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+C:\Users\user\Documents\GitHub\SCI\Simulator\Simulator\Detector.cpp(32): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+C:\Users\user\Documents\GitHub\SCI\Simulator\Simulator\Detector.cpp(37): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+C:\Users\user\Documents\GitHub\SCI\Simulator\Simulator\Detector.cpp(48): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
   INCRE_ITER_SUPER.cpp
+  Larger_Relay_Analog_Comb.cpp
+  Larger_Relay_LLR_Comb.cpp
+  Larger_Relay_SIC.cpp
   LLR_HARQ.cpp
   LLR_HARQ2.cpp
   LLR_HARQ3.cpp
   LLR_HARQ4.cpp
   LLR_HARQ_SMALL_ALPHA.cpp
-  Larger_Relay_Analog_Comb.cpp
-  Larger_Relay_LLR_Comb.cpp
-  Larger_Relay_SIC.cpp
-  NEW_LARGE_ALPHA.cpp
-  NEW_SMALL_ALPHA.cpp
+  log_comb.cpp
+  컴파일하고 있습니다...
+  log_comb2.cpp
+  Mapper.cpp
+C:\Users\user\Documents\GitHub\SCI\Simulator\Simulator\Mapper.h(19): warning C4005: 'PI': 매크로 재정의
+  C:\Users\user\Documents\GitHub\SCI\Simulator\Simulator\Complex_new.h(13): note: 'PI'의 이전 정의를 참조하십시오.
+C:\Users\user\Documents\GitHub\SCI\Simulator\Simulator\Mapper.cpp(124): warning C4101: 'i' :참조되지 않은 지역 변수입니다.
+C:\Users\user\Documents\GitHub\SCI\Simulator\Simulator\Mapper.cpp(714): warning C4101: 'j' :참조되지 않은 지역 변수입니다.
+C:\Users\user\Documents\GitHub\SCI\Simulator\Simulator\Mapper.cpp(731): warning C4101: 'j' :참조되지 않은 지역 변수입니다.
+C:\Users\user\Documents\GitHub\SCI\Simulator\Simulator\Mapper.cpp(1038): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+C:\Users\user\Documents\GitHub\SCI\Simulator\Simulator\Mapper.cpp(1239): warning C4244: '=': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\user\Documents\GitHub\SCI\Simulator\Simulator\Mapper.cpp(1240): warning C4244: '=': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\user\Documents\GitHub\SCI\Simulator\Simulator\Mapper.cpp(1241): warning C4244: '=': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\user\Documents\GitHub\SCI\Simulator\Simulator\Mapper.cpp(1242): warning C4244: '=': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\user\Documents\GitHub\SCI\Simulator\Simulator\Mapper.cpp(1244): warning C4244: '=': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\user\Documents\GitHub\SCI\Simulator\Simulator\Mapper.cpp(1245): warning C4244: '=': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\user\Documents\GitHub\SCI\Simulator\Simulator\Mapper.cpp(1246): warning C4244: '=': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\user\Documents\GitHub\SCI\Simulator\Simulator\Mapper.cpp(1247): warning C4244: '=': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\user\Documents\GitHub\SCI\Simulator\Simulator\Mapper.cpp(1566): warning C4101: 'max0' :참조되지 않은 지역 변수입니다.
+C:\Users\user\Documents\GitHub\SCI\Simulator\Simulator\Mapper.cpp(1566): warning C4101: 'max1' :참조되지 않은 지역 변수입니다.
+  NEW_ITER.cpp
+C:\Users\user\Documents\GitHub\SCI\Simulator\Simulator\Mapper.h(19): warning C4005: 'PI': 매크로 재정의
+  C:\Users\user\Documents\GitHub\SCI\Simulator\Simulator\Complex_new.h(13): note: 'PI'의 이전 정의를 참조하십시오.
+C:\Users\user\Documents\GitHub\SCI\Simulator\Simulator\NEW_ITER.cpp(249): warning C4244: '초기화 중': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\user\Documents\GitHub\SCI\Simulator\Simulator\NEW_ITER.cpp(254): warning C4244: '초기화 중': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\user\Documents\GitHub\SCI\Simulator\Simulator\NEW_ITER.cpp(350): warning C4244: '인수': 'double'에서 'const unsigned int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\user\Documents\GitHub\SCI\Simulator\Simulator\NEW_ITER.cpp(351): warning C4244: '인수': 'double'에서 'const unsigned int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\user\Documents\GitHub\SCI\Simulator\Simulator\NEW_ITER.cpp(416): warning C4244: '=': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\user\Documents\GitHub\SCI\Simulator\Simulator\NEW_ITER.cpp(427): warning C4244: '=': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\user\Documents\GitHub\SCI\Simulator\Simulator\NEW_ITER.cpp(346): warning C4101: 'SNR_RD' :참조되지 않은 지역 변수입니다.
+C:\Users\user\Documents\GitHub\SCI\Simulator\Simulator\NEW_ITER.cpp(346): warning C4101: 'SNR_SR' :참조되지 않은 지역 변수입니다.
+  NEW_ITER_SMALL.cpp
   PAM_SUPER_BLC.cpp
   PhaseExtension.cpp
-  컴파일하고 있습니다...
   QPSK2QAM.cpp
+  Rayleigh.cpp
+C:\Users\user\Documents\GitHub\SCI\Simulator\Simulator\Rayleigh.cpp(45): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+C:\Users\user\Documents\GitHub\SCI\Simulator\Simulator\Rayleigh.cpp(69): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
   SIC.cpp
   SUPER_16QAM.cpp
   SUPER_16QAM2.cpp
-C:\Users\user\Documents\GitHub\SCI\Simulator\Simulator\Mapper.h(19): warning C4005: 'PI': 매크로 재정의
-  C:\Users\user\Documents\GitHub\SCI\Simulator\Simulator\Complex_new.h(13): note: 'PI'의 이전 정의를 참조하십시오.
-C:\Users\user\Documents\GitHub\SCI\Simulator\Simulator\SUPER_16QAM2.cpp(249): warning C4244: '초기화 중': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\user\Documents\GitHub\SCI\Simulator\Simulator\SUPER_16QAM2.cpp(254): warning C4244: '초기화 중': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\user\Documents\GitHub\SCI\Simulator\Simulator\SUPER_16QAM2.cpp(350): warning C4244: '인수': 'double'에서 'const unsigned int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\user\Documents\GitHub\SCI\Simulator\Simulator\SUPER_16QAM2.cpp(351): warning C4244: '인수': 'double'에서 'const unsigned int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\user\Documents\GitHub\SCI\Simulator\Simulator\SUPER_16QAM2.cpp(416): warning C4244: '=': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\user\Documents\GitHub\SCI\Simulator\Simulator\SUPER_16QAM2.cpp(427): warning C4244: '=': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\user\Documents\GitHub\SCI\Simulator\Simulator\SUPER_16QAM2.cpp(346): warning C4101: 'SNR_RD' :참조되지 않은 지역 변수입니다.
-C:\Users\user\Documents\GitHub\SCI\Simulator\Simulator\SUPER_16QAM2.cpp(346): warning C4101: 'SNR_SR' :참조되지 않은 지역 변수입니다.
   SUPER_16QAM3.cpp
   Super_CoMP.cpp
-  analog_comb.cpp
-  log_comb.cpp
-  log_comb2.cpp
+  Turbo2.cpp
+C:\Users\user\Documents\GitHub\SCI\Simulator\Simulator\Mapper.h(19): warning C4005: 'PI': 매크로 재정의
+  C:\Users\user\Documents\GitHub\SCI\Simulator\Simulator\complex_new.h(13): note: 'PI'의 이전 정의를 참조하십시오.
+C:\Users\user\Documents\GitHub\SCI\Simulator\Simulator\Turbo2.cpp(17): warning C4244: '=': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\user\Documents\GitHub\SCI\Simulator\Simulator\Turbo2.cpp(184): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+C:\Users\user\Documents\GitHub\SCI\Simulator\Simulator\Turbo2.cpp(218): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
   코드를 생성하고 있습니다.
   Previous IPDB was built with incompatible compiler, fall back to full compilation.
-  All 1325 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  All 1326 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
   코드를 생성했습니다.
   Simulator.vcxproj -> C:\Users\user\Documents\GitHub\SCI\Simulator\Simulator\.\Simulator.exe

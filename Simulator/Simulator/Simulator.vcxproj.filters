@@ -158,5 +158,8 @@
     <ClCompile Include="NEW_ITER_SMALL.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="Simulator.cpp">
+      <Filter>Simulator pick</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

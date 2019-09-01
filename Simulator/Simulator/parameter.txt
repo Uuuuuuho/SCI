@@ -13,7 +13,7 @@ SNRinit		10
 Increment	5
 SNRMAX		40
 Title		NEW-DECODING-BOTH(ALPHA0.3,RD0dB)
-Frame		100000
+Frame		10000
 Size		8
 ITR			8
 ITR_RELAY	7

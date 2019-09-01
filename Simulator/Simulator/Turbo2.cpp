@@ -1008,8 +1008,10 @@ vector<vector<double>>  Turb::ExportLLR_turbo_decoding(double** LLR1, double **L
 
 
 	for (k = 0; k < iter_num; k++) {
-
-		// First Stage Decoding	
+		//======================================================
+		//			First Stage Decoding	............
+		//======================================================
+		
 		decoding(LLR1, PU_I1, PU_O1);
 
 		//--------------------- Extrinsic Information Extraction ---------------------------

@@ -1,4 +1,10 @@
 #pragma once
+#include "complex_new.h"
+#include <vector>
+#include <iostream>
+#include <fstream>
+using namespace std;
+
 //types of simulator
 #define CONV_ANALOG_COMB 1	//conventional analog MRC combining
 #define CONV_LOG_COMB 2
@@ -54,16 +60,9 @@
 #define OUTFILE BERFILE
 
 
-
-
-
 #if NOW == SIC
 //dfdf
 #endif
-
-
-
-
 
 #if COMB == MRComb
 //dfdf
@@ -72,3 +71,5 @@
 #endif
 
 
+void Constellation(vector<Complex<double>> obj);
+void Bit_out(vector<bool> obj);
