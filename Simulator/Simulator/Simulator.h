@@ -3,6 +3,8 @@
 #include <vector>
 #include <iostream>
 #include <fstream>
+#include <string>
+
 using namespace std;
 
 //types of simulator
@@ -34,8 +36,10 @@ using namespace std;
 
 #define NEW_ITER 26
 #define NEW_ITER_SMALL 27
+#define CONV_DF 28
+#define COMB_AFTER_ITER 29
 
-#define NOW NEW_ITER
+#define NOW COMB_AFTER_ITER
 
 #define SOURCE_ONLY 1
 #define RELAY_ONLY 2
@@ -50,7 +54,7 @@ using namespace std;
 #define MRComb 2
 #define NONE 3
 
-#define COMB EGComb
+#define COMB MRComb
 
 //BER or PER
 #define BERFILE 1
@@ -72,4 +76,5 @@ using namespace std;
 
 
 void Constellation(vector<Complex<double>> obj);
-void Bit_out(vector<bool> obj);
+
+template <typename T> void info_out(vector<T> obj, string name);

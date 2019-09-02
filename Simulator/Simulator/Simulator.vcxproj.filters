@@ -158,8 +158,14 @@
     <ClCompile Include="NEW_ITER_SMALL.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Simulator.cpp">
+    <ClCompile Include="Global_function.cpp">
       <Filter>Simulator pick</Filter>
+    </ClCompile>
+    <ClCompile Include="CONV_DF.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="COMB_AFTER_ITER.cpp">
+      <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

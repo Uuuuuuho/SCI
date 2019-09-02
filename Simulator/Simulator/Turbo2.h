@@ -90,6 +90,12 @@ public:
 	void decoding(double	**PC_I, double	**PU_I, double	**PU_O);
 	void decoding(vector<vector<double>>& PC_I, double** PU_I, double** PU_O);
 	vector<bool> Attach(vector<bool>, vector<bool>);
+
+
+	//LLR combining after iteration
+	void LLR_combining_after_iteration(double** LLR1, double** LLR2, double** DF_LLR1, double** DF_LLR2);
+	//member var for copy LLR after iteration
+	//vector<vector<double>> 
 };
 
 

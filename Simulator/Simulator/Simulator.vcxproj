@@ -38,8 +38,10 @@
     <ClCompile Include="CDRT_UL.cpp" />
     <ClCompile Include="CDRT_UL_8PSK.cpp" />
     <ClCompile Include="Combining.cpp" />
+    <ClCompile Include="COMB_AFTER_ITER.cpp" />
     <ClCompile Include="CoMP.cpp" />
     <ClCompile Include="Conv.cpp" />
+    <ClCompile Include="CONV_DF.cpp" />
     <ClCompile Include="CONV_SUPER_BLC.cpp" />
     <ClCompile Include="Detector.cpp" />
     <ClCompile Include="INCRE_ITER_SUPER.cpp" />
@@ -61,7 +63,7 @@
     <ClCompile Include="QPSK2QAM.cpp" />
     <ClCompile Include="Rayleigh.cpp" />
     <ClCompile Include="SIC.cpp" />
-    <ClCompile Include="Simulator.cpp" />
+    <ClCompile Include="Global_function.cpp" />
     <ClCompile Include="SUPER_16QAM.cpp" />
     <ClCompile Include="SUPER_16QAM2.cpp" />
     <ClCompile Include="SUPER_16QAM3.cpp" />

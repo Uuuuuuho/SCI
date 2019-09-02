@@ -1028,6 +1028,7 @@ vector<vector<double>>  Turb::ExportLLR_turbo_decoding(double** LLR1, double **L
 				if (i < m_Bsize) PU_I2[i][j] = PU_O1[inter_pattern[i]][j];
 				else PU_I2[i][j] = -log(2);
 			}
+
 		//======================================================
 		//			Second Stage Decoding............
 		//======================================================
@@ -1203,6 +1204,7 @@ vector<vector<double>>  Turb::ExportLLR_turbo_decoding_excluding(double** LLR1, 
 
 void Turb::decoding(double **PC_I, double	**PU_I, double	**PU_O) {
 
+	double 	tot_app;
 
 	int		i, j, k;
 	//=====================================================
@@ -1232,16 +1234,7 @@ void Turb::decoding(double **PC_I, double	**PU_I, double	**PU_O) {
 		for (j = 0; j < m_Nstate; j++)
 			log_alpa[i + 1][j] = tmp2[j] - tot_log_a[i];
 	}
-	/*
-	for ( i = 0 ; i < m_Bsize ; i++ ) {
-	printf("%d : ",EXT_TB->m_state1_seq[i]);
-	for ( j = 0 ; j < m_Nstate ; j++ )	{
-	printf("%lf ", log_alpa[i][j] );
-	}
-	printf("\n");
-	getchar();
-	}
-	*/
+
 	//----------------   Iteration to update Beta  ----------------------------
 
 	for (i = Bsize - 1; i >= 0; i--) {
@@ -1276,7 +1269,6 @@ void Turb::decoding(double **PC_I, double	**PU_I, double	**PU_O) {
 		for (j = 0; j < m_Ninfo; j++) {
 			tmp4[j] = log_sum_exp(tmp3[j], m_Nstate);
 		}
-		double 	tot_app;
 		tot_app = log_sum_exp(tmp4, m_Ninfo);
 		for (j = 0; j < m_Ninfo; j++)
 			PU_O[i][j] = tmp4[j] - tot_app;
@@ -1375,6 +1367,11 @@ vector<bool> Turb::Attach(vector<bool> a, vector<bool> b)
 		result[i + size] = b[i];
 	}
 	return result;
+}
+
+void Turb::LLR_combining_after_iteration(double** LLR1, double** LLR2, double** DF_LLR1, double** DF_LLR2)
+{
+	DF_LLR1[0][0] = LLR1[0][0]; //should be modified to MRC comb. firstly check the size of array
 }
 
 void Turb::turbo_bit2sym(double* rx_llr0_buf, double *rx_llr1_buf, double **LLR1, double **LLR2, int SP_NCODEBITperSYM, int SP_NCODEBIT, int SP_NCODE) {
