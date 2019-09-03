@@ -1371,7 +1371,13 @@ vector<bool> Turb::Attach(vector<bool> a, vector<bool> b)
 
 void Turb::LLR_combining_after_iteration(double** LLR1, double** LLR2, double** DF_LLR1, double** DF_LLR2)
 {
-	DF_LLR1[0][0] = LLR1[0][0]; //should be modified to MRC comb. firstly check the size of array
+	//DF_LLR1[0][0] = LLR1[0][0]; //should be modified to MRC comb. firstly check the size of array
+	for (int i = 0; i < m_Bsize + m_Nmemory; i++) {
+		for (int j = 0; j < m_Ninfo; j++) {
+			DF_LLR1[i][j] = (DF_LLR1[i][j] + LLR1[i][j] + PU_O1[i][j]) * 0.5;
+			DF_LLR2[i][j] = (DF_LLR2[i][j] + LLR2[i][j] + PU_O2[i][j]) * 0.5;
+		}
+	}
 }
 
 void Turb::turbo_bit2sym(double* rx_llr0_buf, double *rx_llr1_buf, double **LLR1, double **LLR2, int SP_NCODEBITperSYM, int SP_NCODEBIT, int SP_NCODE) {

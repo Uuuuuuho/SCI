@@ -569,8 +569,10 @@ void Sim() {
 				LC = -1.0 / (2 * AWGN3.sigma2);
 				turb.turbo_llr_generation(Fad_Mod, RD_RX, LLR_RD, llr0, llr1, &RELAY_Map, RD_RX.size(), LC);
 				turb.turbo_bit2sym(llr0, llr1, DF_LLR1, DF_LLR2, SP_NCODEBITperSYM, NCODEBIT, SP_NCODE);
-				turb.LLR_combining_after_iteration(LLR1, LLR2, DF_LLR1, DF_LLR2);
+
+				turb.LLR_combining_after_iteration(LLR1, LLR2, DF_LLR1, DF_LLR2);	//EGC at the moment
 				LLR_SECOND = turb.ExportLLR_turbo_decoding(DF_LLR1, DF_LLR2, ITR);
+
 
 #if COMB == EGComb
 				Comb.LLR_COMB(Fad_Mod, SNR, llr_wgt_sd, LLR_FIRST, SNR, LLR_RD, LLR_THIRD);

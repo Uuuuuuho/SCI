@@ -12,11 +12,11 @@ Mod 		QPSK
 SNRinit		0
 Increment	5
 SNRMAX		40
-Title		CONV-DF(RD0dB)
-Frame		1000
+Title		NEW-DF(RD0dB)
+Frame		100
 Size		8
 ITR			8
-ITR_RELAY	7
+ITR_RELAY	8
 Channel_coding	TURBO
 Fading		Rayleigh_Quasi
 Code_rate       	3
