@@ -559,6 +559,8 @@ void Sim() {
 
 			if (Detect.Packet(code_source, decoded_source, SP_NINFOBITperSYM)) {    //CRC fail @ the gateway
 																					//Decoding @ Relay
+				count++;
+
 				LC = -1.0 / (2 * AWGN3.sigma2);
 				turb.turbo_llr_generation(Fad_Mod, RD_RX, LLR_RD, llr0, llr1, &RELAY_Map, RD_RX.size(), LC);
 				turb.turbo_bit2sym(llr0, llr1, LLR1, LLR2, SP_NCODEBITperSYM, NCODEBIT, SP_NCODE);

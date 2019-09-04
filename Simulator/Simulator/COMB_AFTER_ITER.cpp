@@ -566,13 +566,18 @@ void Sim() {
 
 			if (Detect.Packet(code_source, decoded_source, SP_NINFOBITperSYM)) {    //CRC fail @ the gateway
 																					//Decoding @ Relay
+				count++;
+
 				LC = -1.0 / (2 * AWGN3.sigma2);
 				turb.turbo_llr_generation(Fad_Mod, RD_RX, LLR_RD, llr0, llr1, &RELAY_Map, RD_RX.size(), LC);
 				turb.turbo_bit2sym(llr0, llr1, DF_LLR1, DF_LLR2, SP_NCODEBITperSYM, NCODEBIT, SP_NCODE);
 
-				turb.LLR_combining_after_iteration(LLR1, LLR2, DF_LLR1, DF_LLR2);	//EGC at the moment
+				turb.LLR_combining_after_iteration(LLR1, LLR2, DF_LLR1, DF_LLR2, llr_wgt_sd, LLR_RD, SNR, SNR+RD_Gain);
 				LLR_SECOND = turb.ExportLLR_turbo_decoding(DF_LLR1, DF_LLR2, ITR);
 
+				//iterative LLR combining
+				turb.LLR_combining_after_iteration(DF_LLR1, DF_LLR2, LLR1, LLR2, LLR_RD, llr_wgt_sd, SNR + RD_Gain, SNR);
+				LLR_FIRST = turb.ExportLLR_turbo_decoding(LLR1, LLR2, ITR);
 
 #if COMB == EGComb
 				Comb.LLR_COMB(Fad_Mod, SNR, llr_wgt_sd, LLR_FIRST, SNR, LLR_RD, LLR_THIRD);

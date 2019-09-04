@@ -1369,13 +1369,17 @@ vector<bool> Turb::Attach(vector<bool> a, vector<bool> b)
 	return result;
 }
 
-void Turb::LLR_combining_after_iteration(double** LLR1, double** LLR2, double** DF_LLR1, double** DF_LLR2)
+void Turb::LLR_combining_after_iteration(double** LLR1, double** LLR2, double** DF_LLR1, double** DF_LLR2, vector<double> h_sd, vector<double> h_rd, double SNR_SD, double SNR_RD)
 {
 	//DF_LLR1[0][0] = LLR1[0][0]; //should be modified to MRC comb. firstly check the size of array
+	double tmp1 = pow(10, SNR_SD/10), tmp2 = pow(10, SNR_RD/10);
+	double rate1 = h_sd[0] * tmp1 / (h_sd[0] * tmp1 + h_rd[0] * tmp2), rate2 = h_rd[0] * tmp2 / (h_sd[0] * tmp1 + h_rd[0] * tmp2);
+		
+	
 	for (int i = 0; i < m_Bsize + m_Nmemory; i++) {
-		for (int j = 0; j < m_Ninfo; j++) {
-			DF_LLR1[i][j] = (DF_LLR1[i][j] + LLR1[i][j] + PU_O1[i][j]) * 0.5;
-			DF_LLR2[i][j] = (DF_LLR2[i][j] + LLR2[i][j] + PU_O2[i][j]) * 0.5;
+		for (int j = 0; j < 4; j++) {	//우선은 4로하는데 의미는 나중에 찾아보기
+			DF_LLR1[i][j] = (LLR1[i][j] - PU_O1[i][j]) * rate1 + (DF_LLR1[i][j]) * rate2;
+			DF_LLR2[i][j] = (LLR2[i][j] - PU_O2[i][j]) * rate1 + (DF_LLR2[i][j]) * rate2;
 		}
 	}
 }

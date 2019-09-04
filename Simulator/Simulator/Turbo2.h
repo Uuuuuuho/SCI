@@ -93,7 +93,7 @@ public:
 
 
 	//LLR combining after iteration
-	void LLR_combining_after_iteration(double** LLR1, double** LLR2, double** DF_LLR1, double** DF_LLR2);
+	void LLR_combining_after_iteration(double** LLR1, double** LLR2, double** DF_LLR1, double** DF_LLR2, vector<double> h_sd, vector<double> h_rd, double SNR_SD, double SNR_RD);
 	//member var for copy LLR after iteration
 	//vector<vector<double>> 
 };
