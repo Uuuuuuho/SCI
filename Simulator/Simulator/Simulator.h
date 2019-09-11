@@ -39,13 +39,16 @@ using namespace std;
 #define CONV_DF 28
 #define COMB_AFTER_ITER 29
 
-#define NOW COMB_AFTER_ITER
+#define EARLY_CANCELLATION 30
+#define PARTIAL_SM 31
+
+#define NOW PARTIAL_SM
 
 #define SOURCE_ONLY 1
 #define RELAY_ONLY 2
 #define SOURCE_RELAY_BOTH 3
 
-#define OUTPUT SOURCE_RELAY_BOTH 
+#define OUTPUT RELAY_ONLY 
 
 #define EARLYSTOPRATE 0.001
 

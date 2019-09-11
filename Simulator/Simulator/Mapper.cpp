@@ -1356,6 +1356,7 @@ Mapper::~Mapper()
 void Mapper::Super(vector<Complex<double>> a, vector<Complex<double>>& b)
 {
 	int size_row = a.size();
+	//for (int i = 0; i < size_row; i++) {
 	for (int i = 0; i < size_row; i++) {
 		b[i] += a[i];
 	}

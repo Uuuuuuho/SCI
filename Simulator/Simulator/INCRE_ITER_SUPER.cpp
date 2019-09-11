@@ -166,23 +166,6 @@ void Read() {
 	}
 }
 
-void Constellation(vector<Complex<double>> obj) {
-	ofstream Point("Constellation.m");
-	Point << "Point = [" << endl;
-	int m = obj.size();
-
-	for (int i = 0; i < m; i++) {
-		Point << obj[i].re << "\t";
-		Point << obj[i].im << endl;
-	}
-	Point << "]" << endl
-		<< "c1 = Point(:,1), c2 = Point(:,2)" << endl
-		<< "figure" << endl
-		<< "scatter(c1, c2, 'filled')" << endl
-		<< "xlabel('I')" << endl
-		<< "ylabel('Q')" << endl
-		<< "grid on;" << endl;
-}
 
 void Sim() {
 
@@ -276,7 +259,7 @@ void Sim() {
 
 	//=============================initiallization=============================================================================
 	double Eb = 0, RELAY_Eb = 0, BER, PER, SNR_SR, SNR_RD, LC;
-	int err, perr, count;
+	int err, perr, count, soFar;
 	bool DEC_flag = false;
 	SNR = SNRinit;
 	BER_Record.resize((SNRMAX - SNR + Increment) / (Increment), 0);
@@ -426,8 +409,8 @@ void Sim() {
 			}
 			case(Rayl_Quasi): {
 				Ray.slow_Rayleigh_Fading(tx_source, RayFading, rx_source, llr_wgt_sd);
-				Ray.slow_Rayleigh_Fading(tx_source, RE_RayFading, RE_RX, LLR_RE);		//why do we need this? for reTx from source
-				Ray.slow_Rayleigh_Fading(tx_source, SR_RayFading, SR_RX, LLR_SR);
+				//Ray.slow_Rayleigh_Fading(tx_source, RE_RayFading, RE_RX, LLR_RE);		//why do we need this? for reTx from source
+				//Ray.slow_Rayleigh_Fading(tx_source, SR_RayFading, SR_RX, LLR_SR);
 				Ray.slow_Rayleigh_Fading(RD_TX, RD_RayFading, RD_RX, LLR_RD);
 				break;
 			}
@@ -442,8 +425,8 @@ void Sim() {
 
 			//===========AWGN channel==========================================
 			Awgn.Awgn(SNR, Eb, rx_source);
-			Awgn.Awgn(SNR, Eb, RE_RX);
-			AWGN2.Awgn(SNR + SR_Gain, Eb, SR_RX);
+			//Awgn.Awgn(SNR, Eb, RE_RX);
+			//AWGN2.Awgn(SNR + SR_Gain, Eb, SR_RX);
 			AWGN3.Awgn(SNR + RD_Gain, RELAY_Eb, RD_RX);
 			//=================================================================
 
@@ -456,8 +439,8 @@ void Sim() {
 			}
 			case(Rayl_Quasi): {
 				Ray.Quasi_Coherent(RayFading, rx_source, llr_wgt_sd);
-				Ray.Quasi_Coherent(RE_RayFading, RE_RX, LLR_RE);
-				Ray.Quasi_Coherent(SR_RayFading, SR_RX, LLR_SR);
+				//Ray.Quasi_Coherent(RE_RayFading, RE_RX, LLR_RE);
+				//Ray.Quasi_Coherent(SR_RayFading, SR_RX, LLR_SR);
 				Ray.Quasi_Coherent(RD_RayFading, RD_RX, LLR_RD);
 				break;
 			}
@@ -508,64 +491,37 @@ void Sim() {
 
 			if (Detect.Packet(code_source, decoded_source, SP_NINFOBITperSYM)) {    //CRC fail @ the gateway
 																					//Decoding @ Relay
-				
+
 				LC = -1.0 / (2 * AWGN3.sigma2);
-				turb.turbo_llr_generation(Fad_Mod, SR_RX, LLR_SR, llr0, llr1, &Map, SR_RX.size(), LC);
+				turb.turbo_llr_generation(Fad_Mod, RD_RX, LLR_RD, llr0, llr1, &RELAY_Map, RD_RX.size(), LC);
 				turb.turbo_bit2sym(llr0, llr1, LLR1, LLR2, SP_NCODEBITperSYM, NCODEBIT, SP_NCODE);
-				decoded_source = turb.turbo_decoding(LLR1, LLR2, ITR);
+				decoded_relay = turb.turbo_decoding(LLR1, LLR2, ITR);
 
-				if (!Detect.Packet(code_source, decoded_source, Size)) {	//relay에서 decoding 성공
+#if (OUTPUT == RELAY_ONLY) || (OUTPUT == SOURCE_RELAY_BOTH)
+				//relay decoding
+				Detect.Detection(code_relay, decoded_relay, err, Size);
+				count++;
+#endif
+
+				if (!Detect.Packet(code_relay, decoded_relay, SP_NINFOBITperSYM)) {
+					//RELAY_Map.Super(SOURCE_TX, RD_TX);
+					RELAY_Map.Super_Sub(tmp_RD_TX, RD_RX);
+
 					LC = -1.0 / (2 * AWGN3.sigma2);
-					turb.turbo_llr_generation(Fad_Mod, RD_RX, LLR_RD, llr0, llr1, &RELAY_Map, RD_RX.size(), LC);
-					turb.turbo_bit2sym(llr0, llr1, LLR1, LLR2, SP_NCODEBITperSYM, NCODEBIT, SP_NCODE);
-					decoded_relay = turb.turbo_decoding(LLR1, LLR2, ITR);
-					//Constellation(RD_RX);
-
-					//relay BER
-					Detect.Detection(code_relay, decoded_relay, err, Size);
-					count++;
-
-					if (!Detect.Packet(code_relay, decoded_relay, Size)) {	//relay info decoding 성공
-						//RELAY_Map.Super(SOURCE_TX, RD_TX);
-						RELAY_Map.Super_Sub(tmp_RD_TX, RD_RX);
-
-						LC = -1.0 / (2 * AWGN3.sigma2);
-						turb.turbo_llr_generation(Fad_Mod, RD_RX, LLR_RD, llr0, llr1, &SOURCE_Map, RD_RX.size(), LC);
-						turb.turbo_bit2sym(llr0, llr1, LLR1, LLR2, SP_NCODEBITperSYM, NCODEBIT, SP_NCODE);
-						LLR_SECOND = turb.ExportLLR_turbo_decoding(LLR1, LLR2, ITR);
-
-						//여기서 combining
-						Comb.LLR_COMB(Fad_Mod, SNR, llr_wgt_sd, LLR_FIRST, SNR + RD_Gain, LLR_RD, LLR_SECOND);
-						turb.Decision(LLR_SECOND, decoded_source);
-					}
-				}
-
-				else {	//relay에서 decoding 실패
-					LC = -1.0 / (2 * Awgn.sigma2);
-					turb.turbo_llr_generation(Fad_Mod, RE_RX, LLR_RE, llr0, llr1, &Map, RE_RX.size(), LC);
+					turb.turbo_llr_generation(Fad_Mod, RD_RX, LLR_RE, llr0, llr1, &SOURCE_Map, RD_RX.size(), LC);
 					turb.turbo_bit2sym(llr0, llr1, LLR1, LLR2, SP_NCODEBITperSYM, NCODEBIT, SP_NCODE);
 					LLR_SECOND = turb.ExportLLR_turbo_decoding(LLR1, LLR2, ITR);
 
 					//여기서 combining
-					Comb.LLR_COMB(Fad_Mod, SNR, llr_wgt_sd, LLR_FIRST, SNR, LLR_RE, LLR_SECOND);
+#if COMB == EGComb
+					Comb.LLR_COMB(Fad_Mod, SNR, llr_wgt_sd, LLR_FIRST, SNR, LLR_RD, LLR_SECOND);
+#elif COMB == MRComb
+					Comb.LLR_MRC_COMB(Fad_Mod, SNR, llr_wgt_sd, LLR_FIRST, SNR + RD_Gain, LLR_RD, LLR_SECOND);
+#endif
+#if (OUTPUT == SOURCE_ONLY) || (OUTPUT == SOURCE_RELAY_BOTH)
 					turb.Decision(LLR_SECOND, decoded_source);
+#endif
 				}
-
-
-				//DEC_flag = Detect.Packet(code_source, decoded_source, SP_NINFOBITperSYM);
-				//if (!DEC_flag)  //combining relay's packet & decoding succeeded
-				//{   //only affecting BER
-				//	RELAY_Map.Super_Sub(SOURCE_TX, RD_RX);
-
-				//	LC = -1.0 / (2 * AWGN3.sigma2);
-				//	turb.turbo_llr_generation(Fad_Mod, RD_RX, LLR_RD, SUPER_llr0, SUPER_llr1, &RELAY_Map, RD_RX.size(), LC);
-				//	turb.turbo_bit2sym(llr0, llr1, LLR1, LLR2, SP_NCODEBITperSYM, NCODEBIT, SP_NCODE);
-				//	decoded_relay = turb.turbo_decoding(LLR1, LLR2, ITR);
-				//	Detect.Detection(code_relay, decoded_relay, err, Size);
-				//	count++;
-				//}
-				//else;
-				//perr += DEC_flag;
 			}
 
 
@@ -576,7 +532,9 @@ void Sim() {
 				Detect.Detection(code_source, decoded_source, err, Convsize);
 				break;
 			case TURBO:
+#if (OUTPUT == SOURCE_ONLY) || (OUTPUT == SOURCE_RELAY_BOTH)
 				Detect.Detection(code_source, decoded_source, err, Size);
+#endif
 				break;
 			case UNCODED:
 				Detect.Detection(code_source, decoded_source, err, SP_NINFOBITperSYM);
@@ -592,12 +550,28 @@ void Sim() {
 				vector<Complex<double>>(0).swap(SR_RX), vector<double>(0).swap(LLR_SR),
 				vector<Complex<double>>(0).swap(RD_RX), vector<double>(0).swap(LLR_RD),
 				vector<vector<double>>(0).swap(LLR_FIRST), vector<vector<double>>(0).swap(LLR_SECOND);
-
+			if (err > (Frame * Size * EARLYSTOPRATE)) {
+#if (OUTPUT == SOURCE_ONLY) || (OUTPUT == SOURCE_RELAY_BOTH)
+				soFar = h + count;
+#elif (OUTPUT == RELAY_ONLY)
+				soFar = count;
+#endif
+				//then
+				goto EARLYSTOP;
+			}
 		}
 
-
-		Ch == TURBO ? BER = (double)err / (Frame * (Size)) : (double)err / (Frame * Convsize);
-
+#if (OUTPUT == SOURCE_ONLY) || (OUTPUT == SOURCE_RELAY_BOTH)
+		Ch == TURBO ? BER = (double)err / ((Frame + count) * Size) : (double)err / (Frame * Convsize);
+		soFar = (Frame + count);	//when EARLYSTOP NOT NEEDED
+									//when EARLYSTOP NEEDED
+	EARLYSTOP:Ch == TURBO ? BER = (double)err / ((soFar)* Size) : (double)err / (Frame * Convsize);
+#elif (OUTPUT == RELAY_ONLY)
+		Ch == TURBO ? BER = (double)err / ((count)* Size) : (double)err / (Frame * Convsize);
+		soFar = count;	//when EARLYSTOP NOT NEEDED
+						//when EARLYSTOP NEEDED
+	EARLYSTOP:Ch == TURBO ? BER = (double)err / ((soFar)* Size) : (double)err / (Frame * Convsize);
+#endif
 		PER = (double)perr / Frame;
 		BER_Record[BER_Record_idx] = BER;
 		PER_Record[BER_Record_idx++] = PER;

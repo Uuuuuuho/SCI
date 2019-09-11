@@ -1,2 +1,26 @@
-﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(397,5): warning MSB8004: Output 디렉터리가 슬래시로 끝나지 않습니다. Output 디렉터리의 적절한 평가를 허용하는 데 필요하므로 이 빌드 인스턴스에서 슬래시를 추가합니다.
-  Simulator.vcxproj -> C:\Users\user\Documents\GitHub\SCI\Simulator\Simulator\.\Simulator.exe
+﻿C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\VC\VCTargets\Microsoft.CppBuild.targets(377,5): warning MSB8004: Output 디렉터리가 슬래시로 끝나지 않습니다. Output 디렉터리의 적절한 평가를 허용하는 데 필요하므로 이 빌드 인스턴스에서 슬래시를 추가합니다.
+  PARTIAL_SM.cpp
+c:\users\jb\documents\sci\simulator\simulator\mapper.h(19): warning C4005: 'PI': 매크로 재정의
+  c:\users\jb\documents\sci\simulator\simulator\complex_new.h(13): note: 'PI'의 이전 정의를 참조하십시오.
+c:\users\jb\documents\sci\simulator\simulator\partial_sm.cpp(84): warning C4267: '초기화 중': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\jb\documents\sci\simulator\simulator\partial_sm.cpp(225): warning C4244: '초기화 중': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\jb\documents\sci\simulator\simulator\partial_sm.cpp(229): warning C4244: '초기화 중': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\jb\documents\sci\simulator\simulator\partial_sm.cpp(295): warning C4244: '인수': 'double'에서 'const unsigned __int64'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\jb\documents\sci\simulator\simulator\partial_sm.cpp(296): warning C4244: '인수': 'double'에서 'const unsigned __int64'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\jb\documents\sci\simulator\simulator\partial_sm.cpp(348): warning C4244: '=': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\jb\documents\sci\simulator\simulator\partial_sm.cpp(359): warning C4244: '=': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\jb\documents\sci\simulator\simulator\partial_sm.cpp(496): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\jb\documents\sci\simulator\simulator\partial_sm.cpp(506): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\jb\documents\sci\simulator\simulator\partial_sm.cpp(509): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\jb\documents\sci\simulator\simulator\partial_sm.cpp(512): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\jb\documents\sci\simulator\simulator\partial_sm.cpp(515): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\jb\documents\sci\simulator\simulator\partial_sm.cpp(527): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\jb\documents\sci\simulator\simulator\partial_sm.cpp(542): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\jb\documents\sci\simulator\simulator\partial_sm.cpp(291): warning C4101: 'SNR_RD' :참조되지 않은 지역 변수입니다.
+c:\users\jb\documents\sci\simulator\simulator\partial_sm.cpp(291): warning C4101: 'SNR_SR' :참조되지 않은 지역 변수입니다.
+  코드를 생성하고 있습니다.
+  5 of 1428 functions ( 0.4%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    17 functions had inline decision re-evaluated but remain unchanged
+  코드를 생성했습니다.
+  Simulator.vcxproj -> C:\Users\JB\Documents\SCI\Simulator\Simulator\.\Simulator.exe

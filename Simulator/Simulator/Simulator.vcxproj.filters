@@ -167,5 +167,11 @@
     <ClCompile Include="COMB_AFTER_ITER.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="EARLY_CANCELLATION.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="PARTIAL_SM.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
