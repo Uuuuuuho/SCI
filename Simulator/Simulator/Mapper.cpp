@@ -1165,9 +1165,9 @@ void Mapper::QAM_Mapping(vector<bool> a, vector<Complex<double>>& result)
 
 	int m2 = a.size() / 4;
 	result.resize(m2);
-	QAMLUT = (int **)malloc(2 * sizeof(int *));
+	QAMLUT = (double**)malloc(2 * sizeof(double *));
 	for (int l = 0; l < 2; l++)
-		QAMLUT[l] = (int *)malloc(2 * sizeof(int));
+		QAMLUT[l] = (double*)malloc(2 * sizeof(double));
 
 
 	QAMLUT[0][0] = 3; //{ {3,1},{-3,-1} };
@@ -1179,6 +1179,35 @@ void Mapper::QAM_Mapping(vector<bool> a, vector<Complex<double>>& result)
 		result[i].im = QAMLUT[a[4 * i + 1]][a[4 * i + 3]];
 	}
 	free(QAMLUT);
+}
+
+void Mapper::QAM_Mapping(vector<bool> a, vector<Complex<double>> &result, double val)
+{
+	int mod = a.size() % 4;
+
+	while (mod != 0) {
+		a.push_back(0);
+		mod--;
+	}
+
+	int m2 = a.size() / 4;
+	result.resize(m2);
+	QAMLUT = (double**)malloc(2 * sizeof(double*));
+	for (int l = 0; l < 2; l++)
+		QAMLUT[l] = (double*)malloc(2 * sizeof(double));
+
+
+	QAMLUT[0][0] = 3 * val; //{ {3,1},{-3,-1} };
+	QAMLUT[0][1] = 1 * val;
+	QAMLUT[1][0] = (-3) * val;
+	QAMLUT[1][1] = (-1) * val;
+
+	for (int i = 0; i < m2; i++) {
+		result[i].re = QAMLUT[a[4 * i]][a[4 * i + 2]];
+		result[i].im = QAMLUT[a[4 * i + 1]][a[4 * i + 3]];
+	}
+	free(QAMLUT);
+
 }
 
 void Mapper::SUPER_QAM_Mapping(vector<bool> a, double alpha, double beta, vector<Complex<double>>& result)
@@ -1227,13 +1256,13 @@ void Mapper::IQ_Mapping(vector<bool> inPhase, double p_alpha, vector<bool> Quad,
 	int m2 = inPhase.size() / 2;
 	result.resize(m2);
 
-	QAMLUT = (int **)malloc(2 * sizeof(int *));
+	QAMLUT = (double**)malloc(2 * sizeof(double*));
 	for (int l = 0; l < 2; l++)
-		QAMLUT[l] = (int *)malloc(2 * sizeof(int));
+		QAMLUT[l] = (double*)malloc(2 * sizeof(double));
 
-	QAMLUT2 = (int **)malloc(2 * sizeof(int *));
+	QAMLUT2 = (double**)malloc(2 * sizeof(double*));
 	for (int l = 0; l < 2; l++)
-		QAMLUT2[l] = (int *)malloc(2 * sizeof(int));
+		QAMLUT2[l] = (double*)malloc(2 * sizeof(double));
 
 	double d_1 = p_alpha / 2, d_2 = p_beta / 2;
 	QAMLUT[0][0] = p_alpha + d_1; //{ {3,1},{-3,-1} };
@@ -1374,6 +1403,25 @@ void Mapper::Interference(vector<Complex<double>> a, vector<Complex<double>>& b)
 	int size_row = a.size();
 	for (int i = 0; i < size_row; i++) {
 		b[i] += a[i];
+	}
+}
+
+void Mapper::Partial_SM(vector<Complex<double>> a, vector<Complex<double>>& b)
+{
+	//define code rate or modulation order later
+	//half interference at the moment
+	int size_row = a.size();
+	int offset = size_row;
+	for (int i = 0; i < offset; i++) {
+		b[i + offset] += a[i];
+	}
+}
+
+void Mapper::Partial_SM_Super_Sub(vector<Complex<double>> a, vector<Complex<double>>& b)
+{
+	int size_row = a.size();
+	for (int i = 0; i < size_row; i++) {
+		b[i] -= a[i];
 	}
 }
 

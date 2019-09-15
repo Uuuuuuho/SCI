@@ -306,7 +306,7 @@ void Sim() {
 
 	//=============================initiallization=============================================================================
 	double Eb = 0, RELAY_Eb = 0, BER, PER, SNR_SR, SNR_RD, LC;
-	int err, perr, count;
+	int err, perr, count, soFar;
 	bool DEC_flag = false;
 	SNR = SNRinit;
 	BER_Record.resize((SNRMAX - SNR + Increment) / (Increment), 0);
@@ -546,7 +546,7 @@ void Sim() {
 				LLR_SECOND = turb.ExportLLR_turbo_decoding(LLR1, LLR2, ITR);
 
 				//¿©±â¼­ combining
-				//Comb.LLR_COMB(Fad_Mod, SNR, llr_wgt_sd, LLR_FIRST, SNR, LLR_RD, LLR_SECOND);
+				Comb.LLR_COMB(Fad_Mod, SNR, llr_wgt_sd, LLR_FIRST, SNR, LLR_RD, LLR_SECOND);
 #if (OUTPUT == SOURCE_ONLY) || (OUTPUT == SOURCE_RELAY_BOTH)
 				turb.Decision(LLR_SECOND, decoded_source);
 #endif
@@ -603,13 +603,27 @@ void Sim() {
 				vector<Complex<double>>(0).swap(SR_RX), vector<double>(0).swap(LLR_SR),
 				vector<Complex<double>>(0).swap(RD_RX), vector<double>(0).swap(LLR_RD),
 				vector<vector<double>>(0).swap(LLR_FIRST), vector<vector<double>>(0).swap(LLR_SECOND);
-
+			if (err > (Frame * Size * EARLYSTOPRATE)) {
+#if (OUTPUT == SOURCE_ONLY) || (OUTPUT == SOURCE_RELAY_BOTH)
+				soFar = h + count;
+#elif (OUTPUT == RELAY_ONLY)
+				soFar = count;
+#endif
+				//then
+				goto EARLYSTOP;
+			}
 		}
 
 #if (OUTPUT == SOURCE_ONLY) || (OUTPUT == SOURCE_RELAY_BOTH)
 		Ch == TURBO ? BER = (double)err / ((Frame + count) * Size) : (double)err / (Frame * Convsize);
+		soFar = (Frame + count);	//when EARLYSTOP NOT NEEDED
+		//when EARLYSTOP NEEDED
+	EARLYSTOP:Ch == TURBO ? BER = (double)err / ((soFar)* Size) : (double)err / (Frame * Convsize);
 #elif (OUTPUT == RELAY_ONLY)
 		Ch == TURBO ? BER = (double)err / ((count)* Size) : (double)err / (Frame * Convsize);
+		soFar = count;	//when EARLYSTOP NOT NEEDED
+		//when EARLYSTOP NEEDED
+	EARLYSTOP:Ch == TURBO ? BER = (double)err / ((soFar)* Size) : (double)err / (Frame * Convsize);
 #endif
 		PER = (double)perr / Frame;
 		BER_Record[BER_Record_idx] = BER;

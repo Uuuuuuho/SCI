@@ -714,6 +714,59 @@ void	Turb::turbo_llr_generation(FADING FAD_MOD, vector<Complex<double>> rx_buf, 
 	}
 }
 
+void Turb::turbo_llr_generation_Partial_SM(FADING FAD_MOD, vector<Complex<double>> rx_buf, vector<double> llr_wgt_buf, double* rx_llr0, double* rx_llr1, Mapper* M_MAP, int SP_NDCARperSYM, double LC)
+{
+	int	i, j, k;//l;
+	int 	bit_flag, kk;// ll;
+	double	max1, max0;//, bp_LLR[8][2];
+	bool max_flag0 = 0, max_flag1 = 0;
+	double	t_LLR[64];
+
+	switch (FAD_MOD) {
+	case Rayl:
+		break;
+
+	case Rayl_Quasi:
+		// 각 2 bit symbol에 대한 LLR값을 구한다.
+		for (i = SP_NDCARperSYM/2, k = 0; i < SP_NDCARperSYM; i++) {
+			// soft metric calculation for 16 QAM points....
+			for (j = 0; j < M_MAP->m_N_2d_const; j++) {
+				t_LLR[j] = masq((M_MAP->m_2d_map_tab[j] - rx_buf[i]).re, (M_MAP->m_2d_map_tab[j] - rx_buf[i]).im) * LC;
+			}
+			// log map 방법으로 bit plane별로의 LLR값을 구한다.
+			bit_flag = 0x01 << (M_MAP->m_Ninfobit - 1);
+			// bit plane 별로  LOG map LLR값을 찾는다.
+			for (kk = 0; kk < M_MAP->m_Ninfobit; kk++, bit_flag >>= 1) {
+				max1 = max0 = (-1000000000000000000.0);
+				for (j = 0; j < M_MAP->m_N_2d_const; j++) {
+					if ((j & bit_flag) == bit_flag) {
+						if ((t_LLR[j] > max1) && (max_flag1 == 0)) {
+							max1 = t_LLR[j];
+							max_flag1 = 1;
+						}
+						else max1 = log_sum_exp(max1, t_LLR[j]);
+
+
+					}
+					else {
+						if ((t_LLR[j] > max0) && (max_flag0 == 0)) {
+							max0 = t_LLR[j];
+							max_flag0 = 1;
+						}
+						else max0 = log_sum_exp(max0, t_LLR[j]);
+
+
+					}
+				}
+				rx_llr0[k] = max0;
+				rx_llr1[k] = max1;
+				k++;
+			}
+		}
+		break;
+	}
+}
+
 
 void Turb::llr_segment(double *llr0, double *llr1, double *source_llr0, double *source_llr1,  double *relay_llr0, double *relay_llr1, int size){
     for(int i = 0; i < size/2; i++){

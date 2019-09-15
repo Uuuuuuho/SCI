@@ -69,7 +69,8 @@ public:
 
 	void turbo_llr_generation(FADING FAD_MOD, vector<Complex<double>> rx_buf, vector<double> llr_wgt_buf, double* rx_llr0, double*rx_llr1, Mapper *M_MAP, int SP_NDCARperSYM, double LC);
 	void turbo_llr_generation(FADING FAD_MOD, vector<Complex<double>> rx_buf, vector<double> llr_wgt_buf, vector<double>& rx_llr0, vector<double>& rx_llr1, Mapper *M_MAP, int SP_NDCARperSYM, double LC);
-    
+	void turbo_llr_generation_Partial_SM(FADING FAD_MOD, vector<Complex<double>> rx_buf, vector<double> llr_wgt_buf, double* rx_llr0, double* rx_llr1, Mapper* M_MAP, int SP_NDCARperSYM, double LC);
+
 	void turbo_llr_generation_InPhase(FADING FAD_MOD, vector<Complex<double>> rx_buf, vector<double> llr_wgt_buf, double* rx_llr0, double* rx_llr1, Mapper* M_MAP, int SP_NDCARperSYM, double LC);
 	void turbo_llr_generation_Quad(FADING FAD_MOD, vector<Complex<double>> rx_buf, vector<double> llr_wgt_buf, double* rx_llr0, double* rx_llr1, Mapper* M_MAP, int SP_NDCARperSYM, double LC);
 	void turbo_bit2sym(double* rx_llr0_buf, double *rx_llr1_buf, double **LLR1,double **LLR2, int SP_NCODEBITperSYM, int SP_NCODEBIT, int SP_NCODE);

@@ -70,6 +70,7 @@ public:
 	void PAM_InPhase_Mapping(vector<bool>, vector<Complex<double>>&, double val);
 	void PAM_Quad_Mapping(vector<bool>, vector<Complex<double>>&, double val);
 	void QAM_Mapping(vector<bool>, vector<Complex<double>>&);
+	void QAM_Mapping(vector<bool>, vector<Complex<double>>&, double val);
     void SUPER_QAM_Mapping(vector<bool>, double, double, vector<Complex<double>>&);
 	void QAM64_Mapping(vector<bool>, vector<Complex<double>>&);
 	void BPSK_Demapping(vector<Complex<double>>, int, vector<bool>&);
@@ -101,7 +102,7 @@ public:
 	void SSD_llr_generation(vector<Complex<double>> rx_buf, vector<double> llr_wgt_buf, double* rx_llr0, double*rx_llr1, Mapper *M_MAP, int SP_NDCARperSYM);
     //=====================================================================================	
 	double *PSKLUT;
-	int **QAMLUT, **QAMLUT2;
+	double **QAMLUT, **QAMLUT2;
 	vector<vector<double>> PAMLUT, SUPER_QAM_LUT;
     
     int ***QAM64LUT;
@@ -112,6 +113,8 @@ public:
     void Super(vector<Complex<double>> a, vector<Complex<double>> &b);
     void Super_Sub(vector<Complex<double>> a, vector<Complex<double>> &b);
 	void Interference(vector<Complex<double>> a, vector<Complex<double>>& b);
+	void Partial_SM(vector<Complex<double>> a, vector<Complex<double>>& b);
+	void Partial_SM_Super_Sub(vector<Complex<double>> a, vector<Complex<double>>& b);
 };
 
 

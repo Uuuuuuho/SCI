@@ -312,25 +312,25 @@ void Comb::LLR_COMB(FADING FAD_MOD, double SNR_SD, vector<double> &h_sd, vector<
 
 	rate1.resize(1), rate2.resize(1);
 
-//	rate1[0] = (h_sd[0] * tmp1) / (h_sd[0] * tmp1 + h_rd[0] * tmp2);
-//	rate2[0] = (h_rd[0] * tmp2) / (h_sd[0] * tmp1 + h_rd[0] * tmp2);
+	rate1[0] = (h_sd[0] * tmp1) / (h_sd[0] * tmp1 + h_rd[0] * tmp2);
+	rate2[0] = (h_rd[0] * tmp2) / (h_sd[0] * tmp1 + h_rd[0] * tmp2);
 
-	rate1[0] = 0.5;
-	rate2[0] = 0.5;
+	//rate1[0] = 0.5;
+	//rate2[0] = 0.5;
 
 	for (int i = 0; i < size; i++) {//과정을 단순화 해볼까?
-		tmpSum0 = (LLR_FIRST[i][0] + LLR_SECOND[i][0]), tmpSum1 = (LLR_FIRST[i][1] + LLR_SECOND[i][1]);
+		//tmpSum0 = (LLR_FIRST[i][0] + LLR_SECOND[i][0]), tmpSum1 = (LLR_FIRST[i][1] + LLR_SECOND[i][1]);
 
-		tmpSecond0 = LLR_SECOND[i][0] / tmpSum0;
+		//tmpSecond0 = LLR_SECOND[i][0] / tmpSum0;
 
-		LLR_SECOND[i][0] = LLR_FIRST[i][0] / tmpSum0 * rate1[0] + LLR_SECOND[i][0] / tmpSum0 * rate2[0];
-		LLR_SECOND[i][1] = LLR_FIRST[i][1] / tmpSum1 * rate1[0] + LLR_SECOND[i][1] / tmpSum1 * rate2[0];
+		//LLR_SECOND[i][0] = LLR_FIRST[i][0] / tmpSum0 * rate1[0] + LLR_SECOND[i][0] / tmpSum0 * rate2[0];
+		//LLR_SECOND[i][1] = LLR_FIRST[i][1] / tmpSum1 * rate1[0] + LLR_SECOND[i][1] / tmpSum1 * rate2[0];
 
-		LLR_SECOND[i][0] *= tmpSum0;
-		LLR_SECOND[i][1] *= tmpSum1;
+		//LLR_SECOND[i][0] *= tmpSum0;
+		//LLR_SECOND[i][1] *= tmpSum1;
 
-		//LLR_SECOND[i][0] = LLR_FIRST[i][0] * rate1[0] + LLR_SECOND[i][0] * rate2[0];
-		//LLR_SECOND[i][1] = LLR_FIRST[i][1] * rate1[0] + LLR_SECOND[i][1] * rate2[0];
+		LLR_SECOND[i][0] = LLR_FIRST[i][0] * rate1[0] + LLR_SECOND[i][0] * rate2[0];
+		LLR_SECOND[i][1] = LLR_FIRST[i][1] * rate1[0] + LLR_SECOND[i][1] * rate2[0];
 	}
 }
 

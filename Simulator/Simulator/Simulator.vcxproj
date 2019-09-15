@@ -42,6 +42,7 @@
     <ClCompile Include="Conv.cpp" />
     <ClCompile Include="CONV_SUPER_BLC.cpp" />
     <ClCompile Include="Detector.cpp" />
+    <ClCompile Include="Global_function.cpp" />
     <ClCompile Include="INCRE_ITER_SUPER.cpp" />
     <ClCompile Include="Larger_Relay_Analog_Comb.cpp" />
     <ClCompile Include="Larger_Relay_LLR_Comb.cpp" />
@@ -55,6 +56,7 @@
     <ClCompile Include="log_comb2.cpp" />
     <ClCompile Include="Mapper.cpp" />
     <ClCompile Include="PAM_SUPER_BLC.cpp" />
+    <ClCompile Include="PARTIAL_SM.cpp" />
     <ClCompile Include="PhaseExtension.cpp" />
     <ClCompile Include="QPSK2QAM.cpp" />
     <ClCompile Include="Rayleigh.cpp" />

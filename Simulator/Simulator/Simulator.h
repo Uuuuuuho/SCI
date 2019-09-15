@@ -1,4 +1,10 @@
 #pragma once
+#include <vector>
+#include <iostream>
+#include <fstream>
+#include "complex_new.h"
+using namespace std;
+
 //types of simulator
 #define CONV_ANALOG_COMB 1	//conventional analog MRC combining
 #define CONV_LOG_COMB 2
@@ -24,8 +30,9 @@
 #define SUPER_16QAM 22      //new decoding scheme
 #define SUPER_16QAM2 23      //new decoding scheme
 #define LLR_HARQ_SMALL_ALPHA 24      //new decoding scheme
+#define PARTIAL_SM 25	//Partially interferenced SM Tx. Considering LARGE-ALPHA case only
 
-#define NOW SUPER_16QAM2
+#define NOW PARTIAL_SM
 
 #define SOURCE_ONLY 1
 #define RELAY_ONLY 2
@@ -39,6 +46,8 @@
 #define NONE 3
 
 #define COMB NONE
+
+#define EARLYSTOPRATE 0.0001
 
 //BER or PER
 #define BERFILE 1
@@ -65,4 +74,4 @@
 //ffff
 #endif
 
-
+void Constellation(vector<Complex<double>> obj);
