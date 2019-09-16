@@ -45,7 +45,7 @@ using namespace std;
 #define MRComb 2
 #define NONE 3
 
-#define COMB NONE
+#define COMB MRComb
 
 #define EARLYSTOPRATE 0.0001
 

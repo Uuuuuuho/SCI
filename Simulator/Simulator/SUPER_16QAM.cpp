@@ -196,23 +196,6 @@ void Read() {
 	}
 }
 
-void Constellation(vector<Complex<double>> obj) {
-	ofstream Point("Constellation.m");
-	Point << "Point = [" << endl;
-	int m = obj.size();
-
-	for (int i = 0; i < m; i++) {
-		Point << obj[i].re << "\t";
-		Point << obj[i].im << endl;
-	}
-	Point << "]" << endl
-		<< "c1 = Point(:,1), c2 = Point(:,2)" << endl
-		<< "figure" << endl
-		<< "scatter(c1, c2, 'filled')" << endl
-		<< "xlabel('I')" << endl
-		<< "ylabel('Q')" << endl
-		<< "grid on;" << endl;
-}
 
 void Sim() {
 
@@ -629,10 +612,10 @@ void Sim() {
 				}
 
 				else {
-					//relay decoding
-					turb.turbo_bit2sym(RELAY_llr0, RELAY_llr1, LOGLR1, LOGLR2, SP_NCODEBITperSYM, NCODEBIT, SP_NCODE);
-					LLR_SECOND = turb.ExportLLR_turbo_decoding(LOGLR1, LOGLR2, ITR);
-					turb.Decision(LLR_SECOND, decoded_relay);
+					LC = -1.0 / (2 * AWGN3.sigma2);
+					turb.turbo_llr_generation(Fad_Mod, RD_RX, LLR_RD, llr0, llr1, &RELAY_Map, RD_RX.size(), LC);
+					turb.turbo_bit2sym(llr0, llr1, LLR1, LLR2, SP_NCODEBITperSYM, NCODEBIT, SP_NCODE);
+					decoded_relay = turb.turbo_decoding(LLR1, LLR2, ITR);
 				}
 
 
@@ -647,8 +630,8 @@ void Sim() {
 					turb.turbo_bit2sym(llr0, llr1, LLR1, LLR2, SP_NCODEBITperSYM, NCODEBIT, SP_NCODE);
 					LLR_THIRD = turb.ExportLLR_turbo_decoding(LLR1, LLR2, ITR);
 
+					Comb.LLR_COMB(Fad_Mod, SNR, llr_wgt_sd, LLR_FIRST, SNR, LLR_RD, LLR_THIRD);
 					turb.Decision(LLR_THIRD, decoded_source);
-
 				}
 
 #if (OUTPUT == RELAY_ONLY) || (OUTPUT == SOURCE_RELAY_BOTH)
