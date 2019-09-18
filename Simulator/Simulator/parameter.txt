@@ -12,26 +12,16 @@ Mod 		QPSK
 SNRinit		20
 Increment	5
 SNRMAX		40
-Title		PARTIAL-SM-MRC(ALPHA0.7)-SOURCE
-Frame		10000
+Title		PARTIAL-SM-EGC(ALPHA0.8,BETA0.1)
+Frame		100000
 Size		8
 ITR			8
-ITR_RELAY	7
+ITR_RELAY	8
 Channel_coding	TURBO
 Fading		Rayleigh_Quasi
-Code_rate       	3
-P_alpha		0.7
-P_beta		0.3
+Code_rate   3
+P_alpha		0.8
+P_beta		0.1
 SR_Gain		0
 RD_Gain		0
-
-SB1_Gain	0
-SB2_Gain	-6
-RB1_Gain	0
-RB2_Gain	6
-
-ER_Gain		0
-CR_Gain		8.5
-RB_Gain		0
-CB_Gain		0
 EofS

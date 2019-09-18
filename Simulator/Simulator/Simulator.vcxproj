@@ -57,6 +57,7 @@
     <ClCompile Include="Mapper.cpp" />
     <ClCompile Include="PAM_SUPER_BLC.cpp" />
     <ClCompile Include="PARTIAL_SM.cpp" />
+    <ClCompile Include="PARTIAL_SM_PRIOR_SOURCE.cpp" />
     <ClCompile Include="PhaseExtension.cpp" />
     <ClCompile Include="QPSK2QAM.cpp" />
     <ClCompile Include="Rayleigh.cpp" />

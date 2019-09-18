@@ -31,8 +31,9 @@ using namespace std;
 #define SUPER_16QAM2 23      //new decoding scheme
 #define LLR_HARQ_SMALL_ALPHA 24      //new decoding scheme
 #define PARTIAL_SM 25	//Partially interferenced SM Tx. Considering LARGE-ALPHA case only
+#define PARTIAL_SM_PRIOR_SOURCE 26	//PARTIAL-SM PRIORITY ON SOURCE
 
-#define NOW PARTIAL_SM
+#define NOW PARTIAL_SM_PRIOR_SOURCE
 
 #define SOURCE_ONLY 1
 #define RELAY_ONLY 2

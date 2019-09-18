@@ -315,6 +315,7 @@ void Comb::LLR_COMB(FADING FAD_MOD, double SNR_SD, vector<double> &h_sd, vector<
 	rate1[0] = (h_sd[0] * tmp1) / (h_sd[0] * tmp1 + h_rd[0] * tmp2);
 	rate2[0] = (h_rd[0] * tmp2) / (h_sd[0] * tmp1 + h_rd[0] * tmp2);
 
+	//EGC
 	//rate1[0] = 0.5;
 	//rate2[0] = 0.5;
 
