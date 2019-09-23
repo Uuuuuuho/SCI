@@ -304,7 +304,43 @@ void Comb::LLR_MRC(FADING FAD_MOD, double SNR_SD, double * llr0, double * llr1, 
 	}
 }
 
-void Comb::LLR_COMB(FADING FAD_MOD, double SNR_SD, vector<double> &h_sd, vector<vector<double>> LLR_FIRST,
+void Comb::LLR_MRC(FADING FAD_MOD, double SNR_SD, double* llr0, double* llr1, vector<double>& h_sd, double SNR_RD, vector<double> SUPER_llr0, vector<double> SUPER_llr1, vector<double>& h_rd, int SIZE)
+{
+	vector<double> rate1, rate2;
+
+	double tmp1 = pow(10, (SNR_SD / 10)), tmp2 = pow(10, (SNR_RD / 10));
+
+	switch (FAD_MOD) {
+	case Rayl:
+		rate1.resize(SIZE), rate2.resize(SIZE);
+
+		for (int i = 0; i < SIZE; i++) {
+			rate1[i] = (h_sd[i] * tmp1) / (h_sd[i] * tmp1 + h_rd[i] * tmp2);
+			rate2[i] = (h_rd[i] * tmp2) / (h_sd[i] * tmp1 + h_rd[i] * tmp2);
+
+			h_sd[i] = rate1[i] * h_sd[i] + rate2[i] * h_rd[i];
+			llr0[i] = llr0[i] * rate1[i] + SUPER_llr0[i] * rate2[i];
+		}
+		break;
+
+	case Rayl_Quasi:
+		rate1.resize(1), rate2.resize(1);
+
+		rate1[0] = (h_sd[0] * tmp1) / (h_sd[0] * tmp1 + h_rd[0] * tmp2);
+		rate2[0] = (h_rd[0] * tmp2) / (h_sd[0] * tmp1 + h_rd[0] * tmp2);
+
+		h_sd[0] = rate1[0] * h_sd[0] + rate2[0] * h_rd[0];
+
+		for (int i = 0; i < SIZE; i++) {
+			llr0[i] = llr0[i] * rate1[0] + SUPER_llr0[i] * rate2[0];
+			llr1[i] = llr1[i] * rate1[0] + SUPER_llr1[i] * rate2[0];
+		}
+		break;
+
+	}
+}
+
+void Comb::LLR_COMB(FADING FAD_MOD, double SNR_SD, vector<double> h_sd, vector<vector<double>> LLR_FIRST,
 	double SNR_RD, vector<double> h_rd, vector<vector<double>> &LLR_SECOND){	//only consider case of Quasi static rayleigh fading channel
     int size = LLR_FIRST.size();
 	vector<double> rate1, rate2;

@@ -32,8 +32,10 @@ using namespace std;
 #define LLR_HARQ_SMALL_ALPHA 24      //new decoding scheme
 #define PARTIAL_SM 25	//Partially interferenced SM Tx. Considering LARGE-ALPHA case only
 #define PARTIAL_SM_PRIOR_SOURCE 26	//PARTIAL-SM PRIORITY ON SOURCE
+#define CONV_SM 27	//MRC BLC before iteration for turbo code
+#define NEW_SM 28	//MRC BLC before iteration for turbo with new decoding scheme
 
-#define NOW PARTIAL_SM_PRIOR_SOURCE
+#define NOW NEW_SM
 
 #define SOURCE_ONLY 1
 #define RELAY_ONLY 2

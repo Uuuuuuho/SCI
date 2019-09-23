@@ -158,5 +158,11 @@
     <ClCompile Include="PARTIAL_SM_PRIOR_SOURCE.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="CONV_SM.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="NEW_SM.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

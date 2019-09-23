@@ -40,6 +40,7 @@
     <ClCompile Include="Combining.cpp" />
     <ClCompile Include="CoMP.cpp" />
     <ClCompile Include="Conv.cpp" />
+    <ClCompile Include="CONV_SM.cpp" />
     <ClCompile Include="CONV_SUPER_BLC.cpp" />
     <ClCompile Include="Detector.cpp" />
     <ClCompile Include="Global_function.cpp" />
@@ -55,6 +56,7 @@
     <ClCompile Include="log_comb.cpp" />
     <ClCompile Include="log_comb2.cpp" />
     <ClCompile Include="Mapper.cpp" />
+    <ClCompile Include="NEW_SM.cpp" />
     <ClCompile Include="PAM_SUPER_BLC.cpp" />
     <ClCompile Include="PARTIAL_SM.cpp" />
     <ClCompile Include="PARTIAL_SM_PRIOR_SOURCE.cpp" />
@@ -71,7 +73,7 @@
     <VCProjectVersion>16.0</VCProjectVersion>
     <ProjectGuid>{497AA230-4451-4FEA-99BD-D567B79A93B6}</ProjectGuid>
     <RootNamespace>Simulator</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -90,13 +92,13 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>

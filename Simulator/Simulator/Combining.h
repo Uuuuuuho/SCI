@@ -26,7 +26,10 @@ public:
 		double SNR_RD, vector<Complex<double>> RD_rx, vector<double> h_rd);
 	void LLR_MRC(FADING FAD_MOD, double SNR_SD, double* llr0, double* llr1, vector<double> &h_sd,
 		double SNR_RD, double* SUPER_llr0, double* SUPER_llr1, vector<double> &h_rd, int SIZE);
-	void LLR_COMB(FADING FAD_MOD, double SNR_SD, vector<double> &h_sd, vector<vector<double>> LLR_FIRST, 
+	void LLR_MRC(FADING FAD_MOD, double SNR_SD, double* llr0, double* llr1, vector<double>& h_sd,
+		double SNR_RD, vector<double> SUPER_llr0, vector<double> SUPER_llr1, vector<double>& h_rd, int SIZE);
+
+	void LLR_COMB(FADING FAD_MOD, double SNR_SD, vector<double> h_sd, vector<vector<double>> LLR_FIRST, 
 		double SNR_RD, vector<double> h_rd, vector<vector<double>> &LLR_SECOND);
 	void LLR_COMB2(FADING FAD_MOD, double SNR_SD, vector<double> &h_sd, double *llr0, double *llr1,
 		double SNR_RD, vector<double> h_rd, double *HARQ_llr0, double *HARQ_llr1, int size);

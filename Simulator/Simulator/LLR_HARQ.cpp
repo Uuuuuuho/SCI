@@ -552,25 +552,6 @@ void Sim() {
 				else {
 					//err += Size;
 				}
-
-
-				
-
-
-				//DEC_flag = Detect.Packet(code_source, decoded_source, SP_NINFOBITperSYM);
-				//if (!DEC_flag)  //combining relay's packet & decoding succeeded
-				//{   //only affecting BER
-				//	RELAY_Map.Super_Sub(SOURCE_TX, RD_RX);
-
-				//	LC = -1.0 / (2 * AWGN3.sigma2);
-				//	turb.turbo_llr_generation(Fad_Mod, RD_RX, LLR_RD, SUPER_llr0, SUPER_llr1, &RELAY_Map, RD_RX.size(), LC);
-				//	turb.turbo_bit2sym(llr0, llr1, LLR1, LLR2, SP_NCODEBITperSYM, NCODEBIT, SP_NCODE);
-				//	decoded_relay = turb.turbo_decoding(LLR1, LLR2, ITR);
-				//	Detect.Detection(code_relay, decoded_relay, err, Size);
-				//	count++;
-				//}
-				//else;
-				//perr += DEC_flag;
 			}
 
 			//else;
