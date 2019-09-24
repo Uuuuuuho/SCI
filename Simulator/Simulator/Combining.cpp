@@ -295,6 +295,10 @@ void Comb::LLR_MRC(FADING FAD_MOD, double SNR_SD, double * llr0, double * llr1, 
 
 		h_sd[0] = rate1[0] * h_sd[0] + rate2[0] * h_rd[0];
 
+		//EGC EXPERIMENT
+		//rate1[0] = 0.5;
+		//rate2[0] = 0.5;
+
 		for (int i = 0; i < SIZE; i++) {
 			llr0[i] = llr0[i] * rate1[0] + SUPER_llr0[i] * rate2[0];
 			llr1[i] = llr1[i] * rate1[0] + SUPER_llr1[i] * rate2[0];
