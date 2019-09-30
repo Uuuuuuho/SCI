@@ -206,6 +206,166 @@ void mapping_SUPER_16QAM2(Complex<double> *signal, double a_s, int M, double shi
 
 }
 
+void mapping_PARTIAL_SM(Complex<double>* signal, double alpha, double beta, int M, double shift)
+{
+	int i;
+	if (M == 64)
+	{//=================수정해야함==============================
+		i = 0;
+		signal[i].re = alpha + 0.3 * beta;     signal[i].im = alpha + 0.3 * beta;
+		i = 1;
+		signal[i].re = alpha + 0.3 * beta;     signal[i].im = alpha + 0.1 * beta;
+		i = 5;
+		signal[i].re = alpha + 0.3 * beta;      signal[i].im = alpha - 0.1 * beta;
+		i = 4;
+		signal[i].re = alpha + 0.3 * beta;      signal[i].im = alpha - 0.3 * beta;
+
+		i = 20;
+		signal[i].re = - alpha + 0.3 * beta;     signal[i].im = alpha - 0.3 * beta;
+		i = 21;
+		signal[i].re = - alpha + 0.3 * beta;     signal[i].im = alpha - 0.1 * beta;
+		i = 17;
+		signal[i].re = - alpha + 0.3 * beta;      signal[i].im = alpha + 0.1 * beta;
+		i = 16;
+		signal[i].re = - alpha + 0.3 * beta;      signal[i].im = alpha + 0.3 * beta;
+
+		i = 2;
+		signal[i].re = alpha + 0.1 * beta;     signal[i].im = alpha + 0.3 * beta;
+		i = 3;
+		signal[i].re = alpha + 0.1 * beta;     signal[i].im = alpha + 0.1 * beta;
+		i = 7;
+		signal[i].re = alpha + 0.1 * beta;      signal[i].im = alpha - 0.1 * beta;
+		i = 6;
+		signal[i].re = alpha + 0.1 * beta;      signal[i].im = alpha - 0.3 * beta;
+
+		i = 22;
+		signal[i].re = - alpha + 0.1 * beta;     signal[i].im = alpha - 0.3 * beta;
+		i = 23;
+		signal[i].re = -alpha + 0.1 * beta;     signal[i].im = alpha - 0.1 * beta;
+		i = 19;
+		signal[i].re = -alpha + 0.1 * beta;      signal[i].im = -alpha + 0.1 * beta;
+		i = 18;
+		signal[i].re = -alpha + 0.1 * beta;      signal[i].im = -alpha + 0.3 * beta;
+
+		i = 10;
+		signal[i].re = alpha - 0.1 * beta;     signal[i].im = alpha + 0.3 * beta;
+		i = 11;
+		signal[i].re = alpha - 0.1 * beta;     signal[i].im = alpha + 0.1 * beta;
+		i = 15;
+		signal[i].re = alpha - 0.1 * beta;      signal[i].im = alpha - 0.1 * beta;
+		i = 14;
+		signal[i].re = alpha - 0.1 * beta;      signal[i].im = alpha - 0.3 * beta;
+
+		i = 30;
+		signal[i].re = - alpha - 0.1 * beta;     signal[i].im = alpha - 0.3 * beta;
+		i = 31;
+		signal[i].re = -alpha - 0.1 * beta;     signal[i].im = alpha - 0.1 * beta;
+		i = 27;
+		signal[i].re = -alpha - 0.1 * beta;      signal[i].im = alpha + 0.1 * beta;
+		i = 26;
+		signal[i].re = -alpha - 0.1 * beta;      signal[i].im = alpha + 0.3 * beta;
+
+		i = 8;
+		signal[i].re = alpha - 0.3 * beta;     signal[i].im = alpha + 0.3 * beta;
+		i = 9;
+		signal[i].re = alpha - 0.3 * beta;     signal[i].im = alpha + 0.1 * beta;
+		i = 13;
+		signal[i].re = alpha - 0.3 * beta;      signal[i].im = alpha - 0.1 * beta;
+		i = 12;
+		signal[i].re = alpha - 0.3 * beta;      signal[i].im = alpha - 0.3 * beta;
+
+		i = 28;
+		signal[i].re = - alpha - 0.3 * beta;     signal[i].im = alpha - 0.3 * beta;
+		i = 29;
+		signal[i].re = -alpha - 0.3 * beta;     signal[i].im = alpha - 0.1 * beta;
+		i = 25;
+		signal[i].re = -alpha - 0.3 * beta;      signal[i].im = alpha + 0.1 * beta;
+		i = 24;
+		signal[i].re = -alpha - 0.3 * beta;      signal[i].im = alpha + 0.3 * beta;
+
+		i = 40;
+		signal[i].re = alpha - 0.3 * beta;     signal[i].im = -alpha + 0.3 * beta;
+		i = 41;
+		signal[i].re = alpha - 0.3 * beta;     signal[i].im = -alpha + 0.1 * beta;
+		i = 45;
+		signal[i].re = alpha - 0.3 * beta;      signal[i].im = -alpha - 0.1 * beta;
+		i = 44;
+		signal[i].re = alpha - 0.3 * beta;      signal[i].im = -alpha - 0.3 * beta;
+
+		i = 60;
+		signal[i].re = -alpha - 0.3 * beta;     signal[i].im = -alpha - 0.3 * beta;
+		i = 61;
+		signal[i].re = -alpha - 0.3 * beta;     signal[i].im = -alpha - 0.1 * beta;
+		i = 57;
+		signal[i].re = -alpha - 0.3 * beta;      signal[i].im = -alpha + 0.1 * beta;
+		i = 56;
+		signal[i].re = -alpha - 0.3 * beta;      signal[i].im = -alpha + 0.3 * beta;
+
+		i = 42;
+		signal[i].re = alpha - 0.1 * beta;     signal[i].im = -alpha + 0.3 * beta;
+		i = 43;
+		signal[i].re = alpha - 0.1 * beta;     signal[i].im = -alpha + 0.1 * beta;
+		i = 47;
+		signal[i].re = alpha - 0.1 * beta;      signal[i].im = -alpha - 0.1 * beta;
+		i = 46;
+		signal[i].re = alpha - 0.1 * beta;      signal[i].im = -alpha - 0.3 * beta;
+
+		i = 62;
+		signal[i].re = -alpha + 0.1 * beta;     signal[i].im = -alpha - 0.3 * beta;
+		i = 63;
+		signal[i].re = -alpha + 0.1 * beta;     signal[i].im = -alpha - 0.1 * beta;
+		i = 59;
+		signal[i].re = -alpha + 0.1 * beta;      signal[i].im = -alpha + 0.1 * beta;
+		i = 58;
+		signal[i].re = -alpha + 0.1 * beta;      signal[i].im = -alpha + 0.3 * beta;
+
+		i = 34;
+		signal[i].re = alpha + 0.1 * beta;     signal[i].im = -alpha + 0.3 * beta;
+		i = 35;
+		signal[i].re = alpha + 0.1 * beta;     signal[i].im = -alpha + 0.1 * beta;
+		i = 39;
+		signal[i].re = alpha + 0.1 * beta;      signal[i].im = -alpha - 0.1 * beta;
+		i = 38;
+		signal[i].re = alpha + 0.1 * beta;      signal[i].im = -alpha - 0.3 * beta;
+
+		i = 54;
+		signal[i].re = -alpha + 0.1 * beta;     signal[i].im = -alpha - 0.3 * beta;
+		i = 55;
+		signal[i].re = -alpha + 0.1 * beta;     signal[i].im = -alpha - 0.1 * beta;
+		i = 51;
+		signal[i].re = -alpha + 0.1 * beta;      signal[i].im = -alpha + 0.1 * beta;
+		i = 50;
+		signal[i].re = -alpha + 0.1 * beta;      signal[i].im = -alpha + 0.3 * beta;
+
+		i = 32;
+		signal[i].re = alpha + 0.3 * beta;     signal[i].im = -alpha + 0.3 * beta;
+		i = 33;
+		signal[i].re = alpha + 0.3 * beta;     signal[i].im = -alpha + 0.1 * beta;
+		i = 37;
+		signal[i].re = alpha + 0.3 * beta;      signal[i].im = -alpha - 0.1 * beta;
+		i = 36;
+		signal[i].re = alpha + 0.3 * beta;      signal[i].im = -alpha - 0.3 * beta;
+
+		i = 52;
+		signal[i].re = -alpha + 0.3 * beta;     signal[i].im = -alpha - 0.3 * beta;
+		i = 53;
+		signal[i].re = -alpha + 0.3 * beta;     signal[i].im = -alpha - 0.1 * beta;
+		i = 49;
+		signal[i].re = -alpha + 0.3 * beta;      signal[i].im = -alpha + 0.1 * beta;
+		i = 48;
+		signal[i].re = -alpha + 0.3 * beta;      signal[i].im = -alpha + 0.3 * beta;
+	}
+	else
+	{
+		printf("constration number %d is not supported yet\n", M); exit(1);
+	}
+	for (i = 0; i<M; i++)
+	{
+		signal[i].re += shift;
+		signal[i].im += shift;
+	}
+}
+
 void mapping_SUPER_16QAM(Complex<double> *signal, double a_s, int M, double shift){
 	int i;
     double alpha = 1 - a_s, beta = a_s;

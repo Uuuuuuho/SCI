@@ -58,6 +58,7 @@
     <ClCompile Include="Mapper.cpp" />
     <ClCompile Include="NEW_SM.cpp" />
     <ClCompile Include="PAM_SUPER_BLC.cpp" />
+    <ClCompile Include="PARTIAL_NEW_SM.cpp" />
     <ClCompile Include="PARTIAL_SM.cpp" />
     <ClCompile Include="PARTIAL_SM_B4_ITER.cpp" />
     <ClCompile Include="PARTIAL_SM_B4_ITER_PRIOR_SOURCE.cpp" />

@@ -36,8 +36,9 @@ using namespace std;
 #define NEW_SM 28	//MRC BLC before iteration for turbo with new decoding scheme
 #define PARTIAL_SM_B4_ITER 29
 #define PARTIAL_SM_PRIOR_SOURCE_B4_ITER 30
+#define PARTIAL_NEW_SM 31
 
-#define NOW PARTIAL_SM_B4_ITER
+#define NOW PARTIAL_NEW_SM
 
 #define SOURCE_ONLY 1
 #define RELAY_ONLY 2
