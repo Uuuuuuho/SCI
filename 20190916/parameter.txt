@@ -12,16 +12,16 @@ Mod 		QPSK
 SNRinit		36
 Increment	1
 SNRMAX		40
-Title		PARTIAL-SM-PRIOR-MRC(ALPHA0.2,BETA0.6)-36TO40DB
-Frame		1000000
+Title		PARTIAL-SM-PRIOR(ALPHA0.1,BETA0.7)-36TO40DB
+Frame		5000000
 Size		8
 ITR		8
 ITR_RELAY	8
 Channel_coding	TURBO
 Fading		Rayleigh_Quasi
 Code_rate   	3
-P_alpha		0.2
-P_beta		0.6
+P_alpha		0.1
+P_beta		0.7
 SR_Gain		0
 RD_Gain		0
 EofS

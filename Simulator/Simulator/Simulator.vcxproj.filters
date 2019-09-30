@@ -164,5 +164,11 @@
     <ClCompile Include="NEW_SM.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="PARTIAL_SM_B4_ITER.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="PARTIAL_SM_B4_ITER_PRIOR_SOURCE.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
