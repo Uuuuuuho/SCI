@@ -290,14 +290,14 @@ void Comb::LLR_MRC(FADING FAD_MOD, double SNR_SD, double * llr0, double * llr1, 
 	case Rayl_Quasi:
 		rate1.resize(1), rate2.resize(1);
 
-		//rate1[0] = (h_sd[0] * tmp1) / (h_sd[0] * tmp1 + h_rd[0] * tmp2);
-		//rate2[0] = (h_rd[0] * tmp2) / (h_sd[0] * tmp1 + h_rd[0] * tmp2);
+		rate1[0] = (h_sd[0] * tmp1) / (h_sd[0] * tmp1 + h_rd[0] * tmp2);
+		rate2[0] = (h_rd[0] * tmp2) / (h_sd[0] * tmp1 + h_rd[0] * tmp2);
 
-		//h_sd[0] = rate1[0] * h_sd[0] + rate2[0] * h_rd[0];
+		h_sd[0] = rate1[0] * h_sd[0] + rate2[0] * h_rd[0];
 
 		//EGC EXPERIMENT
-		rate1[0] = 0.5;
-		rate2[0] = 0.5;
+		//rate1[0] = 0.5;
+		//rate2[0] = 0.5;
 
 		for (int i = 0; i < SIZE; i++) {
 			llr0[i] = llr0[i] * rate1[0] + SUPER_llr0[i] * rate2[0];

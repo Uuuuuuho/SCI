@@ -2,6 +2,7 @@
   Analog_HARQ.cpp
   CDRT_UL.cpp
   CDRT_UL_8PSK.cpp
+  CONV_SC_POWER.cpp
   CONV_SM.cpp
   CONV_SUPER_BLC.cpp
   CoMP.cpp
@@ -18,27 +19,10 @@ c:\users\jb\documents\sci\simulator\simulator\global_function.cpp(6): warning C4
   Larger_Relay_SIC.cpp
   NEW_SM.cpp
   PAM_SUPER_BLC.cpp
+  PARTIAL_NEW_SM.cpp
+  컴파일하고 있습니다...
   PARTIAL_SM.cpp
   PARTIAL_SM_B4_ITER.cpp
-c:\users\jb\documents\sci\simulator\simulator\mapper.h(19): warning C4005: 'PI': 매크로 재정의
-  c:\users\jb\documents\sci\simulator\simulator\complex_new.h(13): note: 'PI'의 이전 정의를 참조하십시오.
-c:\users\jb\documents\sci\simulator\simulator\partial_sm_b4_iter.cpp(84): warning C4267: '초기화 중': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\jb\documents\sci\simulator\simulator\partial_sm_b4_iter.cpp(228): warning C4244: '초기화 중': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\jb\documents\sci\simulator\simulator\partial_sm_b4_iter.cpp(232): warning C4244: '초기화 중': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\jb\documents\sci\simulator\simulator\partial_sm_b4_iter.cpp(298): warning C4244: '인수': 'double'에서 'const unsigned __int64'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\jb\documents\sci\simulator\simulator\partial_sm_b4_iter.cpp(299): warning C4244: '인수': 'double'에서 'const unsigned __int64'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\jb\documents\sci\simulator\simulator\partial_sm_b4_iter.cpp(351): warning C4244: '=': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\jb\documents\sci\simulator\simulator\partial_sm_b4_iter.cpp(362): warning C4244: '=': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\jb\documents\sci\simulator\simulator\partial_sm_b4_iter.cpp(498): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\jb\documents\sci\simulator\simulator\partial_sm_b4_iter.cpp(506): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\jb\documents\sci\simulator\simulator\partial_sm_b4_iter.cpp(509): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\jb\documents\sci\simulator\simulator\partial_sm_b4_iter.cpp(512): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\jb\documents\sci\simulator\simulator\partial_sm_b4_iter.cpp(515): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\jb\documents\sci\simulator\simulator\partial_sm_b4_iter.cpp(527): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\jb\documents\sci\simulator\simulator\partial_sm_b4_iter.cpp(541): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\jb\documents\sci\simulator\simulator\partial_sm_b4_iter.cpp(294): warning C4101: 'SNR_RD' :참조되지 않은 지역 변수입니다.
-c:\users\jb\documents\sci\simulator\simulator\partial_sm_b4_iter.cpp(294): warning C4101: 'SNR_SR' :참조되지 않은 지역 변수입니다.
-  컴파일하고 있습니다...
   PARTIAL_SM_B4_ITER_PRIOR_SOURCE.cpp
   PARTIAL_SM_PRIOR_SOURCE.cpp
   PhaseExtension.cpp
@@ -46,13 +30,34 @@ c:\users\jb\documents\sci\simulator\simulator\partial_sm_b4_iter.cpp(294): warni
   SIC.cpp
   SUPER_16QAM.cpp
   SUPER_16QAM2.cpp
+  SWITCHING_POWER.cpp
+c:\users\jb\documents\sci\simulator\simulator\mapper.h(19): warning C4005: 'PI': 매크로 재정의
+  c:\users\jb\documents\sci\simulator\simulator\complex_new.h(13): note: 'PI'의 이전 정의를 참조하십시오.
+c:\users\jb\documents\sci\simulator\simulator\switching_power.cpp(84): warning C4267: '초기화 중': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\jb\documents\sci\simulator\simulator\switching_power.cpp(236): warning C4244: '초기화 중': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\jb\documents\sci\simulator\simulator\switching_power.cpp(240): warning C4244: '초기화 중': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\jb\documents\sci\simulator\simulator\switching_power.cpp(320): warning C4244: '초기화 중': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\jb\documents\sci\simulator\simulator\switching_power.cpp(323): warning C4244: '인수': 'double'에서 'const unsigned __int64'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\jb\documents\sci\simulator\simulator\switching_power.cpp(324): warning C4244: '인수': 'double'에서 'const unsigned __int64'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\jb\documents\sci\simulator\simulator\switching_power.cpp(379): warning C4244: '=': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\jb\documents\sci\simulator\simulator\switching_power.cpp(390): warning C4244: '=': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\jb\documents\sci\simulator\simulator\switching_power.cpp(529): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\jb\documents\sci\simulator\simulator\switching_power.cpp(537): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\jb\documents\sci\simulator\simulator\switching_power.cpp(548): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\jb\documents\sci\simulator\simulator\switching_power.cpp(551): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\jb\documents\sci\simulator\simulator\switching_power.cpp(554): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\jb\documents\sci\simulator\simulator\switching_power.cpp(557): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\jb\documents\sci\simulator\simulator\switching_power.cpp(569): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\jb\documents\sci\simulator\simulator\switching_power.cpp(582): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\jb\documents\sci\simulator\simulator\switching_power.cpp(319): warning C4101: 'SNR_RD' :참조되지 않은 지역 변수입니다.
+c:\users\jb\documents\sci\simulator\simulator\switching_power.cpp(319): warning C4101: 'SNR_SR' :참조되지 않은 지역 변수입니다.
   Super_CoMP.cpp
   analog_comb.cpp
   log_comb.cpp
   log_comb2.cpp
   코드를 생성하고 있습니다.
-  340 of 1410 functions (24.1%) were compiled, the rest were copied from previous compilation.
-    16 functions were new in current compilation
-    80 functions had inline decision re-evaluated but remain unchanged
+  477 of 1407 functions (33.9%) were compiled, the rest were copied from previous compilation.
+    21 functions were new in current compilation
+    41 functions had inline decision re-evaluated but remain unchanged
   코드를 생성했습니다.
   Simulator.vcxproj -> C:\Users\JB\Documents\SCI\Simulator\Simulator\.\Simulator.exe

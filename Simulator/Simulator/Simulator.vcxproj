@@ -40,6 +40,7 @@
     <ClCompile Include="Combining.cpp" />
     <ClCompile Include="CoMP.cpp" />
     <ClCompile Include="Conv.cpp" />
+    <ClCompile Include="CONV_SC_POWER.cpp" />
     <ClCompile Include="CONV_SM.cpp" />
     <ClCompile Include="CONV_SUPER_BLC.cpp" />
     <ClCompile Include="Detector.cpp" />
@@ -70,6 +71,7 @@
     <ClCompile Include="SUPER_16QAM.cpp" />
     <ClCompile Include="SUPER_16QAM2.cpp" />
     <ClCompile Include="Super_CoMP.cpp" />
+    <ClCompile Include="SWITCHING_POWER.cpp" />
     <ClCompile Include="Turbo2.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
@@ -95,7 +97,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v141</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
