@@ -40,7 +40,7 @@
     <ClCompile Include="Combining.cpp" />
     <ClCompile Include="CoMP.cpp" />
     <ClCompile Include="Conv.cpp" />
-    <ClCompile Include="CONV_SC_POWER.cpp" />
+    <ClCompile Include="POWER_CONV.cpp" />
     <ClCompile Include="CONV_SM.cpp" />
     <ClCompile Include="CONV_SUPER_BLC.cpp" />
     <ClCompile Include="Detector.cpp" />
@@ -65,20 +65,22 @@
     <ClCompile Include="PARTIAL_SM_B4_ITER_PRIOR_SOURCE.cpp" />
     <ClCompile Include="PARTIAL_SM_PRIOR_SOURCE.cpp" />
     <ClCompile Include="PhaseExtension.cpp" />
+    <ClCompile Include="POWER_ITER_EQUAL.cpp" />
+    <ClCompile Include="POWER_NEW_SWITCHING.cpp" />
     <ClCompile Include="QPSK2QAM.cpp" />
     <ClCompile Include="Rayleigh.cpp" />
     <ClCompile Include="SIC.cpp" />
     <ClCompile Include="SUPER_16QAM.cpp" />
     <ClCompile Include="SUPER_16QAM2.cpp" />
     <ClCompile Include="Super_CoMP.cpp" />
-    <ClCompile Include="SWITCHING_POWER.cpp" />
+    <ClCompile Include="POWER_SWITCH.cpp" />
     <ClCompile Include="Turbo2.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <ProjectGuid>{497AA230-4451-4FEA-99BD-D567B79A93B6}</ProjectGuid>
     <RootNamespace>Simulator</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -103,7 +105,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>

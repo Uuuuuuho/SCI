@@ -1,63 +1,64 @@
-﻿C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\VC\VCTargets\Microsoft.CppBuild.targets(377,5): warning MSB8004: Output 디렉터리가 슬래시로 끝나지 않습니다. Output 디렉터리의 적절한 평가를 허용하는 데 필요하므로 이 빌드 인스턴스에서 슬래시를 추가합니다.
+﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(397,5): warning MSB8004: Output 디렉터리가 슬래시로 끝나지 않습니다. Output 디렉터리의 적절한 평가를 허용하는 데 필요하므로 이 빌드 인스턴스에서 슬래시를 추가합니다.
+  analog_comb.cpp
   Analog_HARQ.cpp
   CDRT_UL.cpp
   CDRT_UL_8PSK.cpp
-  CONV_SC_POWER.cpp
+  CoMP.cpp
+  POWER_CONV.cpp
   CONV_SM.cpp
   CONV_SUPER_BLC.cpp
-  CoMP.cpp
   Global_function.cpp
-c:\users\jb\documents\sci\simulator\simulator\global_function.cpp(6): warning C4267: '초기화 중': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\user\Documents\GitHub\SCI\Simulator\Simulator\Global_function.cpp(6): warning C4267: '초기화 중': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
   INCRE_ITER_SUPER.cpp
+  Larger_Relay_Analog_Comb.cpp
+  Larger_Relay_LLR_Comb.cpp
+  Larger_Relay_SIC.cpp
   LLR_HARQ.cpp
   LLR_HARQ2.cpp
   LLR_HARQ3.cpp
   LLR_HARQ4.cpp
   LLR_HARQ_SMALL_ALPHA.cpp
-  Larger_Relay_Analog_Comb.cpp
-  Larger_Relay_LLR_Comb.cpp
-  Larger_Relay_SIC.cpp
+  log_comb.cpp
+  log_comb2.cpp
+  컴파일하고 있습니다...
   NEW_SM.cpp
   PAM_SUPER_BLC.cpp
   PARTIAL_NEW_SM.cpp
-  컴파일하고 있습니다...
   PARTIAL_SM.cpp
   PARTIAL_SM_B4_ITER.cpp
   PARTIAL_SM_B4_ITER_PRIOR_SOURCE.cpp
   PARTIAL_SM_PRIOR_SOURCE.cpp
   PhaseExtension.cpp
+  POWER_NEW_SWITCHING.cpp
+C:\Users\user\Documents\GitHub\SCI\Simulator\Simulator\Mapper.h(19): warning C4005: 'PI': 매크로 재정의
+  C:\Users\user\Documents\GitHub\SCI\Simulator\Simulator\complex_new.h(13): note: 'PI'의 이전 정의를 참조하십시오.
+C:\Users\user\Documents\GitHub\SCI\Simulator\Simulator\POWER_NEW_SWITCHING.cpp(84): warning C4267: '초기화 중': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\user\Documents\GitHub\SCI\Simulator\Simulator\POWER_NEW_SWITCHING.cpp(236): warning C4244: '초기화 중': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\user\Documents\GitHub\SCI\Simulator\Simulator\POWER_NEW_SWITCHING.cpp(240): warning C4244: '초기화 중': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\user\Documents\GitHub\SCI\Simulator\Simulator\POWER_NEW_SWITCHING.cpp(320): warning C4244: '초기화 중': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\user\Documents\GitHub\SCI\Simulator\Simulator\POWER_NEW_SWITCHING.cpp(323): warning C4244: '인수': 'double'에서 'const unsigned __int64'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\user\Documents\GitHub\SCI\Simulator\Simulator\POWER_NEW_SWITCHING.cpp(324): warning C4244: '인수': 'double'에서 'const unsigned __int64'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\user\Documents\GitHub\SCI\Simulator\Simulator\POWER_NEW_SWITCHING.cpp(379): warning C4244: '=': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\user\Documents\GitHub\SCI\Simulator\Simulator\POWER_NEW_SWITCHING.cpp(390): warning C4244: '=': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\user\Documents\GitHub\SCI\Simulator\Simulator\POWER_NEW_SWITCHING.cpp(529): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\user\Documents\GitHub\SCI\Simulator\Simulator\POWER_NEW_SWITCHING.cpp(537): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\user\Documents\GitHub\SCI\Simulator\Simulator\POWER_NEW_SWITCHING.cpp(548): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\user\Documents\GitHub\SCI\Simulator\Simulator\POWER_NEW_SWITCHING.cpp(551): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\user\Documents\GitHub\SCI\Simulator\Simulator\POWER_NEW_SWITCHING.cpp(554): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\user\Documents\GitHub\SCI\Simulator\Simulator\POWER_NEW_SWITCHING.cpp(557): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\user\Documents\GitHub\SCI\Simulator\Simulator\POWER_NEW_SWITCHING.cpp(569): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\user\Documents\GitHub\SCI\Simulator\Simulator\POWER_NEW_SWITCHING.cpp(582): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\user\Documents\GitHub\SCI\Simulator\Simulator\POWER_NEW_SWITCHING.cpp(319): warning C4101: 'SNR_RD' :참조되지 않은 지역 변수입니다.
+C:\Users\user\Documents\GitHub\SCI\Simulator\Simulator\POWER_NEW_SWITCHING.cpp(319): warning C4101: 'SNR_SR' :참조되지 않은 지역 변수입니다.
   QPSK2QAM.cpp
   SIC.cpp
   SUPER_16QAM.cpp
   SUPER_16QAM2.cpp
-  SWITCHING_POWER.cpp
-c:\users\jb\documents\sci\simulator\simulator\mapper.h(19): warning C4005: 'PI': 매크로 재정의
-  c:\users\jb\documents\sci\simulator\simulator\complex_new.h(13): note: 'PI'의 이전 정의를 참조하십시오.
-c:\users\jb\documents\sci\simulator\simulator\switching_power.cpp(84): warning C4267: '초기화 중': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\jb\documents\sci\simulator\simulator\switching_power.cpp(236): warning C4244: '초기화 중': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\jb\documents\sci\simulator\simulator\switching_power.cpp(240): warning C4244: '초기화 중': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\jb\documents\sci\simulator\simulator\switching_power.cpp(320): warning C4244: '초기화 중': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\jb\documents\sci\simulator\simulator\switching_power.cpp(323): warning C4244: '인수': 'double'에서 'const unsigned __int64'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\jb\documents\sci\simulator\simulator\switching_power.cpp(324): warning C4244: '인수': 'double'에서 'const unsigned __int64'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\jb\documents\sci\simulator\simulator\switching_power.cpp(379): warning C4244: '=': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\jb\documents\sci\simulator\simulator\switching_power.cpp(390): warning C4244: '=': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\jb\documents\sci\simulator\simulator\switching_power.cpp(529): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\jb\documents\sci\simulator\simulator\switching_power.cpp(537): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\jb\documents\sci\simulator\simulator\switching_power.cpp(548): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\jb\documents\sci\simulator\simulator\switching_power.cpp(551): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\jb\documents\sci\simulator\simulator\switching_power.cpp(554): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\jb\documents\sci\simulator\simulator\switching_power.cpp(557): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\jb\documents\sci\simulator\simulator\switching_power.cpp(569): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\jb\documents\sci\simulator\simulator\switching_power.cpp(582): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\jb\documents\sci\simulator\simulator\switching_power.cpp(319): warning C4101: 'SNR_RD' :참조되지 않은 지역 변수입니다.
-c:\users\jb\documents\sci\simulator\simulator\switching_power.cpp(319): warning C4101: 'SNR_SR' :참조되지 않은 지역 변수입니다.
   Super_CoMP.cpp
-  analog_comb.cpp
-  log_comb.cpp
-  log_comb2.cpp
+  POWER_SWITCH.cpp
   코드를 생성하고 있습니다.
-  477 of 1407 functions (33.9%) were compiled, the rest were copied from previous compilation.
-    21 functions were new in current compilation
-    41 functions had inline decision re-evaluated but remain unchanged
+  285 of 1302 functions (21.9%) were compiled, the rest were copied from previous compilation.
+    16 functions were new in current compilation
+    38 functions had inline decision re-evaluated but remain unchanged
   코드를 생성했습니다.
-  Simulator.vcxproj -> C:\Users\JB\Documents\SCI\Simulator\Simulator\.\Simulator.exe
+  Simulator.vcxproj -> C:\Users\user\Documents\GitHub\SCI\Simulator\Simulator\.\Simulator.exe

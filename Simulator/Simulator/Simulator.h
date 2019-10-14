@@ -5,7 +5,7 @@
 #include "complex_new.h"
 using namespace std;
 
-//types of simulator
+//==========types of simulator
 #define CONV_ANALOG_COMB 1	//conventional analog MRC combining
 #define CONV_LOG_COMB 2
 #define SIC 3
@@ -37,19 +37,23 @@ using namespace std;
 #define PARTIAL_SM_B4_ITER 29
 #define PARTIAL_SM_PRIOR_SOURCE_B4_ITER 30
 #define PARTIAL_NEW_SM 31	//Not done yet
-#define SWITCHING_POWER 32
-#define NEW_SWITCHING_POWER 33
-#define CONV_SC_POWER 34
+#define POWER_SWITCH 32
+#define POWER_NEW_SWITCHING 33
+#define POWER_CONV 34
+#define POWER_ITER_EQUAL 35
+#define POWER_ITER_SWITCH 36
 
-#define NOW SWITCHING_POWER
+#define NOW POWER_ITER_EQUAL
 
+
+//=========BER cases
 #define SOURCE_ONLY 1
 #define RELAY_ONLY 2
 #define SOURCE_RELAY_BOTH 3
 
 #define OUTPUT SOURCE_RELAY_BOTH 
 
-//Combining
+//========Combining type
 #define EGComb 1
 #define MRComb 2
 #define NONE 3
@@ -58,7 +62,7 @@ using namespace std;
 
 #define EARLYSTOPRATE 0.001
 
-//BER or PER
+//========Output file : BER or PER
 #define BERFILE 1
 #define PERFILE 2
 #define BERnPER 3
@@ -68,7 +72,7 @@ using namespace std;
 
 
 
-
+//=======pre-compiler test
 #if NOW == SIC
 //dfdf
 #endif
