@@ -75,6 +75,9 @@ public:
 	void turbo_llr_generation_Quad(FADING FAD_MOD, vector<Complex<double>> rx_buf, vector<double> llr_wgt_buf, double* rx_llr0, double* rx_llr1, Mapper* M_MAP, int SP_NDCARperSYM, double LC);
 	void turbo_bit2sym(double* rx_llr0_buf, double *rx_llr1_buf, double **LLR1,double **LLR2, int SP_NCODEBITperSYM, int SP_NCODEBIT, int SP_NCODE);
 	void turbo_bit2sym(vector<double> rx_llr0_buf, vector<double>rx_llr1_buf, vector<vector<double>>& LLR1,vector<vector<double>>& LLR2, int SP_NCODEBITperSYM, int SP_NCODEBIT, int SP_NCODE);
+	
+	void vec2pointer(vector<double> llr0, vector<double> llr1, double *new_llr0, double *new_llr1, int size);
+	
 	void	log_sum_exp_lut_generation();
 	double	log_sum_exp(double *din, int num);
 	double	log_sum_exp(double din1, double din2);

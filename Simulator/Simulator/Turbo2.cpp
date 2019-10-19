@@ -782,7 +782,8 @@ void Turb::llr_segment(double *llr0, double *llr1, double *source_llr0, double *
     }
 }
 
-void Turb::llr_segment(vector<double> llr0, vector<double> llr1, vector<double> &source_llr0, vector<double> &source_llr1, vector<double> &relay_llr0, vector<double> &relay_llr1, int size) {
+void Turb::llr_segment(vector<double> llr0, vector<double> llr1, vector<double> &source_llr0, vector<double> &source_llr1, 
+	vector<double> &relay_llr0, vector<double> &relay_llr1, int size) {
 	for (int i = 0; i < size / 2; i++) {
 		relay_llr0[2 * i] = llr0[4 * i];
 		relay_llr0[2 * i + 1] = llr0[4 * i + 1];
@@ -1631,5 +1632,12 @@ void Turb::turbo_bit2sym(vector<double> rx_llr0_buf, vector<double> rx_llr1_buf,
 		}
 	}
 
+}
+
+void Turb::vec2pointer(vector<double> llr0, vector<double> llr1, double * new_llr0, double * new_llr1, int size){
+	for (int i = 0; i < size; i++) {
+		new_llr0[i] = llr0[i];
+		new_llr1[i] = llr1[i];
+	}
 }
 

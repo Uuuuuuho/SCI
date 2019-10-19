@@ -194,8 +194,8 @@ void Read() {
 			P_alpha2 = 1 - P_alpha1;
 
 			//power switch
-			P_beta1 = P_alpha2;
-			P_beta2 = P_alpha1;
+			P_beta1 = P_alpha1;
+			P_beta2 = P_alpha2;
 		}
 	}
 }
@@ -205,7 +205,7 @@ void Sim() {
 
 	//=============================Class Instances==========================================================================
 	Generation Gen;
-	Mapper Map, SOURCE1_Map, SOURCE2_Map, RELAY1_Map, RELAY2_Map;
+	Mapper Map, SOURCE1_Map, SOURCE2_Map, RELAY1_Map, RELAY2_Map, Map_SOURCE, Map_RELAY;
 	Rayleigh Ray;
 	AWGN Awgn, AWGN2, AWGN3;
 	Detector Detect;
@@ -228,6 +228,11 @@ void Sim() {
 	RELAY2_Map.init(Mod_int);
 	RELAY2_Map.map_tab_gen(P_beta2);
 
+	Map_SOURCE.init(MOD_SUPER_16QAM);
+	Map_SOURCE.map_tab_gen(P_alpha1);
+
+	Map_RELAY.init(MOD_SUPER_16QAM);
+	Map_RELAY.map_tab_gen(P_beta1);
 	//==========================Simulation Parameter======================================================================
 
 
@@ -242,15 +247,12 @@ void Sim() {
 	//======================Trellis diagram===============================================================================================
 
 	int Convsize;
-	double* SOURCE1_TX_llr0, *SOURCE1_TX_llr1, *SOURCE2_TX_llr0, *SOURCE2_TX_llr1,
-		*RELAY1_TX_llr0, *RELAY1_TX_llr1, *RELAY2_TX_llr0, *RELAY2_TX_llr1,
-		*llr0, *llr1, *SUPER_llr0, *SUPER_llr1;
+	double *llr0, *llr1, *SUPER_llr0, *SUPER_llr1, *source1_llr0, *source1_llr1, *source2_llr0, *source2_llr1;
 	double** ConvLLR, **LLR1, **LLR2;
 
 	int g[2] = { 0x0D,0x0B };//trellis polynomial for convolutional
-	llr0 = NULL, llr1 = NULL, ConvLLR = NULL, LLR1 = NULL, LLR2 = NULL, SUPER_llr0 = NULL, SUPER_llr1 = NULL;
-	SOURCE1_TX_llr0 = NULL, SOURCE1_TX_llr1 = NULL, SOURCE2_TX_llr0 = NULL, SOURCE2_TX_llr1 = NULL,
-		RELAY1_TX_llr0 = NULL, RELAY1_TX_llr1 = NULL, RELAY2_TX_llr0 = NULL, RELAY2_TX_llr1 = NULL;
+	llr0 = NULL, llr1 = NULL, ConvLLR = NULL, LLR1 = NULL, LLR2 = NULL, SUPER_llr0 = NULL, SUPER_llr1 = NULL,
+		source1_llr0 = NULL, source1_llr1 = NULL, source2_llr0 = NULL, source2_llr1 = NULL;
 
 	switch (Ch) {
 	case CONV:
@@ -276,21 +278,14 @@ void Sim() {
 		SP_NCODEBITperSYM = (3 * Size) + (4 * turb.m_Nmemory);
 		SP_NDCARperSYM = SP_NCODEBITperSYM / Mod_int;
 
-		SOURCE1_TX_llr0 = (double*)malloc(sizeof(double) * SP_NCODEBITperSYM);
-		SOURCE1_TX_llr1 = (double*)malloc(sizeof(double) * SP_NCODEBITperSYM);
-
-		SOURCE2_TX_llr0 = (double*)malloc(sizeof(double) * SP_NCODEBITperSYM);
-		SOURCE2_TX_llr1 = (double*)malloc(sizeof(double) * SP_NCODEBITperSYM);
-
-		RELAY1_TX_llr0 = (double*)malloc(sizeof(double) * SP_NCODEBITperSYM);
-		RELAY1_TX_llr1 = (double*)malloc(sizeof(double) * SP_NCODEBITperSYM);
-
-		RELAY2_TX_llr0 = (double*)malloc(sizeof(double) * SP_NCODEBITperSYM);
-		RELAY2_TX_llr1 = (double*)malloc(sizeof(double) * SP_NCODEBITperSYM);
-
-
 		llr0 = (double*)malloc(sizeof(double) * SP_NCODEBITperSYM);
 		llr1 = (double*)malloc(sizeof(double) * SP_NCODEBITperSYM);
+
+		source1_llr0 = (double*)malloc(sizeof(double) * SP_NCODEBITperSYM);
+		source1_llr1 = (double*)malloc(sizeof(double) * SP_NCODEBITperSYM);
+
+		source2_llr0 = (double*)malloc(sizeof(double) * SP_NCODEBITperSYM);
+		source2_llr1 = (double*)malloc(sizeof(double) * SP_NCODEBITperSYM);
 
 		SUPER_llr0 = (double*)malloc(sizeof(double) * SP_NCODEBITperSYM);
 		SUPER_llr1 = (double*)malloc(sizeof(double) * SP_NCODEBITperSYM);
@@ -338,7 +333,10 @@ void Sim() {
 		SOURCE_TX, RELAY_TX, SOURCE_RX, RELAY_RX,
 		tmp_RD_TX,
 		RE_RayFading, RayFading, SR_RayFading, RD_RayFading;
-	vector<double> LLR_SR, llr_wgt_sd, LLR_RD, LLR_RE;		//channel gain
+	vector<double> LLR_SR, llr_wgt_sd, LLR_RD, LLR_RE,	//channel gain
+		SOURCE1_TX_llr0(SP_NCODEBITperSYM), SOURCE1_TX_llr1(SP_NCODEBITperSYM), SOURCE2_TX_llr0(SP_NCODEBITperSYM), SOURCE2_TX_llr1(SP_NCODEBITperSYM),
+		RELAY1_TX_llr0(SP_NCODEBITperSYM), RELAY1_TX_llr1(SP_NCODEBITperSYM), RELAY2_TX_llr0(SP_NCODEBITperSYM), RELAY2_TX_llr1(SP_NCODEBITperSYM),
+		MERGED_llr0(SP_NCODEBITperSYM * 2), MERGED_llr1(SP_NCODEBITperSYM * 2);		
 	vector<vector<double>> LLR_FIRST, LLR_SECOND;
 	//====================================================================================================================
 
@@ -526,20 +524,36 @@ void Sim() {
 
 			case TURBO:
 				LC = -1.0 / (2 * Awgn.sigma2);
-				turb.turbo_llr_generation(Fad_Mod, SOURCE_RX, llr_wgt_sd, SOURCE1_TX_llr0, SOURCE1_TX_llr1, &SOURCE1_Map, SOURCE_RX.size(), LC);
-				turb.turbo_bit2sym(SOURCE1_TX_llr0, SOURCE1_TX_llr1, LLR1, LLR2, SP_NCODEBITperSYM, NCODEBIT, SP_NCODE);
+				turb.turbo_llr_generation(Fad_Mod, SOURCE_RX, LLR_RD, MERGED_llr0, MERGED_llr1, &Map_SOURCE, SOURCE_RX.size(), LC);
+		
+				//derive LLR from MERGED_llr to each packet
+				turb.llr_segment(MERGED_llr0, MERGED_llr1, SOURCE1_TX_llr0, SOURCE1_TX_llr1, SOURCE2_TX_llr0, SOURCE2_TX_llr1, SP_NCODEBITperSYM);
+				turb.vec2pointer(SOURCE1_TX_llr0, SOURCE1_TX_llr1, source1_llr0, source1_llr1, SP_NCODEBITperSYM);
+				turb.turbo_bit2sym(source1_llr0, source1_llr1, LLR1, LLR2, SP_NCODEBITperSYM, NCODEBIT, SP_NCODE);
 				decoded_source1 = turb.turbo_decoding(LLR1, LLR2, ITR);
-
 				s1_fail_flag = Detect.Packet(code_source1, decoded_source1, SP_NINFOBITperSYM);
-
-				if (!s1_fail_flag) {
+				
+				if (!s1_fail_flag) {	//when decoding succeeded
 					SOURCE1_Map.Super_Sub(SOURCE1_TX, SOURCE_RX);	//SUB S1 INFO
 					turb.turbo_llr_generation(Fad_Mod, SOURCE_RX, llr_wgt_sd, SOURCE2_TX_llr0, SOURCE2_TX_llr1, &SOURCE2_Map, SOURCE_RX.size(), LC);
-					turb.turbo_bit2sym(SOURCE2_TX_llr0, SOURCE2_TX_llr1, LLR1, LLR2, SP_NCODEBITperSYM, NCODEBIT, SP_NCODE);
+					turb.vec2pointer(SOURCE2_TX_llr0, SOURCE2_TX_llr1, source2_llr0, source2_llr1, SP_NCODEBITperSYM);
+					turb.turbo_bit2sym(source2_llr0, source2_llr1, LLR1, LLR2, SP_NCODEBITperSYM, NCODEBIT, SP_NCODE);
 					decoded_source2 = turb.turbo_decoding(LLR1, LLR2, ITR);
 
 					s2_fail_flag = Detect.Packet(code_source2, decoded_source2, SP_NINFOBITperSYM);
 				}
+
+				else {	//try to decode s2
+					turb.vec2pointer(SOURCE2_TX_llr0, SOURCE2_TX_llr1, source2_llr0, source2_llr1, SP_NCODEBITperSYM);
+					turb.turbo_bit2sym(source2_llr0, source2_llr1, LLR1, LLR2, SP_NCODEBITperSYM, NCODEBIT, SP_NCODE);
+					decoded_source2 = turb.turbo_decoding(LLR1, LLR2, ITR);
+
+					s2_fail_flag = Detect.Packet(code_source2, decoded_source2, SP_NINFOBITperSYM);
+					
+
+					//get ready for s2 success case
+				}
+
 				break;
 
 			case UNCODED:
@@ -563,31 +577,41 @@ void Sim() {
 
 
 			if (s1_fail_flag || s2_fail_flag) {		//CRC fail @ the gateway
-													//Decoding @ Relay
-
+													//Decoding the msg from relay
 				LC = -1.0 / (2 * AWGN3.sigma2);
-				turb.turbo_llr_generation(Fad_Mod, RELAY_RX, LLR_RD, RELAY2_TX_llr0, RELAY2_TX_llr1, &RELAY2_Map, RELAY_RX.size(), LC);
+				turb.turbo_llr_generation(Fad_Mod, RELAY_RX, LLR_RD, RELAY1_TX_llr0, RELAY1_TX_llr1, &RELAY1_Map, RELAY_RX.size(), LC);
+				Comb.LLR_MRC(Fad_Mod, SNR, source1_llr0, source1_llr1, llr_wgt_sd, SNR + RD_Gain, RELAY1_TX_llr0, RELAY1_TX_llr1, LLR_RD, SP_NCODEBITperSYM);
 
-				//if(!s1_fail_flag) //case only s1 decoded successfully
-				Comb.LLR_MRC(Fad_Mod, SNR + RD_Gain, RELAY2_TX_llr0, RELAY2_TX_llr1, LLR_RD,
-					SNR, SOURCE2_TX_llr0, SOURCE2_TX_llr1, llr_wgt_sd, SP_NCODEBITperSYM);
+				turb.turbo_bit2sym(source1_llr0, source1_llr1, LLR1, LLR2, SP_NCODEBITperSYM, NCODEBIT, SP_NCODE);
+				decoded_source1 = turb.turbo_decoding(LLR1, LLR2, ITR);
+				s1_fail_flag = Detect.Packet(code_source1, decoded_source1, SP_NINFOBITperSYM);
 
-				turb.turbo_bit2sym(RELAY2_TX_llr0, RELAY2_TX_llr1, LLR1, LLR2, SP_NCODEBITperSYM, NCODEBIT, SP_NCODE);
-				decoded_source2 = turb.turbo_decoding(LLR1, LLR2, ITR);
 
-				s2_fail_flag = Detect.Packet(code_source2, decoded_source2, SP_NINFOBITperSYM);
+				if (!s1_fail_flag) {	//when decoding succeeded
+					SOURCE1_Map.Super_Sub(RELAY1_TX, RELAY_RX);	//SUB S1 INFO
+					turb.turbo_llr_generation(Fad_Mod, RELAY_RX, LLR_RD, RELAY2_TX_llr0, RELAY2_TX_llr1, &RELAY2_Map, RELAY_RX.size(), LC);
+					turb.vec2pointer(RELAY2_TX_llr0, RELAY2_TX_llr1, source2_llr0, source2_llr1, SP_NCODEBITperSYM);
+					turb.turbo_bit2sym(source2_llr0, source2_llr1, LLR1, LLR2, SP_NCODEBITperSYM, NCODEBIT, SP_NCODE);
+					decoded_source2 = turb.turbo_decoding(LLR1, LLR2, ITR);
 
-				if (!s2_fail_flag) {
-					RELAY1_Map.Super_Sub(RELAY2_TX, RELAY_RX);	//SUB S2 INFO
-					turb.turbo_llr_generation(Fad_Mod, RELAY_RX, llr_wgt_sd, RELAY1_TX_llr0, RELAY1_TX_llr0, &RELAY1_Map, RELAY_RX.size(), LC);
-
-					Comb.LLR_MRC(Fad_Mod, SNR + RD_Gain, RELAY1_TX_llr0, RELAY1_TX_llr1, LLR_RD,
-						SNR, SOURCE1_TX_llr0, SOURCE1_TX_llr1, llr_wgt_sd, SP_NCODEBITperSYM);
-
-					turb.turbo_bit2sym(RELAY1_TX_llr0, RELAY1_TX_llr0, LLR1, LLR2, SP_NCODEBITperSYM, NCODEBIT, SP_NCODE);
-					decoded_source1 = turb.turbo_decoding(LLR1, LLR2, ITR);
+					s2_fail_flag = Detect.Packet(code_source2, decoded_source2, SP_NINFOBITperSYM);
 				}
 
+				else {
+					//derive LLR from MERGED_llr to each packet
+					turb.turbo_llr_generation(Fad_Mod, RELAY_RX, LLR_RD, MERGED_llr0, MERGED_llr1, &Map_SOURCE, RELAY_RX.size(), LC);
+
+					turb.llr_segment(MERGED_llr0, MERGED_llr1, RELAY1_TX_llr0, RELAY1_TX_llr1, RELAY2_TX_llr0, RELAY2_TX_llr1, SP_NCODEBITperSYM);
+					Comb.LLR_MRC(Fad_Mod, SNR, source2_llr0, source2_llr1, llr_wgt_sd, 
+						SNR + RD_Gain, RELAY1_TX_llr0, RELAY1_TX_llr1, LLR_RD, SP_NCODEBITperSYM);
+					turb.turbo_bit2sym(source2_llr0, source2_llr1, LLR1, LLR2, SP_NCODEBITperSYM, NCODEBIT, SP_NCODE);
+					decoded_source2 = turb.turbo_decoding(LLR1, LLR2, ITR);
+
+					s2_fail_flag = Detect.Packet(code_source2, decoded_source2, SP_NINFOBITperSYM);
+
+
+
+				}
 			}
 
 
