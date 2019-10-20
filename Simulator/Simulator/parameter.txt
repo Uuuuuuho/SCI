@@ -10,10 +10,10 @@ P_alpha는 superposition에서 relay 정보의 power ratio를 의미함.
 SofS
 Mod 		QPSK
 SNRinit		0
-Increment	5
-SNRMAX		40
-Title		POWER-ITER-MRC(ALPHA0.6)
-Frame		100000
+Increment	1
+SNRMAX		20
+Title		POWER-NEW-SWITCH-MRC(ALPHA0.6)
+Frame		1000000
 Size		8
 ITR			8
 ITR_RELAY	8
