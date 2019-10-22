@@ -603,6 +603,7 @@ void Sim() {
 #endif
 #if (OUTPUT == RELAY_ONLY) || (OUTPUT == SOURCE_RELAY_BOTH)
 				if(!s1_fail_flag) Detect.Detection(code_source2, decoded_source2, err, Size);
+				else err += Size;
 #endif
 				break;
 			case UNCODED:

@@ -44,7 +44,7 @@ using namespace std;
 #define POWER_ITER_EQUAL 35				//
 #define POWER_ITER_SWITCH 36
 
-#define NOW POWER_ITER_EQUAL
+#define NOW POWER_NEW_SWITCHING
 
 
 //=========BER cases
@@ -52,7 +52,7 @@ using namespace std;
 #define RELAY_ONLY 2
 #define SOURCE_RELAY_BOTH 3
 
-#define OUTPUT SOURCE_RELAY_BOTH 
+#define OUTPUT SOURCE_ONLY 
 
 //========Combining type
 #define EGComb 1
