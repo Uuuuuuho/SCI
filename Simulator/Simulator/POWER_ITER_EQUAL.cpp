@@ -603,7 +603,7 @@ void Sim() {
 
 					turb.llr_segment(MERGED_llr0, MERGED_llr1, RELAY1_TX_llr0, RELAY1_TX_llr1, RELAY2_TX_llr0, RELAY2_TX_llr1, SP_NCODEBITperSYM);
 					Comb.LLR_MRC(Fad_Mod, SNR, source2_llr0, source2_llr1, llr_wgt_sd, 
-						SNR + RD_Gain, RELAY1_TX_llr0, RELAY1_TX_llr1, LLR_RD, SP_NCODEBITperSYM);
+						SNR + RD_Gain, RELAY2_TX_llr0, RELAY2_TX_llr1, LLR_RD, SP_NCODEBITperSYM);
 					turb.turbo_bit2sym(source2_llr0, source2_llr1, LLR1, LLR2, SP_NCODEBITperSYM, NCODEBIT, SP_NCODE);
 					decoded_source2 = turb.turbo_decoding(LLR1, LLR2, ITR);
 
@@ -651,7 +651,6 @@ void Sim() {
 				soFar = h << 1;
 #endif
 
-				soFar = h << 1;
 				//then
 				goto EARLYSTOP;
 			}

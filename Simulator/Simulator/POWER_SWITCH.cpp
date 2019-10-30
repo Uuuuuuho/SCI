@@ -568,9 +568,9 @@ void Sim() {
 				LC = -1.0 / (2 * AWGN3.sigma2);
 				turb.turbo_llr_generation(Fad_Mod, RELAY_RX, LLR_RD, RELAY2_TX_llr0, RELAY2_TX_llr1, &RELAY2_Map, RELAY_RX.size(), LC);
 				
-				//if(!s1_fail_flag) //case only s1 decoded successfully
-					Comb.LLR_MRC(Fad_Mod, SNR + RD_Gain, RELAY2_TX_llr0, RELAY2_TX_llr1, LLR_RD, 
-						SNR, SOURCE2_TX_llr0, SOURCE2_TX_llr1, llr_wgt_sd, SP_NCODEBITperSYM);
+				if(!s1_fail_flag) Comb.LLR_MRC(Fad_Mod, SNR + RD_Gain, RELAY2_TX_llr0, RELAY2_TX_llr1, LLR_RD, 
+						SNR, SOURCE2_TX_llr0, SOURCE2_TX_llr1, llr_wgt_sd, SP_NCODEBITperSYM);			//case only s1 decoded successfully
+
 
 				turb.turbo_bit2sym(RELAY2_TX_llr0, RELAY2_TX_llr1, LLR1, LLR2, SP_NCODEBITperSYM, NCODEBIT, SP_NCODE);
 				decoded_source2 = turb.turbo_decoding(LLR1, LLR2, ITR);

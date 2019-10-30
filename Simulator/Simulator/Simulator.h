@@ -41,10 +41,11 @@ using namespace std;
 #define POWER_SWITCH 32					//SWITCH POWER AT THE 2ND PHASE
 #define POWER_NEW_SWITCHING 33			//SWITCH SIGN OF POWER RATIO AT THE 2ND PHASE
 #define POWER_CONV 34					//EQUAL POWER TX IN BOTH PHASES
-#define POWER_ITER_EQUAL 35				//
+#define POWER_ITER_EQUAL 35				
 #define POWER_ITER_SWITCH 36
+#define POWER_ITER_NEW_SWITCH 37
 
-#define NOW POWER_NEW_SWITCHING
+#define NOW POWER_ITER_NEW_SWITCH
 
 
 //=========BER cases
@@ -52,7 +53,7 @@ using namespace std;
 #define RELAY_ONLY 2
 #define SOURCE_RELAY_BOTH 3
 
-#define OUTPUT SOURCE_ONLY 
+#define OUTPUT RELAY_ONLY 
 
 //========Combining type
 #define EGComb 1

@@ -32,12 +32,14 @@ for k = 1:numfiles
       case 3
         legend(Files(1).name, Files(2).name, Files(3).name)
       case 4
-        legend(Files(1).name, Files(2).name, Files(3).name, Files(4).name)
+        legend('Conventional scheme', 'Proposed scheme',...
+            'Power Switch \beta_1 = \alpha_2, \beta_2 = \alpha_1',...
+            'New Power Switch \beta_1 = -\alpha_2, \beta_2 = \alpha_1')
   end
 end
 
 
-title('RD Gain 0dB, alpha 0.7');
+title('Iterative Decoding BER Comparison with \alpha_1 = 0.6');
 xlabel('Eb/No, dB');
 ylabel('Bit Error Rate');
 

@@ -197,5 +197,11 @@
     <ClCompile Include="CONV_SM.cpp">
       <Filter>소스 파일\ITERATIVE DECODING</Filter>
     </ClCompile>
+    <ClCompile Include="POWER_ITER_SWITCH.cpp">
+      <Filter>소스 파일\POWER SWITCH</Filter>
+    </ClCompile>
+    <ClCompile Include="POWER_ITER_NEW_SWITCH.cpp">
+      <Filter>소스 파일\POWER SWITCH</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
