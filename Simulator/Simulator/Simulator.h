@@ -53,7 +53,7 @@ using namespace std;
 #define RELAY_ONLY 2
 #define SOURCE_RELAY_BOTH 3
 
-#define OUTPUT RELAY_ONLY 
+#define OUTPUT SOURCE_RELAY_BOTH 
 
 //========Combining type
 #define EGComb 1
@@ -62,7 +62,7 @@ using namespace std;
 
 #define COMB MRComb
 
-#define EARLYSTOPRATE 0.001
+#define EARLYSTOPRATE 1
 
 //========Output file : BER or PER
 #define BERFILE 1

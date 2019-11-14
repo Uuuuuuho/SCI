@@ -562,7 +562,7 @@ void Sim() {
 			}
 
 
-			if (s1_fail_flag || s2_fail_flag) {		//CRC fail @ the gateway
+			if (s1_fail_flag && s2_fail_flag) {		//CRC fail @ the gateway
 													//Decoding @ Relay
 
 				LC = -1.0 / (2 * AWGN3.sigma2);

@@ -576,7 +576,7 @@ void Sim() {
 			}
 
 
-			if (s1_fail_flag || s2_fail_flag) {		//CRC fail @ the gateway
+			if (s1_fail_flag && s2_fail_flag) {		//CRC fail @ the gateway
 													//Decoding the msg from relay
 				LC = -1.0 / (2 * AWGN3.sigma2);
 				turb.turbo_llr_generation(Fad_Mod, RELAY_RX, LLR_RD, RELAY2_TX_llr0, RELAY2_TX_llr1, &RELAY2_Map, RELAY_RX.size(), LC);
