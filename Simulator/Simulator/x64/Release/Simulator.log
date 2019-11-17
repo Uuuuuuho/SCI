@@ -27,28 +27,30 @@ C:\Users\user\Documents\GitHub\SCI\Simulator\Simulator\Global_function.cpp(6): w
   POWER_CONV.cpp
   POWER_ITER_EQUAL.cpp
   POWER_ITER_NEW_SWITCH.cpp
+  POWER_ITER_SWITCH.cpp
+  POWER_ITER_SWITCH_RETRY.cpp
+  POWER_LCSIC_NS.cpp
+  POWER_LCSIC_SWITCH.cpp
 C:\Users\user\Documents\GitHub\SCI\Simulator\Simulator\Mapper.h(19): warning C4005: 'PI': 매크로 재정의
   C:\Users\user\Documents\GitHub\SCI\Simulator\Simulator\complex_new.h(13): note: 'PI'의 이전 정의를 참조하십시오.
-C:\Users\user\Documents\GitHub\SCI\Simulator\Simulator\POWER_ITER_NEW_SWITCH.cpp(84): warning C4267: '초기화 중': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\user\Documents\GitHub\SCI\Simulator\Simulator\POWER_ITER_NEW_SWITCH.cpp(241): warning C4244: '초기화 중': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\user\Documents\GitHub\SCI\Simulator\Simulator\POWER_ITER_NEW_SWITCH.cpp(245): warning C4244: '초기화 중': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\user\Documents\GitHub\SCI\Simulator\Simulator\POWER_ITER_NEW_SWITCH.cpp(315): warning C4244: '초기화 중': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\user\Documents\GitHub\SCI\Simulator\Simulator\POWER_ITER_NEW_SWITCH.cpp(318): warning C4244: '인수': 'double'에서 'const unsigned __int64'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\user\Documents\GitHub\SCI\Simulator\Simulator\POWER_ITER_NEW_SWITCH.cpp(319): warning C4244: '인수': 'double'에서 'const unsigned __int64'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\user\Documents\GitHub\SCI\Simulator\Simulator\POWER_ITER_NEW_SWITCH.cpp(377): warning C4244: '=': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\user\Documents\GitHub\SCI\Simulator\Simulator\POWER_ITER_NEW_SWITCH.cpp(388): warning C4244: '=': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\user\Documents\GitHub\SCI\Simulator\Simulator\POWER_ITER_NEW_SWITCH.cpp(527): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\user\Documents\GitHub\SCI\Simulator\Simulator\POWER_ITER_NEW_SWITCH.cpp(538): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\user\Documents\GitHub\SCI\Simulator\Simulator\POWER_ITER_NEW_SWITCH.cpp(562): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\user\Documents\GitHub\SCI\Simulator\Simulator\POWER_ITER_NEW_SWITCH.cpp(565): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\user\Documents\GitHub\SCI\Simulator\Simulator\POWER_ITER_NEW_SWITCH.cpp(568): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\user\Documents\GitHub\SCI\Simulator\Simulator\POWER_ITER_NEW_SWITCH.cpp(571): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\user\Documents\GitHub\SCI\Simulator\Simulator\POWER_ITER_NEW_SWITCH.cpp(582): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\user\Documents\GitHub\SCI\Simulator\Simulator\POWER_ITER_NEW_SWITCH.cpp(595): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\user\Documents\GitHub\SCI\Simulator\Simulator\POWER_ITER_NEW_SWITCH.cpp(606): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\user\Documents\GitHub\SCI\Simulator\Simulator\POWER_ITER_NEW_SWITCH.cpp(314): warning C4101: 'SNR_RD' :참조되지 않은 지역 변수입니다.
-C:\Users\user\Documents\GitHub\SCI\Simulator\Simulator\POWER_ITER_NEW_SWITCH.cpp(314): warning C4101: 'SNR_SR' :참조되지 않은 지역 변수입니다.
-  POWER_ITER_SWITCH.cpp
+C:\Users\user\Documents\GitHub\SCI\Simulator\Simulator\POWER_LCSIC_SWITCH.cpp(84): warning C4267: '초기화 중': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\user\Documents\GitHub\SCI\Simulator\Simulator\POWER_LCSIC_SWITCH.cpp(236): warning C4244: '초기화 중': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\user\Documents\GitHub\SCI\Simulator\Simulator\POWER_LCSIC_SWITCH.cpp(240): warning C4244: '초기화 중': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\user\Documents\GitHub\SCI\Simulator\Simulator\POWER_LCSIC_SWITCH.cpp(321): warning C4244: '초기화 중': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\user\Documents\GitHub\SCI\Simulator\Simulator\POWER_LCSIC_SWITCH.cpp(324): warning C4244: '인수': 'double'에서 'const unsigned __int64'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\user\Documents\GitHub\SCI\Simulator\Simulator\POWER_LCSIC_SWITCH.cpp(325): warning C4244: '인수': 'double'에서 'const unsigned __int64'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\user\Documents\GitHub\SCI\Simulator\Simulator\POWER_LCSIC_SWITCH.cpp(380): warning C4244: '=': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\user\Documents\GitHub\SCI\Simulator\Simulator\POWER_LCSIC_SWITCH.cpp(391): warning C4244: '=': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\user\Documents\GitHub\SCI\Simulator\Simulator\POWER_LCSIC_SWITCH.cpp(530): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\user\Documents\GitHub\SCI\Simulator\Simulator\POWER_LCSIC_SWITCH.cpp(538): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\user\Documents\GitHub\SCI\Simulator\Simulator\POWER_LCSIC_SWITCH.cpp(549): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\user\Documents\GitHub\SCI\Simulator\Simulator\POWER_LCSIC_SWITCH.cpp(552): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\user\Documents\GitHub\SCI\Simulator\Simulator\POWER_LCSIC_SWITCH.cpp(555): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\user\Documents\GitHub\SCI\Simulator\Simulator\POWER_LCSIC_SWITCH.cpp(558): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\user\Documents\GitHub\SCI\Simulator\Simulator\POWER_LCSIC_SWITCH.cpp(571): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\user\Documents\GitHub\SCI\Simulator\Simulator\POWER_LCSIC_SWITCH.cpp(600): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\user\Documents\GitHub\SCI\Simulator\Simulator\POWER_LCSIC_SWITCH.cpp(320): warning C4101: 'SNR_RD' :참조되지 않은 지역 변수입니다.
+C:\Users\user\Documents\GitHub\SCI\Simulator\Simulator\POWER_LCSIC_SWITCH.cpp(320): warning C4101: 'SNR_SR' :참조되지 않은 지역 변수입니다.
   POWER_NEW_SWITCHING.cpp
   POWER_SWITCH.cpp
   PhaseExtension.cpp
@@ -59,10 +61,11 @@ C:\Users\user\Documents\GitHub\SCI\Simulator\Simulator\POWER_ITER_NEW_SWITCH.cpp
   Super_CoMP.cpp
   analog_comb.cpp
   log_comb.cpp
+  컴파일하고 있습니다...
   log_comb2.cpp
   코드를 생성하고 있습니다.
-  1 of 1305 functions (<0.1%) were compiled, the rest were copied from previous compilation.
+  1 of 1303 functions (<0.1%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    2 functions had inline decision re-evaluated but remain unchanged
+    16 functions had inline decision re-evaluated but remain unchanged
   코드를 생성했습니다.
   Simulator.vcxproj -> C:\Users\user\Documents\GitHub\SCI\Simulator\Simulator\.\Simulator.exe

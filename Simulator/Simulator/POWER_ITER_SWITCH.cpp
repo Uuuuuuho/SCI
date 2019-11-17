@@ -247,12 +247,14 @@ void Sim() {
 	//======================Trellis diagram===============================================================================================
 
 	int Convsize;
-	double* llr0, *llr1, *SUPER_llr0, *SUPER_llr1, *source1_llr0, *source1_llr1, *source2_llr0, *source2_llr1;
+	double* llr0, *llr1, *SUPER_llr0, *SUPER_llr1, *source1_llr0, *source1_llr1, *source2_llr0, *source2_llr1, *relay1_llr0, *relay1_llr1, *relay2_llr0, *relay2_llr1;
 	double** ConvLLR, **LLR1, **LLR2;
+	double channel_SD, channel_RD;
 
 	int g[2] = { 0x0D,0x0B };//trellis polynomial for convolutional
 	llr0 = NULL, llr1 = NULL, ConvLLR = NULL, LLR1 = NULL, LLR2 = NULL, SUPER_llr0 = NULL, SUPER_llr1 = NULL,
-		source1_llr0 = NULL, source1_llr1 = NULL, source2_llr0 = NULL, source2_llr1 = NULL;
+		source1_llr0 = NULL, source1_llr1 = NULL, source2_llr0 = NULL, source2_llr1 = NULL,
+		relay1_llr0 = NULL, relay1_llr1 = NULL, relay2_llr0 = NULL, relay2_llr1 = NULL;
 
 	switch (Ch) {
 	case CONV:
@@ -286,6 +288,12 @@ void Sim() {
 
 		source2_llr0 = (double*)malloc(sizeof(double) * SP_NCODEBITperSYM);
 		source2_llr1 = (double*)malloc(sizeof(double) * SP_NCODEBITperSYM);
+
+		relay1_llr0 = (double*)malloc(sizeof(double) * SP_NCODEBITperSYM);
+		relay1_llr1 = (double*)malloc(sizeof(double) * SP_NCODEBITperSYM);
+
+		relay2_llr0 = (double*)malloc(sizeof(double) * SP_NCODEBITperSYM);
+		relay2_llr1 = (double*)malloc(sizeof(double) * SP_NCODEBITperSYM);
 
 		SUPER_llr0 = (double*)malloc(sizeof(double) * SP_NCODEBITperSYM);
 		SUPER_llr1 = (double*)malloc(sizeof(double) * SP_NCODEBITperSYM);
@@ -578,18 +586,73 @@ void Sim() {
 
 			if (s1_fail_flag || s2_fail_flag) {		//CRC fail @ the gateway
 													//Decoding the msg from relay
+				////store channel coefficient
+				//channel_SD = llr_wgt_sd[0];
+				//channel_RD = LLR_RD[0];
+
+
+
+				////=================================================
+				////channel coefficient comparison
+				//if (llr_wgt_sd[0] > LLR_RD[0]) {
+				//	llr_wgt_sd[0] *= P_alpha1;
+				//	LLR_RD[0] *= P_beta1;
+				//}
+				//else {
+				//	llr_wgt_sd[0] *= P_alpha2;
+				//	LLR_RD[0] *= P_beta2;
+				//}
+
+				//turb.vec2pointer(RELAY2_TX_llr0, RELAY2_TX_llr1, relay2_llr0, relay2_llr1, SP_NCODEBITperSYM);
+
+				//if (!s1_fail_flag) Comb.LLR_MRC(Fad_Mod, SNR + RD_Gain, relay2_llr0, relay2_llr1, LLR_RD,
+				//	SNR, SOURCE2_TX_llr0, SOURCE2_TX_llr1, llr_wgt_sd, SP_NCODEBITperSYM);			//case only s1 decoded successfully
+
+
+				//turb.turbo_bit2sym(relay2_llr0, relay2_llr1, LLR1, LLR2, SP_NCODEBITperSYM, NCODEBIT, SP_NCODE);
+				//decoded_source2 = turb.turbo_decoding(LLR1, LLR2, ITR);
+
+				//s2_fail_flag = Detect.Packet(code_source2, decoded_source2, SP_NINFOBITperSYM);
+
+				//if (!s2_fail_flag) {
+				//	RELAY1_Map.Super_Sub(RELAY2_TX, RELAY_RX);	//SUB S2 INFO
+				//	turb.turbo_llr_generation(Fad_Mod, RELAY_RX, llr_wgt_sd, RELAY1_TX_llr0, RELAY1_TX_llr0, &RELAY1_Map, RELAY_RX.size(), LC);
+
+				//	turb.vec2pointer(RELAY1_TX_llr0, RELAY1_TX_llr1, relay1_llr0, relay1_llr1, SP_NCODEBITperSYM);
+				//	Comb.LLR_MRC(Fad_Mod, SNR + RD_Gain, relay1_llr0, relay1_llr1, LLR_RD,
+				//		SNR, SOURCE1_TX_llr0, SOURCE1_TX_llr1, llr_wgt_sd, SP_NCODEBITperSYM);
+
+				//	turb.turbo_bit2sym(relay1_llr0, relay1_llr1, LLR1, LLR2, SP_NCODEBITperSYM, NCODEBIT, SP_NCODE);
+				//	decoded_source1 = turb.turbo_decoding(LLR1, LLR2, ITR);
+				//}
+
+				//else {
+				//	//derive LLR from MERGED_llr to each packet
+				//	turb.turbo_llr_generation(Fad_Mod, RELAY_RX, LLR_RD, MERGED_llr0, MERGED_llr1, &Map_RELAY, RELAY_RX.size(), LC);
+				//	turb.llr_segment(MERGED_llr0, MERGED_llr1, RELAY1_TX_llr0, RELAY1_TX_llr1, RELAY2_TX_llr0, RELAY2_TX_llr1, SP_NCODEBITperSYM);
+
+
+				//	Comb.LLR_MRC(Fad_Mod, SNR, source1_llr0, source1_llr1, llr_wgt_sd,
+				//		SNR + RD_Gain, RELAY1_TX_llr0, RELAY1_TX_llr1, LLR_RD, SP_NCODEBITperSYM);
+				//	turb.turbo_bit2sym(source1_llr0, source1_llr1, LLR1, LLR2, SP_NCODEBITperSYM, NCODEBIT, SP_NCODE);
+				//	decoded_source1 = turb.turbo_decoding(LLR1, LLR2, ITR);
+
+				//}
+
+				//=========================================================
 				LC = -1.0 / (2 * AWGN3.sigma2);
 				turb.turbo_llr_generation(Fad_Mod, RELAY_RX, LLR_RD, RELAY2_TX_llr0, RELAY2_TX_llr1, &RELAY2_Map, RELAY_RX.size(), LC);
 
-				Comb.LLR_MRC(Fad_Mod, SNR, source2_llr0, source2_llr1, llr_wgt_sd,
-					SNR + RD_Gain, RELAY2_TX_llr0, RELAY2_TX_llr1, LLR_RD, SP_NCODEBITperSYM);			//case only s1 decoded successfully
+
+				Comb.LLR_MRC(Fad_Mod, SNR, source2_llr0, source2_llr1, llr_wgt_sd, SNR + RD_Gain, RELAY2_TX_llr0, RELAY2_TX_llr1, LLR_RD, SP_NCODEBITperSYM);
 				turb.turbo_bit2sym(source2_llr0, source2_llr1, LLR1, LLR2, SP_NCODEBITperSYM, NCODEBIT, SP_NCODE);
 				decoded_source2 = turb.turbo_decoding(LLR1, LLR2, ITR);
+
 
 				s2_fail_flag = Detect.Packet(code_source2, decoded_source2, SP_NINFOBITperSYM);
 
 
-				if (!s1_fail_flag) {	//when decoding succeeded
+				if (!s2_fail_flag) {	//when decoding succeeded
 					SOURCE1_Map.Super_Sub(RELAY2_TX, RELAY_RX);	//SUB S1 INFO
 
 					turb.turbo_llr_generation(Fad_Mod, RELAY_RX, LLR_RD, RELAY1_TX_llr0, RELAY1_TX_llr1, &RELAY1_Map, RELAY_RX.size(), LC);
@@ -604,14 +667,13 @@ void Sim() {
 				else {
 					//derive LLR from MERGED_llr to each packet
 					turb.turbo_llr_generation(Fad_Mod, RELAY_RX, LLR_RD, MERGED_llr0, MERGED_llr1, &Map_RELAY, RELAY_RX.size(), LC);
-
 					turb.llr_segment(MERGED_llr0, MERGED_llr1, RELAY1_TX_llr0, RELAY1_TX_llr1, RELAY2_TX_llr0, RELAY2_TX_llr1, SP_NCODEBITperSYM);
+
+
 					Comb.LLR_MRC(Fad_Mod, SNR, source1_llr0, source1_llr1, llr_wgt_sd,
 						SNR + RD_Gain, RELAY1_TX_llr0, RELAY1_TX_llr1, LLR_RD, SP_NCODEBITperSYM);
 					turb.turbo_bit2sym(source1_llr0, source1_llr1, LLR1, LLR2, SP_NCODEBITperSYM, NCODEBIT, SP_NCODE);
 					decoded_source1 = turb.turbo_decoding(LLR1, LLR2, ITR);
-
-					s2_fail_flag = Detect.Packet(code_source2, decoded_source2, SP_NINFOBITperSYM);
 
 				}
 			}

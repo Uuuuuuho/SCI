@@ -203,5 +203,14 @@
     <ClCompile Include="POWER_ITER_NEW_SWITCH.cpp">
       <Filter>소스 파일\POWER SWITCH</Filter>
     </ClCompile>
+    <ClCompile Include="POWER_LCSIC_SWITCH.cpp">
+      <Filter>소스 파일\POWER SWITCH</Filter>
+    </ClCompile>
+    <ClCompile Include="POWER_LCSIC_NS.cpp">
+      <Filter>소스 파일\POWER SWITCH</Filter>
+    </ClCompile>
+    <ClCompile Include="POWER_ITER_SWITCH_RETRY.cpp">
+      <Filter>소스 파일\POWER SWITCH</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

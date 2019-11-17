@@ -68,6 +68,9 @@
     <ClCompile Include="POWER_ITER_EQUAL.cpp" />
     <ClCompile Include="POWER_ITER_NEW_SWITCH.cpp" />
     <ClCompile Include="POWER_ITER_SWITCH.cpp" />
+    <ClCompile Include="POWER_ITER_SWITCH_RETRY.cpp" />
+    <ClCompile Include="POWER_LCSIC_NS.cpp" />
+    <ClCompile Include="POWER_LCSIC_SWITCH.cpp" />
     <ClCompile Include="POWER_NEW_SWITCHING.cpp" />
     <ClCompile Include="QPSK2QAM.cpp" />
     <ClCompile Include="Rayleigh.cpp" />

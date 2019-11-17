@@ -45,7 +45,12 @@ using namespace std;
 #define POWER_ITER_SWITCH 36
 #define POWER_ITER_NEW_SWITCH 37
 
-#define NOW POWER_ITER_NEW_SWITCH
+#define POWER_LCSIC_SWITCH 38
+#define POWER_LCSIC_NS 39
+#define POWER_ITER_SWITCH_RETRY 40
+
+#define NOW POWER_ITER_SWITCH
+
 
 
 //=========BER cases
@@ -53,7 +58,7 @@ using namespace std;
 #define RELAY_ONLY 2
 #define SOURCE_RELAY_BOTH 3
 
-#define OUTPUT RELAY_ONLY 
+#define OUTPUT SOURCE_RELAY_BOTH 
 
 //========Combining type
 #define EGComb 1
