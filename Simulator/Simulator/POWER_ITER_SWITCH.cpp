@@ -584,7 +584,7 @@ void Sim() {
 			}
 
 
-			if (s1_fail_flag || s2_fail_flag) {		//CRC fail @ the gateway
+			if (s1_fail_flag && s2_fail_flag) {		//CRC fail @ the gateway
 													//Decoding the msg from relay
 				////store channel coefficient
 				//channel_SD = llr_wgt_sd[0];

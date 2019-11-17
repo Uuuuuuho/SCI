@@ -67,7 +67,7 @@ using namespace std;
 
 #define COMB MRComb
 
-#define EARLYSTOPRATE 0.001
+#define EARLYSTOPRATE 1
 
 //========Output file : BER or PER
 #define BERFILE 1
